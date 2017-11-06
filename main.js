@@ -62,13 +62,13 @@ $(document).ready(function(){
     ];
 
     var gol = document.getElementById("gol");
-    var whistle = document.getElementById("whistle");
+    var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
     $(".easy").click(function easy_level(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
-        $(".title h1").css("padding-left", "36%").text("Match the Mascots!");
+        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("Match the Mascots!");
         for(i = 0; i < 3; i++){
             var row_div = $('<div>').addClass("row");
             for(j = 0; j < 6; j++){
@@ -257,33 +257,33 @@ $(document).ready(function(){
         $(".challenge").addClass("soon").text("COMING SOON!");
     });
 
-        // need to fix
-        //
-        // function display_stats(){
-        //     $(".games_played .value").text(games_played);
-        //     $(".attempts .value").text(attempts);
-        //
-        //     accuracy = matches / attempts;
-        //     $(".accuracy .value").text(accuracy);
-        // }
-        //
-        // function reset_stats(){
-        //     accuracy = 0;
-        //     matches = 0;
-        //     attempts = 0;
-        //     display_stats();
-        // }
-        //
-        // $(".reset").click(function(){
-        //     games_played += 1;
-        //     display_stats();
-        //     reset_stats();
-        //     shuffle_cards(mascots_front);
-        //     console.log(games_played);
-        //     console.log("matches after click: " + matches);
-        //     console.log("attempts after click: " + attempts);
-        // });
-        //
+       
+        
+        function display_stats(){
+            $(".games_played .value").text(games_played);
+            $(".attempts .value").text(attempts);
+        
+            accuracy = matches / attempts;
+            $(".accuracy .value").text(accuracy);
+        }
+        
+        function reset_stats(){
+            accuracy = 0;
+            matches = 0;
+            attempts = 0;
+            display_stats();
+        }
+        
+        $(".reset").click(function(){
+            games_played += 1;
+            display_stats();
+            reset_stats();
+            shuffle_cards(mascots_front);
+            console.log(games_played);
+            console.log("matches after click: " + matches);
+            console.log("attempts after click: " + attempts);
+        });
+        
 
 });
 
