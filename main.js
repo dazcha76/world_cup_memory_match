@@ -10,17 +10,38 @@ $(document).ready(function(){
     var games_played = 0;
     var match_counter = 0;
 
+    // stats
+
     var accuracy = 0;
     var matches = match_counter;
     var attempts = 0;
 
-    var flip_back = function not_a_match(){
-        first_card.find(".back > img").removeClass("flip");
-        second_card.find(".back > img").removeClass("flip");
-        first_card = null;
-        second_card = null;
-        can_click = true;
-    };
+    console.log("Matches: " + matches);
+        
+        function display_stats(){
+            $(".games_played .value").text(games_played);
+            $(".attempts .value").text(attempts);
+        
+            accuracy = matches / attempts;
+            $(".accuracy .value").text(accuracy);
+        }
+        
+        function reset_stats(){
+            accuracy = 0;
+            matches = 0;
+            attempts = 0;
+            display_stats();
+        }
+        
+        $(".reset").click(function(){
+            games_played += 1;
+            display_stats();
+            reset_stats();
+            shuffle_cards(mascots_front);
+            console.log(games_played);
+            console.log("matches after click: " + matches);
+            console.log("attempts after click: " + attempts);
+        });
 
     // shuffle and deal cards
 
@@ -35,6 +56,16 @@ $(document).ready(function(){
             i = 0;
         }
     }
+
+    // flip cards back
+
+    var flip_back = function not_a_match(){
+        first_card.find(".back > img").removeClass("flip");
+        second_card.find(".back > img").removeClass("flip");
+        first_card = null;
+        second_card = null;
+        can_click = true;
+    };
 
     // select difficulty - easy
 
@@ -111,6 +142,7 @@ $(document).ready(function(){
                         second_card = null;
                         can_click = true;
                     }
+                    return match_counter;
                 } else {
                     whistle.play();
                     setTimeout(flip_back, 2000);
@@ -216,6 +248,7 @@ $(document).ready(function(){
                         second_card = null;
                         can_click = true;
                     }
+                    return match_counter;
                 } else {
                     setTimeout(flip_back, 2000);
                 }
@@ -242,49 +275,20 @@ $(document).ready(function(){
         "images/trivia/7.jpg",
         "images/trivia/8.jpg",
         "images/trivia/9.jpg",
-        "images/trivia/1.jpg",
-        "images/trivia/2.jpg",
-        "images/trivia/3.jpg",
-        "images/trivia/4.jpg",
-        "images/trivia/5.jpg",
-        "images/trivia/6.jpg",
-        "images/trivia/7.jpg",
-        "images/trivia/8.jpg",
-        "images/trivia/9.jpg"
+        "images/trivia/10.jpg",
+        "images/trivia/11.jpg",
+        "images/trivia/12.jpg",
+        "images/trivia/13.jpg",
+        "images/trivia/14.jpg",
+        "images/trivia/15.jpg",
+        "images/trivia/16.jpg",
+        "images/trivia/17.jpg",
+        "images/trivia/18.jpg"
     ];
 
     $(".hard").click(function hard_level(){
         $(".challenge").addClass("soon").text("COMING SOON!");
     });
-
-       
-        
-        function display_stats(){
-            $(".games_played .value").text(games_played);
-            $(".attempts .value").text(attempts);
-        
-            accuracy = matches / attempts;
-            $(".accuracy .value").text(accuracy);
-        }
-        
-        function reset_stats(){
-            accuracy = 0;
-            matches = 0;
-            attempts = 0;
-            display_stats();
-        }
-        
-        $(".reset").click(function(){
-            games_played += 1;
-            display_stats();
-            reset_stats();
-            shuffle_cards(mascots_front);
-            console.log(games_played);
-            console.log("matches after click: " + matches);
-            console.log("attempts after click: " + attempts);
-        });
-        
-
 });
 
 

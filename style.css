@@ -28,6 +28,8 @@ audio {
     color: green;
     text-align: center;
     font-size: 60px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* ---------------- modal ---------------- */
@@ -78,29 +80,38 @@ audio {
     margin: 0 auto;
 }
 
-/* ---------------- stats ---------------- */
-
-aside {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*flex-wrap: nowrap;*/
-    /*justify-content: space-evenly;*/
-    display: none;
-}
+/* ---------------- stats mascots ---------------- */
 
 .stats {
+    height: 85px;
+    width: 800px;
+    border: 5px solid red;
+    border-radius: 25px;
+    color: red;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    position: absolute;
+    left: 40%;
+    top: 86%;
 }
 
 button {
-    height: 5vh;
-    width: 10vw;
-    border: none;
-    background: midnightblue;
-    border-radius: 25px;
-    margin: 1vh 0;
+    background: red;
     color: white;
+    border: none;
+    border-radius: 25px;
 }
+
+.games_played, .attempts, .accuracy {
+
+}
+
+/* ---------------- stats champions ---------------- */
+
+
 
 /* ---------------- cards ---------------- */
 
