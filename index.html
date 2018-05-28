@@ -1,50 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>World Cup Memory Match</title>
+
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="main.js"></script>
     </head>
     <body>
+        <audio id="ole" src="sound_files/ole_ole_ole.mp3"></audio>
 
-    <header class="title">
-        <h1>World Cup Challenge</h1>
-    </header>
-    <!--     modal    -->
+        <audio id="whistle" src="sound_files/whistle.mp3"></audio>
+        <audio id="gol" src="sound_files/gol.mp3"></audio>
+
+    <!-------------------- INTRO -------------------->
 
         <div class="challenge">
-            <h1>Choose your level of difficulty:</h1>
-            <div class="buttons">
-                <div class="easy">Easy</div>
-                <div class="medium">Medium</div>
-                <div class="hard">Hard</div>
+            <h1>World Cup Memory Match</h1>
+            <div class="options">
+                <h2>Choose a game:</h2>
+                <div class="game_option mascots">Mascots</div>
+                <div class="game_option players">Players</div>
+                <div class="game_option champions">Champions</div>
             </div>
         </div>
 
-    <!--     mascots sound files    -->
+    <!-------------------- CARDS -------------------->
 
-        <audio id="ole">
-            <source id="ole" src="sound_files/ole_ole_ole.mp3" type="audio/mpeg">
-        </audio>
+        <section id="game_area">
+            <header class="title">
+                <h1></h1>
+            </header>
 
-        <audio id="whistle">
-            <source src="sound_files/whistle.mp3" type="audio/mpeg">
-        </audio>
+            <div class="result">
+                
+            </div>
 
-        <audio id="gol">
-            <source src="sound_files/gol.mp3" type="audio/mpeg">
-        </audio>
+        </section>
 
-    <!--     champions sound files    -->
-
-        <audio id="champion_audio">
-            <source src="sound_files/la_copa_de_la_vida.mp3" type="audio/mpeg">
-        </audio>
-
-    <!--     stats    -->
+    <!-------------------- STATS -------------------->
 
 <!--         <div class="stats">
             <div class="games_played">
@@ -53,36 +51,21 @@
                 </div>
                 <div class="value">0</div>
             </div>
-
             <div class="attempts">
                 <div class="label">
                     <h3>Attempts</h3>
                 </div>
                 <div class="value">0</div>
             </div>
-
             <div class="accuracy">
                 <div class="label">
                     <h3>Accuracy</h3>
                 </div>
                 <div class="value">0</div>
             </div>
-
             <div class="reset">
                 <button class="reset">Reset Game</button>
             </div>
         </div> -->
-
-    <!--     cards    -->
-
-        <section id="game_area">
-
-            <div class="result">
-                
-            </div>
-
-        </section>
     </body>
 </html>
-
-
