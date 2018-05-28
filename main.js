@@ -282,7 +282,7 @@ $(document).ready(function(){
         "images/trivia/18.jpg"
     ];
 
-    $(".superstars").click(function hard_level(){
+    $(".players").click(function hard_level(){
         $(".challenge").addClass("soon").text("COMING SOON!");
     });
 });
