@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     // all levels
@@ -96,7 +95,7 @@ $(document).ready(function(){
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
-    $(".easy").click(function easy_level(){
+    $(".mascots").click(function easy_level(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("Match the Mascots!");
@@ -188,13 +187,10 @@ $(document).ready(function(){
         ["2010", "Correct! Spain beat Netherlands 1-0 in 2010."],
         ["2014", "Correct! Germany beat Argentina 1-0 in 2014."]
     ]
-
-    var background_music = document.getElementById("champion_audio");
     
-    $(".medium").click(function medium_level(){
+    $(".champions").click(function medium_level(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("champions_background");
-        background_music.play();
         $(".title h1").css("padding-left", "45%").css("font-size", "30px").text("Match the Champion to the Word Cup!");
         for(i = 0; i < 6; i++){
             var row_div = $('<div>').addClass("row");
@@ -286,20 +282,7 @@ $(document).ready(function(){
         "images/trivia/18.jpg"
     ];
 
-    $(".hard").click(function hard_level(){
+    $(".superstars").click(function hard_level(){
         $(".challenge").addClass("soon").text("COMING SOON!");
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,14 +1,18 @@
-
 /* ---------------- all ---------------- */
 
-body {
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.mascots_background, .champions_background {
     background-attachment: fixed;
     background-position: bottom left;
     background-repeat: no-repeat;
     background-color: white;
     font-family: sans-serif;
-    padding-left: 0.5%;
-    background-size: 90vh;
+    padding-left: 0.5%;  
 }
 
 .mascots_background {
@@ -18,100 +22,28 @@ body {
 
 .champions_background {
     background-image: url(images/backgrounds/pele.png);
-}
-
-audio {
-    display: none;
+    background-size: 90vh;
 }
 
 .title h1 {
-    color: green;
     text-align: center;
     font-size: 60px;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-/* ---------------- modal ---------------- */
+/* -------------------- INTRO -------------------- */
 
 .challenge {
-    background: rgba(225, 225, 225, 0.6);
-    height: 50vh;
-    width: 50vw;
-    border-radius: 35px;
-    position: fixed;
-    top: 20%;
-    left: 25%;
-    border: 5px solid green;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(images/backgrounds/trophy.jpg);
+    background-size: cover;
 }
 
 .challenge_not_visible {
     display: none;
 }
-
-.buttons {
-    height: 15%;
-    padding-left: 3%;
-}
-
-.easy, .medium, .hard {
-    display: inline-block;
-    height: 80%;
-    width: 30%;
-    text-align: center;
-    border-radius: 20px;
-    padding-top: 3%;
-    margin: 0 2% 0 0;
-    font-size: 140%;
-    background: green;
-    color: white;
-}
-
-.challenge h1 {
-    padding: 9% 0 6% 0;
-    text-align: center;
-}
-
-.soon {
-    text-align: center;
-    font-size: 100px;
-    font-weight: 900;
-    display: block;
-    margin: 0 auto;
-}
-
-/* ---------------- stats mascots ---------------- */
-
-.stats {
-    height: 85px;
-    width: 800px;
-    border: 5px solid red;
-    border-radius: 25px;
-    color: red;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    position: absolute;
-    left: 40%;
-    top: 86%;
-}
-
-button {
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 25px;
-}
-
-.games_played, .attempts, .accuracy {
-
-}
-
-/* ---------------- stats champions ---------------- */
-
-
 
 /* ---------------- cards ---------------- */
 
@@ -209,3 +141,35 @@ button {
     height: 23vh;
     border-radius: 25px;
 }
+
+/* ---------------- stats mascots ---------------- */
+
+.stats {
+    height: 85px;
+    width: 800px;
+    border: 5px solid red;
+    border-radius: 25px;
+    color: red;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    position: absolute;
+    left: 40%;
+    top: 86%;
+}
+
+button {
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 25px;
+}
+
+.games_played, .attempts, .accuracy {
+
+}
+
+/* ---------------- stats champions ---------------- */
+
