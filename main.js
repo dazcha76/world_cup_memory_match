@@ -62,11 +62,13 @@ $(document).ready(function(){
     var flip_back = function not_a_match(){
         first_card.find(".back > img").removeClass("flip");
         second_card.find(".back > img").removeClass("flip");
-        third_card.find(".back > img").removeClass("flip");
         first_card = null;
         second_card = null;
-        third_card = null;
-        can_click = true;
+        if($("body").hasClass("superstars_background")){
+            third_card.find(".back > img").removeClass("flip");
+            third_card = null;
+        } 
+        can_click = true;  
     };
 
     // MASCOTS
@@ -233,10 +235,6 @@ $(document).ready(function(){
                     if(match_counter === total_matches){
                          $(".title h1").text("You win!");
                     } else {
-                        // first_card = null;
-                        // second_card = null;
-                        // third_card = null;
-                        // can_click = true;
                         setTimeout(remove_card, 2000);
                     }
                     return match_counter;

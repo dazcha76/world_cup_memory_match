@@ -138,10 +138,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    margin: 1vh auto;
+    margin: 1vh auto 5vh auto;
     width: 80vw;
     height: 24vh;
-    margin-bottom: 5vh;
 }
 
 .superstar_row .card {
@@ -172,10 +171,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-top: 1vh;
-    margin-left: 0.5vw;
-    height: 20vh;
+    justify-content: space-evenly;
+    /*margin-top: 1vh;*/
+    /*margin-left: 0.5vw;*/
+    /*height: 20vh;*/
+    margin: 1vh auto 5vh auto;
+    width: 80vw;
+    height: 24vh;
 }
 
 .champion_card {
