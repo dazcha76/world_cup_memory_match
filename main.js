@@ -4,6 +4,7 @@ $(document).ready(function(){
 
     var first_card = null;
     var second_card = null;
+    var third_card = null;
     var total_matches = 9;
     var can_click = true;
     var games_played = 0;
@@ -61,12 +62,14 @@ $(document).ready(function(){
     var flip_back = function not_a_match(){
         first_card.find(".back > img").removeClass("flip");
         second_card.find(".back > img").removeClass("flip");
+        third_card.find(".back > img").removeClass("flip");
         first_card = null;
         second_card = null;
+        third_card = null;
         can_click = true;
     };
 
-    // select difficulty - easy
+    // MASCOTS
 
     var mascots_background = "images/backgrounds/zabivaka.png";
     var mascots_back = "images/mascots.jpg";
@@ -98,7 +101,7 @@ $(document).ready(function(){
     $(".mascots").click(function easy_level(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
-        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("Match the Mascots!");
+        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
         for(i = 0; i < 3; i++){
             var row_div = $('<div>').addClass("row");
             for(j = 0; j < 6; j++){
@@ -151,13 +154,103 @@ $(document).ready(function(){
         }
     }
 
-    // select difficulty - medium
+    // SUPERSTARS
+
+    var superstars_background = "images/players.jpg";
+    var superstars_back = "images/player.jpg";
+    var superstars_front = [
+        "images/superstars/messi_player.jpg",
+        "images/superstars/messi_club.jpg",
+        "images/superstars/messi_country.jpg",
+        "images/superstars/ronaldo_player.jpg",
+        "images/superstars/ronaldo_club.jpg",
+        "images/superstars/ronaldo_country.png",
+        "images/superstars/neymar_player.jpeg",
+        "images/superstars/neymar_club.png",
+        "images/superstars/neymar_country.png",
+        "images/superstars/salah_player.jpg",
+        "images/superstars/salah_club.png",
+        "images/superstars/salah_country.png",
+        "images/superstars/griezmann_player.jpg",
+        "images/superstars/griezmann_club.png",
+        "images/superstars/griezman_country.png",
+        "images/superstars/buffon_player.jpg",
+        "images/superstars/buffon_club.png",
+        "images/superstars/buffon_country.png"
+    ];
+
+    $(".superstars").click(function players(){
+        $(".challenge").addClass("challenge_not_visible");
+        $("body").addClass("superstars_background");
+        $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
+        for(i = 0; i < 3; i++){
+            var row_div = $('<div>').addClass("row");
+            for(j = 0; j < 6; j++){
+                var first_image_tag = $('<img>');
+                var card_div = $('<div>').addClass("card");
+                var front_div = $('<div>').addClass("front");
+                first_image_tag.appendTo(front_div);
+                var second_image_tag = $('<img>');
+                var back_div = $('<div>').addClass("back");
+                second_image_tag.appendTo(back_div);
+                card_div.append(front_div).append(back_div);
+                card_div.appendTo(row_div);
+            }
+            row_div.appendTo("#game_area");
+        }
+        $(".row").addClass("superstar_row");
+        $(".card").addClass("superstar_card");
+        $(".back img").attr("src", superstars_back);
+        shuffle_cards(superstars_front);
+        $(".card").click(superstars_card_clicked);
+    });
+
+    function superstars_card_clicked(){
+        if(can_click === true){
+            $(event.target).addClass("flip");
+            if(first_card === null){
+                first_card = $(this);
+            } else if (second_card === null){
+                second_card = $(this);
+            } else {
+                third_card = $(this);
+                var first_string = first_card.find(".front > img").attr("src");
+                var first_player = first_string[18];
+               
+                var second_string = second_card.find(".front > img").attr("src");
+                var second_player = second_string[18];
+
+                var third_string = second_card.find(".front > img").attr("src");
+                var third_player = second_string[18];
+
+                can_click = false;
+                attempts += 1;
+                if(first_player === second_player && first_player === third_player){
+                    match_counter += 1;
+                    if(match_counter === total_matches){
+                         $(".title h1").text("You win!");
+                    } else {
+                        first_card = null;
+                        second_card = null;
+                        third_card = null;
+                        can_click = true;
+                    }
+                    return match_counter;
+                } else {
+                    setTimeout(flip_back, 2000);
+                }
+
+            }
+        }
+    }
+
+    // CHAMPIONS
 
     var champions_background = "images/backgrounds/pele.png";
     var champions_back = "images/gol.jpg";
     var champions_front = [
-        "images/champions/1982cup.jpg",
-        "images/champions/1982team.jpg",
+        // "images/champions/1982cup.jpg",
+        // "images/champions/1982team.jpg",
         "images/champions/1986cup.jpg",
         "images/champions/1986team.jpg",
         "images/champions/1990cup.jpg",
@@ -177,7 +270,7 @@ $(document).ready(function(){
     ];
 
     var results = [
-        ["1982", "Correct! Italy beat West Germany 3-1 in 1982."],
+        // ["1982", "Correct! Italy beat West Germany 3-1 in 1982."],
         ["1986", "Correct! Argentina beat West Germany 3-2 in 1986."],
         ["1990", "Correct! West Germany beat Argentina 1-0 in 1990."],
         ["1994", "Correct! Brazil beat Italy 3-2 in 1994."],
@@ -190,11 +283,11 @@ $(document).ready(function(){
     
     $(".champions").click(function medium_level(){
         $(".challenge").addClass("challenge_not_visible");
-        $("body").addClass("champions_background");
-        $(".title h1").css("padding-left", "45%").css("font-size", "30px").text("Match the Champion to the Word Cup!");
-        for(i = 0; i < 6; i++){
+        // $("body").addClass("champions_background");
+        $(".title h1").text("World Cup Champions");
+        for(i = 0; i < 4; i++){
             var row_div = $('<div>').addClass("row");
-            for(j = 0; j < 3; j++){
+            for(j = 0; j < 4; j++){
                 var first_image_tag = $('<img>');
                 var card_div = $('<div>').addClass("card");
                 var front_div = $('<div>').addClass("front");
@@ -257,32 +350,5 @@ $(document).ready(function(){
         $(".result").css("visibility", "hidden");
     }
 
-    // select difficulty - hard
 
-    var trivia_background = "";
-    var trivia_back = "images/trivia.jpg";
-    var trivia_front = [
-        "images/trivia/1.jpg",
-        "images/trivia/2.jpg",
-        "images/trivia/3.jpg",
-        "images/trivia/4.jpg",
-        "images/trivia/5.jpg",
-        "images/trivia/6.jpg",
-        "images/trivia/7.jpg",
-        "images/trivia/8.jpg",
-        "images/trivia/9.jpg",
-        "images/trivia/10.jpg",
-        "images/trivia/11.jpg",
-        "images/trivia/12.jpg",
-        "images/trivia/13.jpg",
-        "images/trivia/14.jpg",
-        "images/trivia/15.jpg",
-        "images/trivia/16.jpg",
-        "images/trivia/17.jpg",
-        "images/trivia/18.jpg"
-    ];
-
-    $(".players").click(function hard_level(){
-        $(".challenge").addClass("soon").text("COMING SOON!");
-    });
 });
