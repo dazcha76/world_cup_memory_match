@@ -226,8 +226,6 @@ $(document).ready(function(){
                 var third_string = third_card.find(".front > img").attr("src");
                 var third_player = third_string[18];
 
-                console.log(first_player + "-" + second_player + "-" + third_player);
-
                 can_click = false;
                 attempts += 1;
                 if(first_player === second_player && first_player === third_player){
@@ -235,10 +233,11 @@ $(document).ready(function(){
                     if(match_counter === total_matches){
                          $(".title h1").text("You win!");
                     } else {
-                        first_card = null;
-                        second_card = null;
-                        third_card = null;
-                        can_click = true;
+                        // first_card = null;
+                        // second_card = null;
+                        // third_card = null;
+                        // can_click = true;
+                        setTimeout(remove_card, 2000);
                     }
                     return match_counter;
                 } else {
@@ -247,6 +246,16 @@ $(document).ready(function(){
 
             }
         }
+    }
+
+    function remove_card(){
+        first_card.addClass("remove");
+        second_card.addClass("remove");
+        third_card.addClass("remove");
+        first_card = null;
+        second_card = null;
+        third_card = null;
+        can_click = true;
     }
 
     // CHAMPIONS
