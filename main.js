@@ -173,7 +173,7 @@ $(document).ready(function(){
         "images/superstars/salah_country.png",
         "images/superstars/griezmann_player.jpg",
         "images/superstars/griezmann_club.png",
-        "images/superstars/griezman_country.png",
+        "images/superstars/griezmann_country.png",
         "images/superstars/buffon_player.jpg",
         "images/superstars/buffon_club.png",
         "images/superstars/buffon_country.png"
@@ -210,18 +210,23 @@ $(document).ready(function(){
             $(event.target).addClass("flip");
             if(first_card === null){
                 first_card = $(this);
+                
             } else if (second_card === null){
                 second_card = $(this);
+                
             } else {
                 third_card = $(this);
+                
                 var first_string = first_card.find(".front > img").attr("src");
                 var first_player = first_string[18];
                
                 var second_string = second_card.find(".front > img").attr("src");
                 var second_player = second_string[18];
 
-                var third_string = second_card.find(".front > img").attr("src");
-                var third_player = second_string[18];
+                var third_string = third_card.find(".front > img").attr("src");
+                var third_player = third_string[18];
+
+                console.log(first_player + "-" + second_player + "-" + third_player);
 
                 can_click = false;
                 attempts += 1;
