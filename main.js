@@ -45,6 +45,26 @@ $(document).ready(function(){
     //     console.log("attempts after click: " + attempts);
     // });
 
+    // PLAY LANDSCAPE ONLY
+
+    function rotate(){
+        width = $(window).width();
+        console.log("First width: " + width);
+
+        if(width <= 650){
+            $(".portrait").css("visibility", "visible");
+        }
+
+        $( window ).on( "orientationchange", function( event ) {
+            if(orientation === 0){
+                $( ".portrait" ).css("visibility", "visible");
+            } else {
+                $( ".portrait" ).css("visibility", "hidden");
+            }
+          console.log(orientation)
+        });
+    }
+
     // shuffle and deal cards
 
     function shuffle_cards(pic_array){
@@ -139,26 +159,6 @@ $(document).ready(function(){
         can_click = true;  
     };
 
-    // PLAY LANDSCAPE ONLY
-
-    function rotate(){
-        width = $(window).width();
-        console.log("First width: " + width);
-
-        if(width <= 650){
-            $(".portrait").css("visibility", "visible");
-        }
-
-        $( window ).on( "orientationchange", function( event ) {
-            if(orientation === 0){
-                $( ".portrait" ).css("visibility", "visible");
-            } else {
-                $( ".portrait" ).css("visibility", "hidden");
-            }
-          console.log(orientation)
-        });
-    }
-
     // MASCOTS
 
     var mascots_background = "images/backgrounds/zabivaka.png";
@@ -203,14 +203,16 @@ $(document).ready(function(){
         shuffle_cards();
     }
 
-    $(".mascots").click(function easy_level(){
+    $(".mascots").click(mascots_easy);
+
+    function mascots_easy(){
         rotate();
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $("#game_area").css({"height": "100vh", "width": "100vw"});
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
         create_rows();
-    });
+    }
 
     function mascots_card_clicked(){
         if(can_click === true){
@@ -247,13 +249,15 @@ $(document).ready(function(){
     var superstars_background = "images/backgrounds/players.jpg";
     var superstars_back = "images/player.jpg";
 
-    $(".superstars").click(function players(){
+    $(".superstars").click(superstars_easy);
+
+    function superstars_easy(){
         rotate();
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("superstars_background");
         $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
         create_rows();
-    });
+    }
 
     function superstars_card_clicked(){
         if(can_click === true){
@@ -321,14 +325,16 @@ $(document).ready(function(){
         ["2014", "Correct! Germany beat Argentina 1-0 in 2014."]
     ]
     
-    $(".champions").click(function medium_level(){
+    $(".champions").click(champions_easy);
+
+    function champions_easy(){
         rotate();
 
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("champions_background");
         $(".title h1").text("World Cup Champions");
         create_rows();
-    });
+    }
 
     function champions_card_clicked(){
         if(can_click === true){
@@ -377,45 +383,44 @@ $(document).ready(function(){
     // PLAY AGAIN
 
     function win_modal(){
-        var win_title = $('<h2>').text("You Win!");
+        var win_title = $("<h2>").text("You Win!");
         win_title.appendTo(".play_again");
 
         var button_wrapper = $('<div>').addClass("button_wrapper");
         button_wrapper.appendTo(".play_again");
 
-        var play_button = $('<div>').addClass("play_again_buttons play_button").text("Play Again");
-        var difficulty_button = $('<div>').addClass("play_again_buttons difficulty_button").text("Change Difficulty");
-        var change_button = $('<div>').addClass("play_again_buttons change_button").text("Change Deck");
+        var first_button = $('<div>').addClass("play_again_buttons first_button").text("Play Again");
+        var second_button = $('<div>').addClass("play_again_buttons second_button").text("Change Difficulty");
+        var third_button = $('<div>').addClass("play_again_buttons third_button").text("Change Deck");
         
-        play_button.appendTo(button_wrapper);
-        difficulty_button.appendTo(button_wrapper);
-        change_button.appendTo(button_wrapper);
+        first_button.appendTo(button_wrapper);
+        second_button.appendTo(button_wrapper);
+        third_button.appendTo(button_wrapper);
 
-        $(".play_button").click(function play_again(){
-            $(".play_again").toggleClass("play_again_hidden");
-            console.log("Let's play again!");
+        $(".first_button").click(function play_again(){
+            $(".play_again").addClass("play_again_hidden");
+            $(".play_again").empty();
             $(".row").remove();
-            
             create_rows();
             first_card = null;
             second_card = null;
             can_click = true;  
+            match_counter = 0
         });
 
-        $(".difficulty_button").click(function play_again(){
-
+        $(".second_button").click(function make_harder(){
+            console.log("Make it harder!!");
         });
 
-        $(".change_button").click(function play_again(){
+        $(".third_button").click(function change_deck(){
+            $(".play_again h2").text("Choose a Set:");
+            $(first_button).text("Mascots").click();
+            $(second_button).text("Superstars").click();
+            $(third_button).text("Champions").click();
 
+            console.log("Let's play something!");
         });
 
         $(".play_again").toggleClass("play_again_hidden");
     }
-
-
-    
-
-    
-
 });
