@@ -169,7 +169,7 @@
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
-    background-image: url(images/backgrounds/pele.png);
+    background-image: url(images/backgrounds/trophy.jpg);
     background-size: 90vh;
 }
 
@@ -241,3 +241,41 @@ button {
 
 /* ---------------- stats champions ---------------- */
 
+/* -------------------- MEDIA QUERIES -------------------- */
+
+@media only screen and (max-width: 800px){
+    .title h1 {
+        display: none;
+    }
+
+    .mascots_background {
+        background-image: none;
+        padding-top: 1%;
+        padding-left: 1%;
+    }
+
+    .mascot_row {
+        height: 31vh;
+        width: 100vw;
+    }
+
+    .superstars_background {
+        padding-top: 0.8%;
+    }
+
+    .superstar_row {
+        width: 100vw;
+        height: 28vh;
+    }
+
+    .champions_background {
+        background-image: none;
+        padding-top: 0.8%;
+        padding-left: 0;
+    }
+
+    .champion_row {
+        width: 100vw;
+        height: 23vh;
+    }
+}

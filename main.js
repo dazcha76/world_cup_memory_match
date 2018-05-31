@@ -158,7 +158,7 @@ $(document).ready(function(){
 
     // SUPERSTARS
 
-    var superstars_background = "images/players.jpg";
+    var superstars_background = "images/backgrounds/players.jpg";
     var superstars_back = "images/player.jpg";
     var superstars_front = [
         "images/superstars/messi_player.jpg",
@@ -295,7 +295,7 @@ $(document).ready(function(){
     
     $(".champions").click(function medium_level(){
         $(".challenge").addClass("challenge_not_visible");
-        // $("body").addClass("champions_background");
+        $("body").addClass("champions_background");
         $(".title h1").text("World Cup Champions");
         for(i = 0; i < 4; i++){
             var row_div = $('<div>').addClass("row");
