@@ -22,11 +22,6 @@
     margin: 1% 0;
 }
 
-#game_area {
-    height: 100vh;
-    width: 100vw;
-}
-
 /* -------------------- INTRO -------------------- */
 
 .challenge {
@@ -34,6 +29,7 @@
     width: 100vw;
     background-image: url(images/backgrounds/trophy.jpg);
     background-size: cover;
+    overflow: hidden;
 }
 
 .challenge_not_visible {
@@ -169,7 +165,7 @@
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
-    background-image: url(images/backgrounds/trophy.jpg);
+    background-image: url(images/backgrounds/pele.png);
     background-size: 90vh;
 }
 
@@ -209,6 +205,57 @@
     text-align: center;
     padding: 2%;
 }
+
+/* -------------------- PLAY AGAIN -------------------- */
+
+.play_again {
+    
+
+    z-index: 1;
+    height: 25vh;
+    width: 50vw;
+    background: white;
+    position: absolute;
+    top: 34vh;
+    left: 22vw;
+    border: 1vh solid green;
+    border-radius: 25px;
+    
+    
+    padding: 2%;
+
+}
+
+.play_again_hidden {
+    visibility: hidden;
+}
+
+.play_again h2 {
+    text-align: center;
+    font-size: 400%;
+    margin-bottom: 5%;
+}
+
+.button_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.play_again_buttons {
+    height: 25%;
+    min-width: 30%;
+    background-color: red;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    font-size: 150%;
+    line-height: 200%;
+
+}
+
+/*.play_button, .change_button, .difficulty_button*/
 
 /* ---------------- stats mascots ---------------- */
 

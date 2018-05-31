@@ -127,6 +127,7 @@ $(document).ready(function(){
 
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
+        $("#game_area").css({"height": "100vh", "width": "100vw"});
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
         for(i = 0; i < 3; i++){
             var row_div = $('<div>').addClass("row");
@@ -150,7 +151,7 @@ $(document).ready(function(){
         $(".card").click(mascots_card_clicked);
     });
 
-        function mascots_card_clicked(){
+    function mascots_card_clicked(){
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
@@ -163,8 +164,8 @@ $(document).ready(function(){
                     gol.play();
                     match_counter += 1;
                     if(match_counter === total_matches){
-                        $(".title h1").text("You win!");
                         ole.play();
+                        win_modal();
                     } else {
                         first_card = null;
                         second_card = null;
@@ -389,4 +390,43 @@ $(document).ready(function(){
     function remove_result(){
         $(".result").css("visibility", "hidden");
     }
+
+
+    // PLAY AGAIN
+
+    function win_modal(){
+        var win_title = $('<h2>').text("You Win!");
+        win_title.appendTo(".play_again");
+
+        var button_wrapper = $('<div>').addClass("button_wrapper");
+        button_wrapper.appendTo(".play_again");
+
+        var play_button = $('<div>').addClass("play_again_buttons play_button").text("Play Again");
+        var difficulty_button = $('<div>').addClass("play_again_buttons difficulty_button").text("Change Difficulty");
+        var change_button = $('<div>').addClass("play_again_buttons change_button").text("Change Deck");
+        
+        play_button.appendTo(button_wrapper);
+        difficulty_button.appendTo(button_wrapper);
+        change_button.appendTo(button_wrapper);
+
+        $(".play_button").click(function play_again(){
+            console.log("Let's play again!");
+        });
+
+        $(".difficulty_button").click(function play_again(){
+
+        });
+
+        $(".change_button").click(function play_again(){
+
+        });
+
+        $(".play_again").toggleClass("play_again_hidden");
+    }
+
+
+    
+
+    
+
 });
