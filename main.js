@@ -10,6 +10,8 @@ $(document).ready(function(){
     var games_played = 0;
     var match_counter = 0;
 
+    var width = 0;
+
     // stats
 
     var accuracy = 0;
@@ -71,6 +73,26 @@ $(document).ready(function(){
         can_click = true;  
     };
 
+    // PLAY LANDSCAPE ONLY
+
+    function rotate(){
+        width = $(window).width();
+        console.log("First width: " + width);
+
+        if(width <= 650){
+            $(".portrait").css("visibility", "visible");
+        }
+
+        $( window ).on( "orientationchange", function( event ) {
+            if(orientation === 0){
+                $( ".portrait" ).css("visibility", "visible");
+            } else {
+                $( ".portrait" ).css("visibility", "hidden");
+            }
+          console.log(orientation)
+        });
+    }
+
     // MASCOTS
 
     var mascots_background = "images/backgrounds/zabivaka.png";
@@ -101,6 +123,8 @@ $(document).ready(function(){
     var ole = document.getElementById("ole");
 
     $(".mascots").click(function easy_level(){
+        rotate();
+
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
@@ -182,6 +206,8 @@ $(document).ready(function(){
     ];
 
     $(".superstars").click(function players(){
+        rotate();
+
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("superstars_background");
         $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
@@ -294,6 +320,8 @@ $(document).ready(function(){
     ]
     
     $(".champions").click(function medium_level(){
+        rotate();
+
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("champions_background");
         $(".title h1").text("World Cup Champions");
@@ -361,6 +389,4 @@ $(document).ready(function(){
     function remove_result(){
         $(".result").css("visibility", "hidden");
     }
-
-
 });

@@ -241,9 +241,50 @@ button {
 
 /* ---------------- stats champions ---------------- */
 
+/* -------------------- PORTRAIT OPTIONS -------------------- */
+
+.portrait {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: green;
+    visibility: hidden;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 300%;
+    color: white;
+    margin-bottom: 15%;
+}
+
+.portrait i {
+    color: white;
+    font-size: 50vmin;
+    -webkit-animation-name: rotate; 
+    animation-name: rotate;
+    -webkit-animation-duration: 2s; 
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+   -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(90deg)}
+}
+
 /* -------------------- MEDIA QUERIES -------------------- */
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 825px){
     .title h1 {
         display: none;
     }
