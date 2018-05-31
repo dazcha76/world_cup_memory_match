@@ -22,6 +22,11 @@
     margin: 1% 0;
 }
 
+#game_area {
+    height: 100vh;
+    width: 100vw;
+}
+
 /* -------------------- INTRO -------------------- */
 
 .challenge {
@@ -100,7 +105,7 @@
 
 .mascots_background {
     background-image: url(images/backgrounds/zabivaka.png);
-    background-size: 40%;
+    background-size: 35%;
 }
 
 .mascot_row {
@@ -111,18 +116,20 @@
     margin-top: 1vh;
     margin-right: 1vw;
     float: right;
+    height: 24vh;
+    width: 65vw;
 }
 
 .mascot_card {
-    width: 10vw;
-    height: 24vh;
+    width: 15%;
+    height: 100%;
     position: relative;
 
 }
 
 .mascot_card img {
-    width: 9.5vw;
-    height: 23vh;
+    width: 100%;
+    height: 100%;
     background-color: white;
 }
 
@@ -152,7 +159,6 @@
     height: 100%;
     position: relative;
     border: 3px solid gold;
- /*   padding: 2% 0 0 1%;*/
 }
 
 .superstar_card img {
@@ -172,40 +178,36 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    /*margin-top: 1vh;*/
-    /*margin-left: 0.5vw;*/
-    /*height: 20vh;*/
-    margin: 1vh auto 5vh auto;
-    width: 80vw;
-    height: 24vh;
+    margin: 1vh auto;
+    width: 84vw;
+    height: 20vh;
 }
 
 .champion_card {
-    width: 17vw;
+    width: 24%;
     height: 100%;
     position: relative;
 }
 
 .champion_card img {
-    width: 16vw;
-    height: 19vh;
-    border-radius: 25px;
+    width: 100%;
+    height: 100%;
 }
 
 .result {
     z-index: 1;
-    height: 150px;
-    width: 400px;
+    height: 25%;
+    width: 40%;
     background: white;
     position: absolute;
-    left: 35%;
-    top: 30%;
+    top: 40%;
+    left: 29.3%;
     border: 5px solid green;
     border-radius: 25px;
     visibility: hidden;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
-    padding: 5px;
+    padding: 2%;
 }
 
 /* ---------------- stats mascots ---------------- */
