@@ -1,4 +1,4 @@
-/* ---------------- all ---------------- */
+/* -------------------- ALL -------------------- */
 
 * {
     margin: 0;
@@ -16,21 +16,15 @@
     padding-left: 0.5%;  
 }
 
-.mascots_background {
-    background-image: url(images/backgrounds/zabivaka.png);
-    background-size: 40%;
-}
-
-.champions_background {
-    background-image: url(images/backgrounds/pele.png);
-    background-size: 90vh;
-}
-
 .title h1 {
     text-align: center;
     font-size: 60px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 1% 0;
+}
+
+#game_area {
+    height: 100vh;
+    width: 100vw;
 }
 
 /* -------------------- INTRO -------------------- */
@@ -55,13 +49,13 @@
 
 .options {
     height: 50vh;
-    min-width: 15em;
+    min-width: 15vw;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
-    padding: 2%;
+    padding: 3%;
     position: absolute;
-    top: 25%;
-    left: 8%;
+    top: 25vh;
+    left: 7vw;
     color: white;
 }
 
@@ -77,12 +71,11 @@
 .game_option {
     height: 8vh;
     min-width: 13em;
-    background-color: rgba(0,204,0, 0.5);
+    background-color: rgba(0,204,0, 0.6);
     font-size: 3vh;
     text-align: center;
     line-height: 8vh;
     margin: 15% auto;
-    /*margin-left: 10%;*/
     border-radius: 15px;
     color: white;
 }
@@ -92,17 +85,28 @@
     color: white;
 }
 
-/* ---------------- cards ---------------- */
+/* ---------------- CARDS ---------------- */
 
 .front, .back {
     position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .back .flip {
     display: none;
 }
 
-/* ---------------- easy game ---------------- */
+.remove {
+    visibility: hidden;
+}
+
+/* -------------------- MASCOTS -------------------- */
+
+.mascots_background {
+    background-image: url(images/backgrounds/zabivaka.png);
+    background-size: 35%;
+}
 
 .mascot_row {
     display: flex;
@@ -112,81 +116,98 @@
     margin-top: 1vh;
     margin-right: 1vw;
     float: right;
+    height: 24vh;
+    width: 65vw;
 }
 
 .mascot_card {
-    width: 10vw;
-    height: 24vh;
+    width: 15%;
+    height: 100%;
     position: relative;
+
 }
 
 .mascot_card img {
-    width: 9.5vw;
-    height: 23vh;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 
-/* ---------------- medium game ---------------- */
+/* -------------------- PLAYERS -------------------- */
+
+.superstars_background {
+    background-image: url(images/backgrounds/players.jpg);
+    background-size: cover;
+}
+
+.superstar_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin: 1vh auto 5vh auto;
+    width: 80vw;
+    height: 24vh;
+}
+
+.superstar_row .card {
+    background-color: white;
+}
+
+.superstar_card {
+    width: 13%;
+    height: 100%;
+    position: relative;
+    border: 3px solid gold;
+}
+
+.superstar_card img {
+    width: 100%;
+    height: 100%;
+}
+
+/* -------------------- CHAMPIONS -------------------- */
+
+.champions_background {
+    background-image: url(images/backgrounds/pele.png);
+    background-size: 90vh;
+}
 
 .champion_row {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    margin-top: 1vh;
-    margin-right: 1vw;
-    float: right;
+    margin: 1vh auto;
+    width: 84vw;
+    height: 20vh;
 }
 
 .champion_card {
-    width: 16.5vw;
-    height: 15vh;
+    width: 24%;
+    height: 100%;
     position: relative;
 }
 
 .champion_card img {
-    width: 14.5vw;
-    height: 14.5vh;
-    border-radius: 25px;
+    width: 100%;
+    height: 100%;
 }
 
 .result {
     z-index: 1;
-    height: 150px;
-    width: 400px;
+    height: 25%;
+    width: 40%;
     background: white;
     position: absolute;
-    left: 35%;
-    top: 30%;
+    top: 40%;
+    left: 29.3%;
     border: 5px solid green;
     border-radius: 25px;
     visibility: hidden;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
-    padding: 5px;
-}
-
-/* ---------------- difficult game ---------------- */
-
-.trivia_row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    margin-top: 1vh;
-    margin-right: 1vw;
-    float: right;
-}
-
-.trivia_card {
-    width: 10vw;
-    height: 24vh;
-    position: relative;
-}
-
-.trivia_card img {
-    width: 9.5vw;
-    height: 23vh;
-    border-radius: 25px;
+    padding: 2%;
 }
 
 /* ---------------- stats mascots ---------------- */
