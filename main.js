@@ -114,7 +114,6 @@ $(document).ready(function(){
             ];
         }
         
-        console.log(pic_array);
         for(i = 0; i <= pic_array.length; i++){
             var index = Math.floor(Math.random()*pic_array.length);
             $(".front img").eq(elem_index).attr("src", pic_array[index]);
@@ -122,7 +121,6 @@ $(document).ready(function(){
             elem_index += 1;
             i = 0;
         }
-        console.log(pic_array);
     }
 
 
@@ -186,42 +184,32 @@ $(document).ready(function(){
             }
             row_div.appendTo("#game_area");
         }
-        $(".row").addClass("mascot_row");
-        $(".card").addClass("mascot_card");
-        $(".back img").attr("src", mascots_back);
-
+        if($("body").hasClass("mascots_background")){
+            $(".row").addClass("mascot_row");
+            $(".card").addClass("mascot_card");
+            $(".back img").attr("src", mascots_back);
+            $(".card").click(mascots_card_clicked);
+        } else if($("body").hasClass("superstars_background")){
+            $(".row").addClass("superstar_row");
+            $(".card").addClass("superstar_card");
+            $(".back img").attr("src", superstars_back);
+            $(".card").click(superstars_card_clicked);
+        } else if($("body").hasClass("champions_background")){
+            $(".row").addClass("champion_row");
+            $(".card").addClass("champion_card");
+            $(".back img").attr("src", champions_back);
+            $(".card").click(champions_card_clicked);
+        }
         shuffle_cards();
-        $(".card").click(mascots_card_clicked);
     }
 
     $(".mascots").click(function easy_level(){
         rotate();
-
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $("#game_area").css({"height": "100vh", "width": "100vw"});
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
         create_rows();
-        // for(i = 0; i < 3; i++){
-        //     var row_div = $('<div>').addClass("row");
-        //     for(j = 0; j < 6; j++){
-        //         var first_image_tag = $('<img>');
-        //         var card_div = $('<div>').addClass("card");
-        //         var front_div = $('<div>').addClass("front");
-        //         first_image_tag.appendTo(front_div);
-        //         var second_image_tag = $('<img>');
-        //         var back_div = $('<div>').addClass("back");
-        //         second_image_tag.appendTo(back_div);
-        //         card_div.append(front_div).append(back_div);
-        //         card_div.appendTo(row_div);
-        //     }
-        //     row_div.appendTo("#game_area");
-        // }
-        // $(".row").addClass("mascot_row");
-        // $(".card").addClass("mascot_card");
-        // $(".back img").attr("src", mascots_back);
-        // shuffle_cards(mascots_front);
-        // $(".card").click(mascots_card_clicked);
     });
 
     function mascots_card_clicked(){
@@ -261,30 +249,10 @@ $(document).ready(function(){
 
     $(".superstars").click(function players(){
         rotate();
-
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("superstars_background");
         $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
-        for(i = 0; i < 3; i++){
-            var row_div = $('<div>').addClass("row");
-            for(j = 0; j < 6; j++){
-                var first_image_tag = $('<img>');
-                var card_div = $('<div>').addClass("card");
-                var front_div = $('<div>').addClass("front");
-                first_image_tag.appendTo(front_div);
-                var second_image_tag = $('<img>');
-                var back_div = $('<div>').addClass("back");
-                second_image_tag.appendTo(back_div);
-                card_div.append(front_div).append(back_div);
-                card_div.appendTo(row_div);
-            }
-            row_div.appendTo("#game_area");
-        }
-        $(".row").addClass("superstar_row");
-        $(".card").addClass("superstar_card");
-        $(".back img").attr("src", superstars_back);
-        shuffle_cards();
-        $(".card").click(superstars_card_clicked);
+        create_rows();
     });
 
     function superstars_card_clicked(){
@@ -359,26 +327,7 @@ $(document).ready(function(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("champions_background");
         $(".title h1").text("World Cup Champions");
-        for(i = 0; i < 4; i++){
-            var row_div = $('<div>').addClass("row");
-            for(j = 0; j < 4; j++){
-                var first_image_tag = $('<img>');
-                var card_div = $('<div>').addClass("card");
-                var front_div = $('<div>').addClass("front");
-                first_image_tag.appendTo(front_div);
-                var second_image_tag = $('<img>');
-                var back_div = $('<div>').addClass("back");
-                second_image_tag.appendTo(back_div);
-                card_div.append(front_div).append(back_div);
-                card_div.appendTo(row_div);
-            }
-            row_div.appendTo("#game_area");
-        }
-        $(".row").addClass("champion_row");
-        $(".card").addClass("champion_card");
-        $(".back img").attr("src", champions_back);
-        shuffle_cards();
-        $(".card").click(champions_card_clicked);
+        create_rows();
     });
 
     function champions_card_clicked(){
