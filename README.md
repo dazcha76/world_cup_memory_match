@@ -1,18 +1,18 @@
 # World Cup Memory Match
 
-Created a World Cup themed memory match game with three levels of difficulty.
+Created a World Cup themed memory match game with three different card sets.
 
-### Easy
+### Mascots
 
 Match the World Cup mascots to each other.
 
-### Medium
+### Superstars
 
-Match the winning soccer team to the World Cup logo.
+Match the superstar to his club team and international team.
 
-### Hard
+### Champions
 
-Comming soon!
+Match the winning soccer team to the World Cup they won.
 
 Technologies used include HTML, CSS, JavaScript, and jQuery.
 
