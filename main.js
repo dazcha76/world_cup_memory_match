@@ -20,36 +20,101 @@ $(document).ready(function(){
 
     console.log("Matches: " + matches);
         
-        function display_stats(){
-            $(".games_played .value").text(games_played);
-            $(".attempts .value").text(attempts);
-        
-            accuracy = matches / attempts;
-            $(".accuracy .value").text(accuracy);
-        }
-        
-        function reset_stats(){
-            accuracy = 0;
-            matches = 0;
-            attempts = 0;
-            display_stats();
-        }
-        
-        $(".reset").click(function(){
-            games_played += 1;
-            display_stats();
-            reset_stats();
-            shuffle_cards(mascots_front);
-            console.log(games_played);
-            console.log("matches after click: " + matches);
-            console.log("attempts after click: " + attempts);
-        });
+    // function display_stats(){
+    //     $(".games_played .value").text(games_played);
+    //     $(".attempts .value").text(attempts);
+    
+    //     accuracy = matches / attempts;
+    //     $(".accuracy .value").text(accuracy);
+    // }
+    
+    // function reset_stats(){
+    //     accuracy = 0;
+    //     matches = 0;
+    //     attempts = 0;
+    //     display_stats();
+    // }
+    
+    // $(".reset").click(function(){
+    //     games_played += 1;
+    //     display_stats();
+    //     reset_stats();
+    //     shuffle_cards(mascots_front);
+    //     console.log(games_played);
+    //     console.log("matches after click: " + matches);
+    //     console.log("attempts after click: " + attempts);
+    // });
 
     // shuffle and deal cards
 
-    var elem_index = 0;
-
     function shuffle_cards(pic_array){
+        var elem_index = 0;
+        if($("body").hasClass("mascots_background")){
+            pic_array = [
+                "images/mascots/1.jpg",
+                "images/mascots/2.jpg",
+                "images/mascots/3.jpg",
+                "images/mascots/4.jpg",
+                "images/mascots/5.jpg",
+                "images/mascots/6.jpg",
+                "images/mascots/7.jpg",
+                "images/mascots/8.jpg",
+                "images/mascots/9.jpg",
+                "images/mascots/1.jpg",
+                "images/mascots/2.jpg",
+                "images/mascots/3.jpg",
+                "images/mascots/4.jpg",
+                "images/mascots/5.jpg",
+                "images/mascots/6.jpg",
+                "images/mascots/7.jpg",
+                "images/mascots/8.jpg",
+                "images/mascots/9.jpg"
+            ];
+        } else if($("body").hasClass("superstars_background")){
+            pic_array = [
+                "images/superstars/messi_player.jpg",
+                "images/superstars/messi_club.jpg",
+                "images/superstars/messi_country.jpg",
+                "images/superstars/ronaldo_player.jpg",
+                "images/superstars/ronaldo_club.jpg",
+                "images/superstars/ronaldo_country.png",
+                "images/superstars/neymar_player.jpeg",
+                "images/superstars/neymar_club.png",
+                "images/superstars/neymar_country.png",
+                "images/superstars/salah_player.jpg",
+                "images/superstars/salah_club.png",
+                "images/superstars/salah_country.png",
+                "images/superstars/griezmann_player.jpg",
+                "images/superstars/griezmann_club.png",
+                "images/superstars/griezmann_country.png",
+                "images/superstars/buffon_player.jpg",
+                "images/superstars/buffon_club.png",
+                "images/superstars/buffon_country.png"
+            ];
+        } else if($("body").hasClass("champions_background")){
+            pic_array = [
+                // "images/champions/1982cup.jpg",
+                // "images/champions/1982team.jpg",
+                "images/champions/1986cup.jpg",
+                "images/champions/1986team.jpg",
+                "images/champions/1990cup.jpg",
+                "images/champions/1990team.jpg",
+                "images/champions/1994cup.jpg",
+                "images/champions/1994team.jpg",
+                "images/champions/1998cup.jpg",
+                "images/champions/1998team.jpg",
+                "images/champions/2002cup.jpg",
+                "images/champions/2002team.jpg",
+                "images/champions/2006cup.jpg",
+                "images/champions/2006team.jpg",
+                "images/champions/2010cup.jpg",
+                "images/champions/2010team.jpg",
+                "images/champions/2014cup.jpg",
+                "images/champions/2014team.jpg"
+            ];
+        }
+        
+        console.log(pic_array);
         for(i = 0; i <= pic_array.length; i++){
             var index = Math.floor(Math.random()*pic_array.length);
             $(".front img").eq(elem_index).attr("src", pic_array[index]);
@@ -57,7 +122,10 @@ $(document).ready(function(){
             elem_index += 1;
             i = 0;
         }
+        console.log(pic_array);
     }
+
+
 
     // flip cards back
 
@@ -97,38 +165,12 @@ $(document).ready(function(){
 
     var mascots_background = "images/backgrounds/zabivaka.png";
     var mascots_back = "images/mascots.jpg";
-    var mascots_front = [
-        "images/mascots/1.jpg",
-        "images/mascots/2.jpg",
-        "images/mascots/3.jpg",
-        "images/mascots/4.jpg",
-        "images/mascots/5.jpg",
-        "images/mascots/6.jpg",
-        "images/mascots/7.jpg",
-        "images/mascots/8.jpg",
-        "images/mascots/9.jpg",
-        "images/mascots/1.jpg",
-        "images/mascots/2.jpg",
-        "images/mascots/3.jpg",
-        "images/mascots/4.jpg",
-        "images/mascots/5.jpg",
-        "images/mascots/6.jpg",
-        "images/mascots/7.jpg",
-        "images/mascots/8.jpg",
-        "images/mascots/9.jpg"
-    ];
 
     var gol = document.getElementById("gol");
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
-    $(".mascots").click(function easy_level(){
-        rotate();
-
-        $(".challenge").addClass("challenge_not_visible");
-        $("body").addClass("mascots_background");
-        $("#game_area").css({"height": "100vh", "width": "100vw"});
-        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+    function create_rows(){
         for(i = 0; i < 3; i++){
             var row_div = $('<div>').addClass("row");
             for(j = 0; j < 6; j++){
@@ -147,8 +189,39 @@ $(document).ready(function(){
         $(".row").addClass("mascot_row");
         $(".card").addClass("mascot_card");
         $(".back img").attr("src", mascots_back);
-        shuffle_cards(mascots_front);
+
+        shuffle_cards();
         $(".card").click(mascots_card_clicked);
+    }
+
+    $(".mascots").click(function easy_level(){
+        rotate();
+
+        $(".challenge").addClass("challenge_not_visible");
+        $("body").addClass("mascots_background");
+        $("#game_area").css({"height": "100vh", "width": "100vw"});
+        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+        create_rows();
+        // for(i = 0; i < 3; i++){
+        //     var row_div = $('<div>').addClass("row");
+        //     for(j = 0; j < 6; j++){
+        //         var first_image_tag = $('<img>');
+        //         var card_div = $('<div>').addClass("card");
+        //         var front_div = $('<div>').addClass("front");
+        //         first_image_tag.appendTo(front_div);
+        //         var second_image_tag = $('<img>');
+        //         var back_div = $('<div>').addClass("back");
+        //         second_image_tag.appendTo(back_div);
+        //         card_div.append(front_div).append(back_div);
+        //         card_div.appendTo(row_div);
+        //     }
+        //     row_div.appendTo("#game_area");
+        // }
+        // $(".row").addClass("mascot_row");
+        // $(".card").addClass("mascot_card");
+        // $(".back img").attr("src", mascots_back);
+        // shuffle_cards(mascots_front);
+        // $(".card").click(mascots_card_clicked);
     });
 
     function mascots_card_clicked(){
@@ -185,26 +258,6 @@ $(document).ready(function(){
 
     var superstars_background = "images/backgrounds/players.jpg";
     var superstars_back = "images/player.jpg";
-    var superstars_front = [
-        "images/superstars/messi_player.jpg",
-        "images/superstars/messi_club.jpg",
-        "images/superstars/messi_country.jpg",
-        "images/superstars/ronaldo_player.jpg",
-        "images/superstars/ronaldo_club.jpg",
-        "images/superstars/ronaldo_country.png",
-        "images/superstars/neymar_player.jpeg",
-        "images/superstars/neymar_club.png",
-        "images/superstars/neymar_country.png",
-        "images/superstars/salah_player.jpg",
-        "images/superstars/salah_club.png",
-        "images/superstars/salah_country.png",
-        "images/superstars/griezmann_player.jpg",
-        "images/superstars/griezmann_club.png",
-        "images/superstars/griezmann_country.png",
-        "images/superstars/buffon_player.jpg",
-        "images/superstars/buffon_club.png",
-        "images/superstars/buffon_country.png"
-    ];
 
     $(".superstars").click(function players(){
         rotate();
@@ -230,7 +283,7 @@ $(document).ready(function(){
         $(".row").addClass("superstar_row");
         $(".card").addClass("superstar_card");
         $(".back img").attr("src", superstars_back);
-        shuffle_cards(superstars_front);
+        shuffle_cards();
         $(".card").click(superstars_card_clicked);
     });
 
@@ -287,26 +340,6 @@ $(document).ready(function(){
 
     var champions_background = "images/backgrounds/pele.png";
     var champions_back = "images/gol.jpg";
-    var champions_front = [
-        // "images/champions/1982cup.jpg",
-        // "images/champions/1982team.jpg",
-        "images/champions/1986cup.jpg",
-        "images/champions/1986team.jpg",
-        "images/champions/1990cup.jpg",
-        "images/champions/1990team.jpg",
-        "images/champions/1994cup.jpg",
-        "images/champions/1994team.jpg",
-        "images/champions/1998cup.jpg",
-        "images/champions/1998team.jpg",
-        "images/champions/2002cup.jpg",
-        "images/champions/2002team.jpg",
-        "images/champions/2006cup.jpg",
-        "images/champions/2006team.jpg",
-        "images/champions/2010cup.jpg",
-        "images/champions/2010team.jpg",
-        "images/champions/2014cup.jpg",
-        "images/champions/2014team.jpg"
-    ];
 
     var results = [
         // ["1982", "Correct! Italy beat West Germany 3-1 in 1982."],
@@ -344,7 +377,7 @@ $(document).ready(function(){
         $(".row").addClass("champion_row");
         $(".card").addClass("champion_card");
         $(".back img").attr("src", champions_back);
-        shuffle_cards(champions_front);
+        shuffle_cards();
         $(".card").click(champions_card_clicked);
     });
 
@@ -410,7 +443,14 @@ $(document).ready(function(){
         change_button.appendTo(button_wrapper);
 
         $(".play_button").click(function play_again(){
+            $(".play_again").toggleClass("play_again_hidden");
             console.log("Let's play again!");
+            $(".row").remove();
+            
+            create_rows();
+            first_card = null;
+            second_card = null;
+            can_click = true;  
         });
 
         $(".difficulty_button").click(function play_again(){
