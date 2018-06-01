@@ -74,8 +74,6 @@ body {
 }
 
 .play_again_options {
-    background-color: red;
-    color: white;
     top: 20%;
     left: 35%;
     padding-top: 2%;
@@ -110,8 +108,7 @@ body {
 }
 
 .play_again_buttons {
-    background-color: white;
-    color: red;
+    padding: 0%;
 }
 
 .option_buttons:hover {
