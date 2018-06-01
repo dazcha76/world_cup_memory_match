@@ -11,7 +11,7 @@ $(document).ready(function(){
     var champions_back = "images/gol.jpg";
 
     var match_counter = 0;
-    var total_matches = 9;
+    var total_matches = 0;
     var attempts = 0;
 
     var width = 0;
@@ -177,6 +177,7 @@ $(document).ready(function(){
     }
 
     function mascots_card_clicked(){
+        total_matches = 9;
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
@@ -219,6 +220,7 @@ $(document).ready(function(){
     }
 
     function superstars_card_clicked(){
+        total_matches = 6;
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
@@ -293,6 +295,7 @@ $(document).ready(function(){
     }
 
     function champions_card_clicked(){
+        total_matches = 9;
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
