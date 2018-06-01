@@ -244,7 +244,7 @@ $(document).ready(function(){
                 if(first_player === second_player && first_player === third_player){
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         $(".title h1").text("You win!");
+                         win_modal();
                     } else {
                         setTimeout(remove_card, 2000);
                     }
@@ -316,7 +316,7 @@ $(document).ready(function(){
                     }
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         $(".title h1").text("You win!");
+                         win_modal();
                     } else {
                         first_card = null;
                         second_card = null;
@@ -340,22 +340,22 @@ $(document).ready(function(){
 
     function win_modal(){
         var win_title = $("<h2>").text("You Win!");
-        win_title.appendTo(".play_again_modal");
+        win_title.appendTo(".play_again_options");
 
-        var button_wrapper = $('<div>').addClass("button_wrapper");
-        button_wrapper.appendTo(".play_again_modal");
+        // var button_wrapper = $('<div>').addClass("button_wrapper");
+        // button_wrapper.appendTo(".play_again_options");
 
         var first_button = $('<div>').addClass("play_again_buttons first_button").text("Play Again");
         var second_button = $('<div>').addClass("play_again_buttons second_button").text("Change Difficulty");
         var third_button = $('<div>').addClass("play_again_buttons third_button").text("Change Deck");
         
-        first_button.appendTo(button_wrapper);
-        second_button.appendTo(button_wrapper);
-        third_button.appendTo(button_wrapper);
+        first_button.appendTo(".play_again_options");
+        second_button.appendTo(".play_again_options");
+        third_button.appendTo(".play_again_options");
 
         $(".first_button").click(function (){
             $(".play_again").addClass("play_again_hidden");
-            $(".play_again_modal").empty();
+            $(".play_again_options").empty();
             $(".row").remove();
             create_rows();
             first_card = null;
@@ -393,12 +393,12 @@ $(document).ready(function(){
             $(".row").remove();
             $("body").removeAttr("class");
             $(".play_again").addClass("play_again_hidden");
+            $(".play_again_options").empty();
             first_card = null;
             second_card = null;
             can_click = true;  
             match_counter = 0
         }
-        
 
         $(".play_again").toggleClass("play_again_hidden");
     }
