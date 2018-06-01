@@ -129,21 +129,41 @@ $(document).ready(function(){
     };
 
     function create_rows(){
-        for(i = 0; i < 3; i++){
-            var row_div = $('<div>').addClass("row");
-            for(j = 0; j < 6; j++){
-                var first_image_tag = $('<img>');
-                var card_div = $('<div>').addClass("card");
-                var front_div = $('<div>').addClass("front");
-                first_image_tag.appendTo(front_div);
-                var second_image_tag = $('<img>');
-                var back_div = $('<div>').addClass("back");
-                second_image_tag.appendTo(back_div);
-                card_div.append(front_div).append(back_div);
-                card_div.appendTo(row_div);
+
+        if($("body").hasClass("champions_background")){
+            for(i = 0; i < 4; i++){
+                var row_div = $('<div>').addClass("row");
+                for(j = 0; j < 4; j++){
+                    var first_image_tag = $('<img>');
+                    var card_div = $('<div>').addClass("card");
+                    var front_div = $('<div>').addClass("front");
+                    first_image_tag.appendTo(front_div);
+                    var second_image_tag = $('<img>');
+                    var back_div = $('<div>').addClass("back");
+                    second_image_tag.appendTo(back_div);
+                    card_div.append(front_div).append(back_div);
+                    card_div.appendTo(row_div);
+                }
+                row_div.appendTo("#game_area");
+            }   
+        } else {
+            for(i = 0; i < 3; i++){
+                var row_div = $('<div>').addClass("row");
+                for(j = 0; j < 6; j++){
+                    var first_image_tag = $('<img>');
+                    var card_div = $('<div>').addClass("card");
+                    var front_div = $('<div>').addClass("front");
+                    first_image_tag.appendTo(front_div);
+                    var second_image_tag = $('<img>');
+                    var back_div = $('<div>').addClass("back");
+                    second_image_tag.appendTo(back_div);
+                    card_div.append(front_div).append(back_div);
+                    card_div.appendTo(row_div);
+                }
+                row_div.appendTo("#game_area");
             }
-            row_div.appendTo("#game_area");
         }
+
         if($("body").hasClass("mascots_background")){
             $(".row").addClass("mascot_row");
             $(".card").addClass("mascot_card");
@@ -295,7 +315,7 @@ $(document).ready(function(){
     }
 
     function champions_card_clicked(){
-        total_matches = 9;
+        total_matches = 8;
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
