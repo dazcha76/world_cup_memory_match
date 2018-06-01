@@ -20,6 +20,8 @@ $(document).ready(function(){
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
+    console.log("mascot_game");
+
     // PLAY LANDSCAPE ONLY
 
     function rotate_screen(){
@@ -129,21 +131,41 @@ $(document).ready(function(){
     };
 
     function create_rows(){
-        for(i = 0; i < 3; i++){
-            var row_div = $('<div>').addClass("row");
-            for(j = 0; j < 6; j++){
-                var first_image_tag = $('<img>');
-                var card_div = $('<div>').addClass("card");
-                var front_div = $('<div>').addClass("front");
-                first_image_tag.appendTo(front_div);
-                var second_image_tag = $('<img>');
-                var back_div = $('<div>').addClass("back");
-                second_image_tag.appendTo(back_div);
-                card_div.append(front_div).append(back_div);
-                card_div.appendTo(row_div);
+
+        if($("body").hasClass("champions_background")){
+            for(i = 0; i < 4; i++){
+                var row_div = $('<div>').addClass("row");
+                for(j = 0; j < 4; j++){
+                    var first_image_tag = $('<img>');
+                    var card_div = $('<div>').addClass("card");
+                    var front_div = $('<div>').addClass("front");
+                    first_image_tag.appendTo(front_div);
+                    var second_image_tag = $('<img>');
+                    var back_div = $('<div>').addClass("back");
+                    second_image_tag.appendTo(back_div);
+                    card_div.append(front_div).append(back_div);
+                    card_div.appendTo(row_div);
+                }
+                row_div.appendTo("#game_area");
+            }   
+        } else {
+            for(i = 0; i < 3; i++){
+                var row_div = $('<div>').addClass("row");
+                for(j = 0; j < 6; j++){
+                    var first_image_tag = $('<img>');
+                    var card_div = $('<div>').addClass("card");
+                    var front_div = $('<div>').addClass("front");
+                    first_image_tag.appendTo(front_div);
+                    var second_image_tag = $('<img>');
+                    var back_div = $('<div>').addClass("back");
+                    second_image_tag.appendTo(back_div);
+                    card_div.append(front_div).append(back_div);
+                    card_div.appendTo(row_div);
+                }
+                row_div.appendTo("#game_area");
             }
-            row_div.appendTo("#game_area");
         }
+
         if($("body").hasClass("mascots_background")){
             $(".row").addClass("mascot_row");
             $(".card").addClass("mascot_card");
@@ -295,7 +317,7 @@ $(document).ready(function(){
     }
 
     function champions_card_clicked(){
-        total_matches = 9;
+        total_matches = 8;
         if(can_click === true){
             $(event.target).addClass("flip");
             if(first_card === null){
@@ -345,9 +367,6 @@ $(document).ready(function(){
         var win_title = $("<h2>").text("You Win!");
         win_title.appendTo(".play_again_options");
 
-        // var button_wrapper = $('<div>').addClass("button_wrapper");
-        // button_wrapper.appendTo(".play_again_options");
-
         var first_button = $('<div>').addClass("play_again_buttons first_button").text("Play Again");
         var second_button = $('<div>').addClass("play_again_buttons second_button").text("Change Difficulty");
         var third_button = $('<div>').addClass("play_again_buttons third_button").text("Change Deck");
@@ -355,6 +374,17 @@ $(document).ready(function(){
         first_button.appendTo(".play_again_options");
         second_button.appendTo(".play_again_options");
         third_button.appendTo(".play_again_options");
+
+        if($("body").hasClass("mascots_background")){
+            $(".play_again_options").css({"background-color": "red", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "red"});
+        } else if($("body").hasClass("superstars_background")){
+            $(".play_again_options").css({"background-color": "gold", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
+        } else if($("body").hasClass("champions_background")){
+            $(".play_again_options").css({"background-color": "green", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "green"});
+        }
 
         $(".first_button").click(function (){
             $(".play_again").addClass("play_again_hidden");
