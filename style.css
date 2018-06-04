@@ -5,6 +5,7 @@
     border: 0;
     padding: 0;
     font-family: 'Prompt', sans-serif;
+    font-size: 16px;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
 .title h1 {
     text-align: center;
-    font-size: 60px;
+    font-size: 400%;
     margin: 1% 0;
 }
 
@@ -52,15 +53,15 @@ body {
 }
 
 .challenge h1 {
-    font-size: 8vh;
+    font-size: 400%;
     text-align: center;
     padding-top: 1%;
     color: #00cc00;
 }
 
 .options, .play_again_options {
-    height: 50vh;
-    min-width: 15vw; 
+    height: 50%;
+    width: 23%; 
     border-radius: 15px;
     padding: 3%;
     position: absolute;   
@@ -69,8 +70,8 @@ body {
 .options {
     background-color: rgba(255, 255, 255, 0.5);
     color: white;
-    top: 25vh;
-    left: 7vw;
+    top: 25%;
+    left: 7%;
 }
 
 .play_again_options {
@@ -86,18 +87,15 @@ body {
 
 .options h2, .play_again_options h2 {
     text-align: center;
-}
-
-.play_again_options h2 {
-    font-size: 300%;
+    font-size: 200%;
 }
 
 .option_buttons, .play_again_buttons {
-    height: 8vh;
-    min-width: 13em;
-    font-size: 3vh;
+    height: 15%;
+    width: 80%;
+    font-size: 150%;
     text-align: center;
-    line-height: 8vh;
+    line-height: 250%;
     margin: 15% auto;
     border-radius: 15px;
 }
@@ -115,11 +113,6 @@ body {
     background-color: rgb(0,204,0);
     color: white;
 }
-
-/*.play_again_buttons:hover {
-    background-color: white;
-    color: #00cc00;
-}*/
 
 .first_button {
     margin-top: 10%;
@@ -153,11 +146,11 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    margin-top: 1vh;
-    margin-right: 1vw;
+    margin-top: 1%;
+    margin-right: 1%;
     float: right;
     height: 24vh;
-    width: 65vw;
+    width: 69vw;
 }
 
 .mascot_card {
@@ -173,7 +166,7 @@ body {
     background-color: white;
 }
 
-/* -------------------- PLAYERS -------------------- */
+/* -------------------- SUPERSTARS -------------------- */
 
 .superstars_background {
     background-image: url(images/backgrounds/players.jpg);
@@ -185,9 +178,9 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    margin: 1vh auto 5vh auto;
-    width: 80vw;
-    height: 24vh;
+    margin: 1% auto;
+    width: 75vw;
+    height: 25vh;
 }
 
 .superstar_row .card {
@@ -195,7 +188,7 @@ body {
 }
 
 .superstar_card {
-    width: 13%;
+    width: 14.5%;
     height: 100%;
     position: relative;
     border: 3px solid gold;
@@ -250,14 +243,9 @@ body {
     padding: 2%;
 }
 
-/* -------------------- PLAY AGAIN -------------------- */
-
-
-
-
 /* ---------------- stats mascots ---------------- */
 
-.stats {
+/*.stats {
     height: 85px;
     width: 800px;
     border: 5px solid red;
@@ -278,11 +266,7 @@ button {
     color: white;
     border: none;
     border-radius: 25px;
-}
-
-.games_played, .attempts, .accuracy {
-
-}
+}*/
 
 /* -------------------- PORTRAIT OPTIONS -------------------- */
 
@@ -305,6 +289,7 @@ h3 {
     font-size: 300%;
     color: white;
     margin-bottom: 15%;
+    text-align: center;
 }
 
 .portrait i {
@@ -334,7 +319,6 @@ h3 {
 
     .mascots_background {
         background-image: none;
-        padding-top: 1%;
         padding-left: 1%;
     }
 
@@ -344,12 +328,13 @@ h3 {
     }
 
     .superstars_background {
-        padding-top: 0.8%;
+        padding: 0;
     }
 
     .superstar_row {
         width: 100vw;
-        height: 28vh;
+        height: 28.5vh;
+        margin-bottom: 2%;
     }
 
     .champions_background {
@@ -361,5 +346,70 @@ h3 {
     .champion_row {
         width: 100vw;
         height: 23vh;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .challenge {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .challenge h1 {
+        font-size: 6vh;
+    }
+
+    .options {
+        position: static;
+        height: 55vh;
+        width: 80vw;
+        margin: 8% auto 0 auto;
+        padding-top: 10%;
+        background-color: rgba(255, 255, 255, 0.9)
+    }
+
+    .options h2 {
+        color: #00cc00;
+    }
+
+    .option_buttons {
+        width: 90%;
+        background-color: #00cc00;
+    }
+}
+
+@media only screen and (max-height: 415px){
+    .challenge h1 {
+        font-size: 200%;
+    }
+
+    .options, .play_again_options {
+        height: 66%; 
+        width: 60%; 
+        position: static;  
+    }
+
+    .options {
+        margin: 1% auto 0 auto; 
+        padding-top: 3%;
+    }
+
+    .play_again_options {
+        margin: 7% auto 0 auto; 
+    }
+
+    .option_buttons, .play_again_buttons {
+        width: 70%;
+        font-size: 150%;
+        line-height: 180%;
+        margin: 5% auto;
+    }
+
+    .option_buttons {
+        height: 18%;
+    }
+
+    .play_again_buttons {
+        height: 15%;
     }
 }

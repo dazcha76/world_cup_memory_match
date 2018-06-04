@@ -20,13 +20,11 @@ $(document).ready(function(){
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
-    console.log("mascot_game");
-
     // PLAY LANDSCAPE ONLY
 
     function rotate_screen(){
         width = $(window).width();
-        if(width <= 650){
+        if(width < 640){
             $(".portrait").css("visibility", "visible");
         }
 
@@ -66,24 +64,24 @@ $(document).ready(function(){
             ];
         } else if($("body").hasClass("superstars_background")){
             pic_array = [
-                "images/superstars/messi_player.jpg",
-                "images/superstars/messi_club.jpg",
-                "images/superstars/messi_country.jpg",
-                "images/superstars/ronaldo_player.jpg",
-                "images/superstars/ronaldo_club.jpg",
-                "images/superstars/ronaldo_country.png",
-                "images/superstars/neymar_player.jpeg",
-                "images/superstars/neymar_club.png",
-                "images/superstars/neymar_country.png",
-                "images/superstars/salah_player.jpg",
-                "images/superstars/salah_club.png",
-                "images/superstars/salah_country.png",
+                "images/superstars/buffon_player.jpg",
+                "images/superstars/buffon_club.png",
+                "images/superstars/buffon_country.png",
                 "images/superstars/griezmann_player.jpg",
                 "images/superstars/griezmann_club.png",
                 "images/superstars/griezmann_country.png",
-                "images/superstars/buffon_player.jpg",
-                "images/superstars/buffon_club.png",
-                "images/superstars/buffon_country.png"
+                "images/superstars/messi_player.jpg",
+                "images/superstars/messi_club.jpg",
+                "images/superstars/messi_country.jpg",
+                "images/superstars/neymar_player.jpg",
+                "images/superstars/neymar_club.png",
+                "images/superstars/neymar_country.png",
+                "images/superstars/ronaldo_player.png",
+                "images/superstars/ronaldo_club.jpg",
+                "images/superstars/ronaldo_country.png",
+                "images/superstars/salah_player.jpg",
+                "images/superstars/salah_club.png",
+                "images/superstars/salah_country.png",
             ];
         } else if($("body").hasClass("champions_background")){
             pic_array = [
@@ -202,6 +200,7 @@ $(document).ready(function(){
         total_matches = 9;
         if(can_click === true){
             $(event.target).addClass("flip");
+            console.log(event.target)
             if(first_card === null){
                 first_card = $(this);
             } else {
