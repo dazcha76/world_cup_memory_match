@@ -129,7 +129,6 @@ $(document).ready(function(){
     };
 
     function create_rows(){
-
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
                 var row_div = $('<div>').addClass("row");
@@ -211,8 +210,8 @@ $(document).ready(function(){
                     gol.play();
                     match_counter += 1;
                     if(match_counter === total_matches){
-                        ole.play();
-                        win_modal();
+                        // ole.play();
+                        setTimeout(win_modal, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
@@ -267,7 +266,7 @@ $(document).ready(function(){
                 if(first_player === second_player && first_player === third_player){
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         win_modal();
+                         setTimeout(win_modal, 1500);
                     } else {
                         setTimeout(remove_card, 2000);
                     }
@@ -340,7 +339,7 @@ $(document).ready(function(){
                     }
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         win_modal();
+                         setTimeout(win_modal, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
