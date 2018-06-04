@@ -20,13 +20,11 @@ $(document).ready(function(){
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
-    console.log("mascot_game");
-
     // PLAY LANDSCAPE ONLY
 
     function rotate_screen(){
         width = $(window).width();
-        if(width <= 650){
+        if(width < 640){
             $(".portrait").css("visibility", "visible");
         }
 
@@ -66,24 +64,24 @@ $(document).ready(function(){
             ];
         } else if($("body").hasClass("superstars_background")){
             pic_array = [
-                "images/superstars/messi_player.jpg",
-                "images/superstars/messi_club.jpg",
-                "images/superstars/messi_country.jpg",
-                "images/superstars/ronaldo_player.jpg",
-                "images/superstars/ronaldo_club.jpg",
-                "images/superstars/ronaldo_country.png",
-                "images/superstars/neymar_player.jpeg",
-                "images/superstars/neymar_club.png",
-                "images/superstars/neymar_country.png",
-                "images/superstars/salah_player.jpg",
-                "images/superstars/salah_club.png",
-                "images/superstars/salah_country.png",
+                "images/superstars/buffon_player.jpg",
+                "images/superstars/buffon_club.png",
+                "images/superstars/buffon_country.png",
                 "images/superstars/griezmann_player.jpg",
                 "images/superstars/griezmann_club.png",
                 "images/superstars/griezmann_country.png",
-                "images/superstars/buffon_player.jpg",
-                "images/superstars/buffon_club.png",
-                "images/superstars/buffon_country.png"
+                "images/superstars/messi_player.jpg",
+                "images/superstars/messi_club.jpg",
+                "images/superstars/messi_country.jpg",
+                "images/superstars/neymar_player.jpg",
+                "images/superstars/neymar_club.png",
+                "images/superstars/neymar_country.png",
+                "images/superstars/ronaldo_player.png",
+                "images/superstars/ronaldo_club.jpg",
+                "images/superstars/ronaldo_country.png",
+                "images/superstars/salah_player.jpg",
+                "images/superstars/salah_club.png",
+                "images/superstars/salah_country.png",
             ];
         } else if($("body").hasClass("champions_background")){
             pic_array = [
@@ -131,7 +129,6 @@ $(document).ready(function(){
     };
 
     function create_rows(){
-
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
                 var row_div = $('<div>').addClass("row");
@@ -202,6 +199,7 @@ $(document).ready(function(){
         total_matches = 9;
         if(can_click === true){
             $(event.target).addClass("flip");
+            console.log(event.target)
             if(first_card === null){
                 first_card = $(this);
             } else {
@@ -212,8 +210,8 @@ $(document).ready(function(){
                     gol.play();
                     match_counter += 1;
                     if(match_counter === total_matches){
-                        ole.play();
-                        win_modal();
+                        // ole.play();
+                        setTimeout(win_modal, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
@@ -268,7 +266,7 @@ $(document).ready(function(){
                 if(first_player === second_player && first_player === third_player){
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         win_modal();
+                         setTimeout(win_modal, 1500);
                     } else {
                         setTimeout(remove_card, 2000);
                     }
@@ -341,7 +339,7 @@ $(document).ready(function(){
                     }
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         win_modal();
+                         setTimeout(win_modal, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
