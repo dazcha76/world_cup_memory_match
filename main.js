@@ -433,36 +433,4 @@ $(document).ready(function(){
 
         $(".play_again").toggleClass("play_again_hidden");
     }
-
-
-
-    // stats
-
-    // var accuracy = 0;
-    // var attempts = 0;
-        
-    // function display_stats(){
-    //     $(".games_played .value").text(games_played);
-    //     $(".attempts .value").text(attempts);
-    
-    //     accuracy = matches / attempts;
-    //     $(".accuracy .value").text(accuracy);
-    // }
-    
-    // function reset_stats(){
-    //     accuracy = 0;
-    //     matches = 0;
-    //     attempts = 0;
-    //     display_stats();
-    // }
-    
-    // $(".reset").click(function(){
-    //     games_played += 1;
-    //     display_stats();
-    //     reset_stats();
-    //     shuffle_cards(mascots_front);
-    //     console.log(games_played);
-    //     console.log("matches after click: " + matches);
-    //     console.log("attempts after click: " + attempts);
-    // });
 });
