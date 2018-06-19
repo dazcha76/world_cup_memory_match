@@ -64,9 +64,9 @@ $(document).ready(function(){
             ];
         } else if($("body").hasClass("superstars_background")){
             pic_array = [
-                "images/superstars/buffon_player.jpg",
-                "images/superstars/buffon_club.png",
-                "images/superstars/buffon_country.png",
+                "images/superstars/kane_player.jpg",
+                "images/superstars/kane_club.png",
+                "images/superstars/kane_country.png",
                 "images/superstars/griezmann_player.jpg",
                 "images/superstars/griezmann_club.png",
                 "images/superstars/griezmann_country.png",
@@ -193,7 +193,7 @@ $(document).ready(function(){
         let checkmark = $('<i>').addClass('fas fa-check');
         let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
-        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper);
         how_to.append(example);
@@ -258,9 +258,48 @@ $(document).ready(function(){
         }
     }
 
+    // HOW TO SUPERSTARS
+
+    $(".superstars").click(function(){
+        superstars_easy();
+        let how_to = $('<div>').addClass('how_to');
+        let example = $('<div>').addClass('example').css("border", "10px solid gold");
+        let instructions = $('<h1>').text("Match the superstar to his club and country teams!").css("color", "gold");
+        let card_wrapper = $('<div>').addClass('card_wrapper').css('width', '60vw');
+        let checkmark = $('<i>').addClass('fas fa-check');
+        let card1 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card2');
+        let card3 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card3');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand_three", "animation-duration": "4s"});
+        card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
+        example.append(instructions).append(card_wrapper);
+        how_to.append(example);
+        $('#game_area').append(how_to);
+        setTimeout(flip_superstar_example1, 2000);
+        setTimeout(flip_superstar_example2, 3000);
+        setTimeout(flip_superstar_example3, 4000);
+        setTimeout(remove_how_to, 6000);
+    });
+
+    function remove_how_to(){
+        $('.how_to').remove();
+    }
+
+    function flip_superstar_example1(){
+        $('.card1').attr('src', 'images/how_to/muller_player.jpg').addClass('example_cards');
+    }
+
+    function flip_superstar_example2(){
+        $('.card2').attr('src', 'images/how_to/muller_club.png').addClass('example_cards');
+    }
+
+    function flip_superstar_example3(){
+        $('.card3').attr('src', 'images/how_to/muller_country.png').addClass('example_cards');
+    }
+
     // SUPERSTARS
 
-    $(".superstars").click(superstars_easy);
+    // $(".superstars").click(superstars_easy);
 
     function superstars_easy(){
         rotate_screen();
@@ -331,7 +370,7 @@ $(document).ready(function(){
         let checkmark = $('<i>').addClass('fas fa-check');
         let card1 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card2');
-        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper);
         how_to.append(example);
