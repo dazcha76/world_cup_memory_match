@@ -203,7 +203,7 @@ body {
     100% {left: 82%; opacity: 0;}
 }
 
-.card_wrapper .fas {
+.card_wrapper .fas.fa-check {
     font-size: 200px;
     opacity: 0;
     position: absolute;
@@ -219,6 +219,14 @@ body {
 @keyframes its_a_match {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+.example .fas.fa-times {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 /* ---------------- CARDS ---------------- */

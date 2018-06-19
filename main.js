@@ -13,6 +13,7 @@ $(document).ready(function(){
     var match_counter = 0;
     var total_matches = 0;
     var attempts = 0;
+    var misses = 0;
 
     var width = 0;
 
@@ -191,13 +192,15 @@ $(document).ready(function(){
         let instructions = $('<h1>').text("Match the mascots to each other!").css("color", "red");
         let card_wrapper = $('<div>').addClass('card_wrapper');
         let checkmark = $('<i>').addClass('fas fa-check');
+        let close = $('<i>').addClass('fas fa-times').css("color", "red");
         let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-        example.append(instructions).append(card_wrapper);
+        example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
         $('#game_area').append(how_to);
+        $(".fa-times").click(remove_how_to);
         setTimeout(flip_mascot_example1, 2000);
         setTimeout(flip_mascot_example2, 3000);
         setTimeout(remove_how_to, 6000);
@@ -250,8 +253,13 @@ $(document).ready(function(){
                     }
                     return match_counter;
                 } else {
+                    misses += 1;
                     whistle.play();
                     setTimeout(flip_back, 2000);
+                    // if(misses === 3){
+                    //    setTimeout(shuffle_cards, 2000); 
+                    //    misses = 0;
+                    // } 
                 }
 
             }
@@ -267,14 +275,16 @@ $(document).ready(function(){
         let instructions = $('<h1>').text("Match the superstar to his club and country teams!").css("color", "gold");
         let card_wrapper = $('<div>').addClass('card_wrapper').css('width', '60vw');
         let checkmark = $('<i>').addClass('fas fa-check');
+        let close = $('<i>').addClass('fas fa-times').css("color", "gold");
         let card1 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card2');
         let card3 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card3');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand_three", "animation-duration": "4s"});
         card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
-        example.append(instructions).append(card_wrapper);
+        example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
         $('#game_area').append(how_to);
+        $(".fa-times").click(remove_how_to);
         setTimeout(flip_superstar_example1, 2000);
         setTimeout(flip_superstar_example2, 3000);
         setTimeout(flip_superstar_example3, 4000);
@@ -368,13 +378,15 @@ $(document).ready(function(){
         let instructions = $('<h1>').text("Match the World Cup to the team that won it that year!").css("color", "#00cc00");
         let card_wrapper = $('<div>').addClass('card_wrapper').css('width', '60vw');
         let checkmark = $('<i>').addClass('fas fa-check');
+        let close = $('<i>').addClass('fas fa-times').css("color", "#00cc00");
         let card1 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-        example.append(instructions).append(card_wrapper);
+        example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
         $('#game_area').append(how_to);
+        $(".fa-times").click(remove_how_to);
         setTimeout(flip_example1, 2000);
         setTimeout(flip_example2, 3000);
         setTimeout(remove_how_to, 6000);
