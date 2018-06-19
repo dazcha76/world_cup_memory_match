@@ -182,9 +182,44 @@ $(document).ready(function(){
         shuffle_cards();
     }
 
+    // HOW TO
+
+    $(".mascots").click(function(){
+        mascots_easy();
+        let how_to = $('<div>').addClass('how_to');
+        let example = $('<div>').addClass('example');
+        let instructions = $('<h1>').text("To win, simply match the mascots to each other until all have been matched!");
+        let card_wrapper = $('<div>').addClass('card_wrapper');
+        let checkmark = $('<i>').addClass('fas fa-check');
+        // let card1 = $('<img>').attr('src', 'images/how_to/zabivaka.png');
+        // let card2 = $('<img>').attr('src', 'images/how_to/zabivaka.png');
+        let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('example_cards card2');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
+        card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
+        example.append(instructions).append(card_wrapper);
+        how_to.append(example);
+        $('#game_area').append(how_to);
+        setTimeout(flip_example1, 2000);
+        setTimeout(flip_example2, 3000);
+        setTimeout(remove_how_to, 6000);
+    });
+
+    function remove_how_to(){
+        $('.how_to').remove();
+    }
+
+    function flip_example1(){
+        $('.card1').attr('src', 'images/how_to/zabivaka.png').addClass('example_cards');
+    }
+
+    function flip_example2(){
+        $('.card2').attr('src', 'images/how_to/zabivaka.png').addClass('example_cards');
+    }
+
     // MASCOTS
 
-    $(".mascots").click(mascots_easy);
+    // $(".mascots").click(mascots_easy);
 
     function mascots_easy(){
         rotate_screen();

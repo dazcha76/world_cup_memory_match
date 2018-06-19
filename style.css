@@ -119,6 +119,93 @@ body {
     margin-top: 10%;
 }
 
+/* ---------------- HOW TO ---------------- */
+
+.how_to {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.how_to h1 {
+    font-size: 200%;
+    text-align: center;
+    color: red;
+    margin-bottom: 3%;
+}
+
+.example {
+    height: 55vh;
+    width: 60vw;
+    background-color: white;
+    border: 5px solid red;
+    border-radius: 25px;
+    position: relative;
+    top: 50%;
+    margin-top: -35vh;
+    left: 50%;
+    margin-left: -30vw;
+    padding: 2%;
+}
+
+.card_wrapper {
+    height: 37vh;
+    width: 40vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.example_cards {
+    height: 100%;
+    width: 15vw;
+}
+
+.hand {
+    position: absolute;
+    top: 55%;
+    left: 0%;
+    opacity: 0;
+    animation-name: move_hand;
+    animation-delay: 1s;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes move_hand {
+    0% {left: 0%; opacity: 0;}
+    20% {left: 27%; opacity: 1;}
+    40% {left: 27%;}
+    60% {left: 57%;}
+    80% {left: 57%; opacity: 1;}
+    100% {left: 82%; opacity: 0;}
+}
+
+.card_wrapper .fas {
+    /*font-size: 0px;*/
+    font-size: 200px;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    color: green;
+    animation-name: its_a_match;
+    animation-delay: 4s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes its_a_match {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
 /* ---------------- CARDS ---------------- */
 
 .front, .back {
