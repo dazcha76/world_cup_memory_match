@@ -182,26 +182,24 @@ $(document).ready(function(){
         shuffle_cards();
     }
 
-    // HOW TO
+    // HOW TO MASCOTS
 
     $(".mascots").click(function(){
         mascots_easy();
         let how_to = $('<div>').addClass('how_to');
-        let example = $('<div>').addClass('example');
-        let instructions = $('<h1>').text("To win, simply match the mascots to each other until all have been matched!");
+        let example = $('<div>').addClass('example').css("border", "10px solid red");
+        let instructions = $('<h1>').text("Match the mascots to each other!").css("color", "red");
         let card_wrapper = $('<div>').addClass('card_wrapper');
         let checkmark = $('<i>').addClass('fas fa-check');
-        // let card1 = $('<img>').attr('src', 'images/how_to/zabivaka.png');
-        // let card2 = $('<img>').attr('src', 'images/how_to/zabivaka.png');
-        let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('example_cards card1');
-        let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('example_cards card2');
+        let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper);
         how_to.append(example);
         $('#game_area').append(how_to);
-        setTimeout(flip_example1, 2000);
-        setTimeout(flip_example2, 3000);
+        setTimeout(flip_mascot_example1, 2000);
+        setTimeout(flip_mascot_example2, 3000);
         setTimeout(remove_how_to, 6000);
     });
 
@@ -209,17 +207,15 @@ $(document).ready(function(){
         $('.how_to').remove();
     }
 
-    function flip_example1(){
+    function flip_mascot_example1(){
         $('.card1').attr('src', 'images/how_to/zabivaka.png').addClass('example_cards');
     }
 
-    function flip_example2(){
+    function flip_mascot_example2(){
         $('.card2').attr('src', 'images/how_to/zabivaka.png').addClass('example_cards');
     }
 
     // MASCOTS
-
-    // $(".mascots").click(mascots_easy);
 
     function mascots_easy(){
         rotate_screen();
@@ -324,6 +320,39 @@ $(document).ready(function(){
         can_click = true;
     }
 
+    // HOW TO CHAMPIONS
+
+    $(".champions").click(function(){
+        champions_easy();
+        let how_to = $('<div>').addClass('how_to');
+        let example = $('<div>').addClass('example').css("border", "10px solid #00cc00");
+        let instructions = $('<h1>').text("Match the World Cup to the team that won it that year!").css("color", "#00cc00");
+        let card_wrapper = $('<div>').addClass('card_wrapper').css('width', '60vw');
+        let checkmark = $('<i>').addClass('fas fa-check');
+        let card1 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card2');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
+        card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
+        example.append(instructions).append(card_wrapper);
+        how_to.append(example);
+        $('#game_area').append(how_to);
+        setTimeout(flip_example1, 2000);
+        setTimeout(flip_example2, 3000);
+        setTimeout(remove_how_to, 6000);
+    });
+
+    function remove_how_to(){
+        $('.how_to').remove();
+    }
+
+    function flip_example1(){
+        $('.card1').attr('src', 'images/how_to/1982cup.jpg').addClass('example_cards');
+    }
+
+    function flip_example2(){
+        $('.card2').attr('src', 'images/how_to/1982team.jpg').addClass('example_cards');
+    }
+
     // CHAMPIONS
 
     var results = [
@@ -338,7 +367,7 @@ $(document).ready(function(){
         ["2014", "Correct! Germany beat Argentina 1-0 in 2014."]
     ]
     
-    $(".champions").click(champions_easy);
+    // $(".champions").click(champions_easy);
 
     function champions_easy(){
         rotate_screen();
@@ -415,8 +444,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "green", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "green"});
+            $(".play_again_options").css({"background-color": "#00cc00", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "#00cc00"});
         }
 
         $(".first_button").click(function (){
