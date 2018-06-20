@@ -13,6 +13,16 @@ body {
     height: 100vh;
 }
 
+.fas.fa-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+    font-size: 300%;
+    cursor: pointer;
+}
+
 .mascots_background, .champions_background {
     background-attachment: fixed;
     background-position: bottom left;

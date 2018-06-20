@@ -23,6 +23,14 @@ $(document).ready(function(){
 
     // PLAY LANDSCAPE ONLY
 
+    function create_rotate_screen(){
+        let rotate_div = $('<div>').addClass('portrait');
+        let rotate_title = $('<h3>').text('Rotate To Play');
+        let rotate_icon = $('<i>').addClass('fas fa-mobile-alt');
+        $(rotate_div).append(rotate_title).append(rotate_icon);
+        $('#game_area').append(rotate_div);
+    }
+
     function rotate_screen(){
         width = $(window).width();
         if(width < 640){
@@ -130,6 +138,12 @@ $(document).ready(function(){
     };
 
     function create_rows(){
+        let set_header = $('<header>').addClass('title');
+        let set_title = $('<h1>');
+        $(set_header).append(set_title);
+        $('#game_area').append(set_header);
+
+
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
                 var row_div = $('<div>').addClass("row");
@@ -186,6 +200,8 @@ $(document).ready(function(){
     // HOW TO MASCOTS
 
     $(".mascots").click(function(){
+        create_rotate_screen();
+        rotate_screen();
         mascots_easy();
         let how_to = $('<div>').addClass('how_to');
         let example = $('<div>').addClass('example').css("border", "10px solid red");
@@ -196,6 +212,24 @@ $(document).ready(function(){
         let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
+        let home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
+        $('#game_area').append(home);
+        $("#home").click(function(){
+           
+            // $(".title h1").text("").removeAttr("style");
+            // $(".row").remove();
+            // $("body").removeAttr("class");
+            // $(".play_again").addClass("play_again_hidden");
+            $('body').removeClass();
+            $("#game_area").empty();
+            // first_card = null;
+            // second_card = null;
+            // can_click = true;  
+            // match_counter = 0
+
+            $('.challenge').toggleClass("challenge_not_visible");
+            // $('.hand').removeAttr("animation-name");
+        });
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
@@ -221,12 +255,14 @@ $(document).ready(function(){
     // MASCOTS
 
     function mascots_easy(){
-        rotate_screen();
+
+        // rotate_screen();
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $("#game_area").css({"height": "100vh", "width": "100vw"});
-        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
         create_rows();
+        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+        // create_rows();
     }
 
     function mascots_card_clicked(){
@@ -269,6 +305,8 @@ $(document).ready(function(){
     // HOW TO SUPERSTARS
 
     $(".superstars").click(function(){
+        create_rotate_screen();
+        rotate_screen();
         superstars_easy();
         let how_to = $('<div>').addClass('how_to');
         let example = $('<div>').addClass('example').css("border", "10px solid gold");
@@ -280,6 +318,8 @@ $(document).ready(function(){
         let card2 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card2');
         let card3 = $('<img>').attr('src', 'images/player.jpg').addClass('vertical_example_cards card3');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand_three", "animation-duration": "4s"});
+        let home = $('<i>').addClass('fas fa-home').css('color', 'gold');
+        $('#game_area').append(home);
         card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
@@ -312,11 +352,12 @@ $(document).ready(function(){
     // $(".superstars").click(superstars_easy);
 
     function superstars_easy(){
-        rotate_screen();
+        // rotate_screen();
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("superstars_background");
-        $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
+        
         create_rows();
+        $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
     }
 
     function superstars_card_clicked(){
@@ -372,6 +413,8 @@ $(document).ready(function(){
     // HOW TO CHAMPIONS
 
     $(".champions").click(function(){
+        create_rotate_screen();
+        rotate_screen();
         champions_easy();
         let how_to = $('<div>').addClass('how_to');
         let example = $('<div>').addClass('example').css("border", "10px solid #00cc00");
@@ -382,6 +425,8 @@ $(document).ready(function(){
         let card1 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
+        let home = $('<i>').addClass('fas fa-home').css('color', '#00cc00');
+        $('#game_area').append(home);
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
@@ -404,6 +449,11 @@ $(document).ready(function(){
         $('.card2').attr('src', 'images/how_to/1982team.jpg').addClass('example_cards');
     }
 
+    function create_results_div(){
+        let results_div = $('<div>').addClass('result');
+        $('#game_area').append(results_div);
+    }
+
     // CHAMPIONS
 
     var results = [
@@ -421,12 +471,13 @@ $(document).ready(function(){
     // $(".champions").click(champions_easy);
 
     function champions_easy(){
-        rotate_screen();
-
+        // rotate_screen();
+        create_results_div();
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("champions_background");
-        $(".title h1").text("World Cup Champions");
+        
         create_rows();
+        $(".title h1").text("World Cup Champions").css('color', '#00cc00');
     }
 
     function champions_card_clicked(){
@@ -477,6 +528,12 @@ $(document).ready(function(){
     // PLAY AGAIN
 
     function win_modal(){
+        let play_again_div = $('<div>').addClass("play_again play_again_hidden");
+        let play_again_options = $('<div>').addClass("play_again_options");
+        $(play_again_div).append(play_again_options);
+        $('#game_area').append(play_again_div);
+
+
         var win_title = $("<h2>").text("You Win!");
         win_title.appendTo(".play_again_options");
 
@@ -548,4 +605,7 @@ $(document).ready(function(){
 
         $(".play_again").toggleClass("play_again_hidden");
     }
+
+
+
 });
