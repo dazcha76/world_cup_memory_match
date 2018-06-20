@@ -212,32 +212,27 @@ $(document).ready(function(){
         let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
         let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
-        let home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
-        $('#game_area').append(home);
-        $("#home").click(function(){
-           
-            // $(".title h1").text("").removeAttr("style");
-            // $(".row").remove();
-            // $("body").removeAttr("class");
-            // $(".play_again").addClass("play_again_hidden");
-            $('body').removeClass();
-            $("#game_area").empty();
-            // first_card = null;
-            // second_card = null;
-            // can_click = true;  
-            // match_counter = 0
-
-            $('.challenge').toggleClass("challenge_not_visible");
-            // $('.hand').removeAttr("animation-name");
-        });
+        // var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
+        // $('#game_area').append(home);
+        
         card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
         example.append(instructions).append(card_wrapper).append(close);
         how_to.append(example);
         $('#game_area').append(how_to);
         $(".fa-times").click(remove_how_to);
-        setTimeout(flip_mascot_example1, 2000);
-        setTimeout(flip_mascot_example2, 3000);
-        setTimeout(remove_how_to, 6000);
+        var example1_timeout = setTimeout(flip_mascot_example1, 2000);
+        var example2_timeout = setTimeout(flip_mascot_example2, 3000);
+        var how_to_timeout = setTimeout(remove_how_to, 6000);
+
+        $("#home").click(function(){
+            $('body').removeClass();
+            $("#game_area").empty();
+            remove_how_to();
+            clearTimeout(example1_timeout);
+            clearTimeout(example2_timeout);
+            clearTimeout(how_to_timeout);
+            $('.challenge').toggleClass("challenge_not_visible");
+        });
     });
 
     function remove_how_to(){
@@ -262,6 +257,9 @@ $(document).ready(function(){
         $("#game_area").css({"height": "100vh", "width": "100vw"});
         create_rows();
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+
+        var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
+        $('#game_area').append(home);
         // create_rows();
     }
 
@@ -325,10 +323,21 @@ $(document).ready(function(){
         how_to.append(example);
         $('#game_area').append(how_to);
         $(".fa-times").click(remove_how_to);
-        setTimeout(flip_superstar_example1, 2000);
-        setTimeout(flip_superstar_example2, 3000);
-        setTimeout(flip_superstar_example3, 4000);
-        setTimeout(remove_how_to, 6000);
+        var example1_timeout = setTimeout(flip_superstar_example1, 2000);
+        var example2_timeout = setTimeout(flip_superstar_example2, 3000);
+        var example3_timeout = setTimeout(flip_superstar_example3, 4000);
+        var how_to_timeout = setTimeout(remove_how_to, 6000);
+
+        $("#home").click(function(){
+            $('body').removeClass();
+            $("#game_area").empty();
+            remove_how_to();
+            clearTimeout(example1_timeout);
+            clearTimeout(example2_timeout);
+            clearTimeout(example3_timeout);
+            clearTimeout(how_to_timeout);
+            $('.challenge').toggleClass("challenge_not_visible");
+        });
     });
 
     function remove_how_to(){
@@ -432,9 +441,19 @@ $(document).ready(function(){
         how_to.append(example);
         $('#game_area').append(how_to);
         $(".fa-times").click(remove_how_to);
-        setTimeout(flip_example1, 2000);
-        setTimeout(flip_example2, 3000);
-        setTimeout(remove_how_to, 6000);
+        var example1_timeout = setTimeout(flip_example1, 2000);
+        var example2_timeout = setTimeout(flip_example2, 3000);
+        var how_to_timeout = setTimeout(remove_how_to, 6000);
+
+        $("#home").click(function(){
+            $('body').removeClass();
+            $("#game_area").empty();
+            remove_how_to();
+            clearTimeout(example1_timeout);
+            clearTimeout(example2_timeout);
+            clearTimeout(how_to_timeout);
+            $('.challenge').toggleClass("challenge_not_visible");
+        });
     });
 
     function remove_how_to(){
