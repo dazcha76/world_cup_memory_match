@@ -55,15 +55,15 @@ body {
 }
 
 .challenge h1 {
-    font-size: 400%;
+    font-size: 5vw;
     text-align: center;
     padding: 1% 0;
     color: #00cc00;
 }
 
 .options {
-    height: 68%;
-    width: 80%; 
+    height: 0;
+    width: 0; 
     border-radius: 15px;
     padding: 2%;
     background-color: white;
@@ -78,8 +78,8 @@ body {
 }
 
 @keyframes fade_in {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {opacity: 0; height: 0; width: 0;}
+    to {opacity: 1; height: 69%; width: 80%;}
 }
 
 .options h2 {
@@ -98,11 +98,12 @@ body {
 }
 
 .option_buttons {
+    position: relative;
     height: 100%;
     width: 27%;
     font-size: 180%;
     text-align: center;
-    padding: 2% 1% 1% 1%;
+    padding: 2% 1%;
     margin: 0 auto;
     border-radius: 15px;
     cursor: pointer;
@@ -179,6 +180,23 @@ body {
     margin: 15% auto;
     border-radius: 15px;
     background-color: #00cc00;
+}
+
+/* -------------------- DIFFICULTY -------------------- */
+
+.easy p, .medium p, .hard p {
+    padding: 10% 10% 0% 10%;
+    font-size: 80%;
+    text-align: left;
+}
+
+#soccer {
+    
+    height: 20%;
+    width: auto;
+    position: absolute;
+    bottom: 3%;
+    left: 35%;
 }
 
 /* -------------------- PLAY AGAIN MODAL -------------------- */

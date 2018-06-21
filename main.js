@@ -19,16 +19,16 @@ $(document).ready(function(){
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
 
-    // CHOOSE YOUR CHALLENGE
+    // CHOOSE DECK
 
     function landing_page_desktop(){
-        let option1 = $('<div>').addClass('option_buttons mascots').text('Mascots');
+        let option1 = $('<div>').addClass('option_buttons mascots easy').text('Mascots');
         let pic1 = $('<img>').attr('src', 'images/mascots.jpg');
         $(option1).append(pic1);
-        let option2 = $('<div>').addClass('option_buttons superstars').text('Superstars');
+        let option2 = $('<div>').addClass('option_buttons superstars medium').text('Superstars');
         let pic2 = $('<img>').attr('src', 'images/player.jpg');
         $(option2).append(pic2);
-        let option3 = $('<div>').addClass('option_buttons champions').text('Champions');
+        let option3 = $('<div>').addClass('option_buttons champions hard').text('Champions');
         let pic3 = $('<img>').attr('src', 'images/champions2.jpg');
         $(option3).append(pic3);
 
@@ -61,17 +61,47 @@ $(document).ready(function(){
         console.log(orientation)
     }
 
-    // function landing_page_mobile_landscape(){
-        
-    // }
-
-
-
     if(width > 640){
         landing_page_desktop();
     } else if(width < 640){
         landing_page_mobile_portrait()
     }
+
+    // CHOOSE DIFFICULTY
+
+    function mascots_difficulty(){
+        $('.mascots').off("click");
+        $('.superstars').off("click");
+        $('.champions').off("click");
+        let soccer_ball1 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+        let soccer_ball2 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+        let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+        let easy_instruction = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
+        let medium_instruction = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 5 pairs and you win!');
+        let hard_instruction = $('<p>').text("Mismatch cards three times in a row and the cards will be shuffled! Be sure to match them all before your third shuffle or you'll lose!");
+        
+        $('.options h2').text('Choose Difficulty Level:');
+        $('.easy').text('Easy').detach('img').append(easy_instruction).append(soccer_ball1);
+        $('.medium').text('Medium').detach('img').append(medium_instruction).append(soccer_ball2);
+        $('.hard').text('Hard').detach('img').append(hard_instruction).append(soccer_ball3);
+
+        $('.easy').click(function(){
+            mascots();
+            mascots_easy();
+        });
+
+        $('.medium').click(function(){
+            mascots();
+            mascots_medium();
+        });
+
+        $('.hard').click(function(){
+            mascots();
+            mascots_hard();
+        });
+    }
+
+    
 
     // PLAY LANDSCAPE ONLY
 
@@ -266,39 +296,40 @@ $(document).ready(function(){
     // HOW TO MASCOTS
 
     $(".mascots").click(function(){
-        create_rotate_screen();
-        rotate_screen();
-        mascots();
-        let how_to = $('<div>').addClass('how_to');
-        let example = $('<div>').addClass('example').css("border", "10px solid red");
-        let instructions = $('<h1>').text("Match the mascots to each other!").css("color", "red");
-        let card_wrapper = $('<div>').addClass('card_wrapper');
-        let checkmark = $('<i>').addClass('fas fa-check');
-        let close = $('<i>').addClass('fas fa-times').css("color", "red");
-        let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
-        let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
-        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
-        // var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
-        // $('#game_area').append(home);
+        mascots_difficulty();
+        // create_rotate_screen();
+        // rotate_screen();
         
-        card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-        example.append(instructions).append(card_wrapper).append(close);
-        how_to.append(example);
-        $('#game_area').append(how_to);
-        $(".fa-times").click(remove_how_to);
-        var example1_timeout = setTimeout(flip_mascot_example1, 2000);
-        var example2_timeout = setTimeout(flip_mascot_example2, 3000);
-        var how_to_timeout = setTimeout(remove_how_to, 6000);
+        // let how_to = $('<div>').addClass('how_to');
+        // let example = $('<div>').addClass('example').css("border", "10px solid red");
+        // let instructions = $('<h1>').text("Match the mascots to each other!").css("color", "red");
+        // let card_wrapper = $('<div>').addClass('card_wrapper');
+        // let checkmark = $('<i>').addClass('fas fa-check');
+        // let close = $('<i>').addClass('fas fa-times').css("color", "red");
+        // let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
+        // let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
+        // let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
+        // // var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
+        // // $('#game_area').append(home);
+        
+        // card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
+        // example.append(instructions).append(card_wrapper).append(close);
+        // how_to.append(example);
+        // $('#game_area').append(how_to);
+        // $(".fa-times").click(remove_how_to);
+        // var example1_timeout = setTimeout(flip_mascot_example1, 2000);
+        // var example2_timeout = setTimeout(flip_mascot_example2, 3000);
+        // var how_to_timeout = setTimeout(remove_how_to, 6000);
 
-        $("#home").click(function(){
-            $('body').removeClass();
-            $("#game_area").empty();
-            remove_how_to();
-            clearTimeout(example1_timeout);
-            clearTimeout(example2_timeout);
-            clearTimeout(how_to_timeout);
-            $('.challenge').toggleClass("challenge_not_visible");
-        });
+        // $("#home").click(function(){
+        //     $('body').removeClass();
+        //     $("#game_area").empty();
+        //     remove_how_to();
+        //     clearTimeout(example1_timeout);
+        //     clearTimeout(example2_timeout);
+        //     clearTimeout(how_to_timeout);
+        //     $('.challenge').toggleClass("challenge_not_visible");
+        // });
     });
 
     function remove_how_to(){
@@ -334,7 +365,7 @@ $(document).ready(function(){
             } else {
                 second_card = $(this);
                 can_click = false;
-                attempts += 1;
+                // attempts += 1;
                 if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
                     gol.play();
                     match_counter += 1;
@@ -342,7 +373,7 @@ $(document).ready(function(){
                     matched_cards.push(image);
                     if(match_counter === total_matches){
                         // ole.play();
-                        setTimeout(win_modal, 1500);
+                        setTimeout(play_again, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
@@ -367,11 +398,11 @@ $(document).ready(function(){
             } else {
                 second_card = $(this);
                 can_click = false;
-                attempts += 1;
+                // attempts += 1;
                 if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
                     gol.play();
                     match_counter += 1;
-                    misses = 0;
+                    // misses = 0;
                     var image = first_card.find(".front > img").attr("src");
                     matched_cards.push(image);
                     if(match_counter === total_matches){
@@ -387,7 +418,7 @@ $(document).ready(function(){
                     misses += 1;
                     whistle.play();
                     setTimeout(flip_back, 2000);
-                    if(misses === 3){
+                    if(misses === 5){
                         console.log("you lose")
                     }
                 }
@@ -405,7 +436,7 @@ $(document).ready(function(){
             } else {
                 second_card = $(this);
                 can_click = false;
-                attempts += 1;
+                // attempts += 1;
                 if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
                     gol.play();
                     match_counter += 1;
