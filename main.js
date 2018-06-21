@@ -11,13 +11,67 @@ $(document).ready(function(){
     var attempts = 0;
     var misses = 0;
 
-    var width = 0;
+    var width = $(window).width();
 
     var matched_cards = [];
 
     var gol = document.getElementById("gol");
     var whistle = document.getElementById("whistle");                   
     var ole = document.getElementById("ole");
+
+    // CHOOSE YOUR CHALLENGE
+
+    function landing_page_desktop(){
+        let option1 = $('<div>').addClass('option_buttons mascots').text('Mascots');
+        let pic1 = $('<img>').attr('src', 'images/mascots.jpg');
+        $(option1).append(pic1);
+        let option2 = $('<div>').addClass('option_buttons superstars').text('Superstars');
+        let pic2 = $('<img>').attr('src', 'images/player.jpg');
+        $(option2).append(pic2);
+        let option3 = $('<div>').addClass('option_buttons champions').text('Champions');
+        let pic3 = $('<img>').attr('src', 'images/champions2.jpg');
+        $(option3).append(pic3);
+
+        let options_wrapper = $('<div>').addClass('options_wrapper');
+        $(options_wrapper).append(option1).append(option2).append(option3);
+        let options_title = $('<h2>').text('Choose a Deck:');
+        let options = $('<div>').addClass('options');
+        $(options).append(options_title).append(options_wrapper);
+
+        let welcome_page = $('<div>').addClass('challenge');
+        let welcome_title = $('<h1>').text('World Cup Memory Match');
+        $(welcome_page).append(welcome_title).append(options);
+
+        $('body').append(welcome_page);
+    }
+
+    function landing_page_mobile_portrait(){
+        let option1 = $('<div>').addClass('mobile_option_buttons mascots').text('Mascots');
+        let option2 = $('<div>').addClass('mobile_option_buttons superstars').text('Superstars');
+        let option3 = $('<div>').addClass('mobile_option_buttons champions').text('Champions');
+        let options_title = $('<h2>').text('Choose a Deck:');
+        let options = $('<div>').addClass('mobile_options');
+        $(options).append(options_title).append(option1).append(option2).append(option3);
+        let welcome_page = $('<div>').addClass('mobile_challenge');
+        let welcome_title = $('<h1>').text('World Cup Memory Match');
+        $(welcome_page).append(welcome_title).append(options);
+
+        $('body').append(welcome_page);
+
+        console.log(orientation)
+    }
+
+    // function landing_page_mobile_landscape(){
+        
+    // }
+
+
+
+    if(width > 640){
+        landing_page_desktop();
+    } else if(width < 640){
+        landing_page_mobile_portrait()
+    }
 
     // PLAY LANDSCAPE ONLY
 
@@ -30,16 +84,17 @@ $(document).ready(function(){
     }
 
     function rotate_screen(){
-        width = $(window).width();
+        
+        // width = $(window).width();
         if(width < 640){
             $(".portrait").css("visibility", "visible");
         }
 
-        $( window ).on( "orientationchange", function( event ) {
+        $(window).on( "orientationchange", function(event) {
             if(orientation === 0){
-                $( ".portrait" ).css("visibility", "visible");
+                $(".portrait").css("visibility", "visible");
             } else {
-                $( ".portrait" ).css("visibility", "hidden");
+                $(".portrait").css("visibility", "hidden");
             }
         });
     }
@@ -622,6 +677,12 @@ $(document).ready(function(){
     function remove_result(){
         $(".result").css("visibility", "hidden");
     }
+
+    // CHOOSE DIFFICULTY
+
+    // function choose_difficulty(){
+
+    // }
 
     // PLAY AGAIN
 
