@@ -6,10 +6,6 @@ $(document).ready(function(){
     var second_card = null;
     var third_card = null;
 
-    // var mascots_back = "images/mascots.jpg";
-    var superstars_back = "images/player.jpg";
-    var champions_back = "images/gol.jpg";
-
     var match_counter = 0;
     var total_matches = 0;
     var attempts = 0;
@@ -50,10 +46,10 @@ $(document).ready(function(){
 
     // SHUFFLE AND DEAL CARDS
 
-    function shuffle_cards(front_array, back_array){
+    function shuffle_cards(front_cards, back_card){
         var elem_index = 0;
         if($("body").hasClass("mascots_background")){
-            front_array = [
+            front_cards = [
                 "images/mascots/1.jpg",
                 "images/mascots/2.jpg",
                 "images/mascots/3.jpg",
@@ -73,29 +69,9 @@ $(document).ready(function(){
                 "images/mascots/8.jpg",
                 "images/mascots/9.jpg"
             ];
-
-            back_array = [
-                "images/mascots_back/1.jpg",
-                "images/mascots_back/2.jpg",
-                "images/mascots_back/3.jpg",
-                "images/mascots_back/4.jpg",
-                "images/mascots_back/5.jpg",
-                "images/mascots_back/6.jpg",
-                "images/mascots_back/7.jpg",
-                "images/mascots_back/8.jpg",
-                "images/mascots_back/9.jpg",
-                "images/mascots_back/1.jpg",
-                "images/mascots_back/2.jpg",
-                "images/mascots_back/3.jpg",
-                "images/mascots_back/4.jpg",
-                "images/mascots_back/5.jpg",
-                "images/mascots_back/6.jpg",
-                "images/mascots_back/7.jpg",
-                "images/mascots_back/8.jpg",
-                "images/mascots_back/9.jpg"
-            ];
+            back_card = "images/mascots.jpg";
         } else if($("body").hasClass("superstars_background")){
-            front_array = [
+            front_cards = [
                 "images/superstars/kane_player.jpg",
                 "images/superstars/kane_club.png",
                 "images/superstars/kane_country.png",
@@ -115,8 +91,10 @@ $(document).ready(function(){
                 "images/superstars/salah_club.png",
                 "images/superstars/salah_country.png",
             ];
+
+            back_card = "images/player.jpg";
         } else if($("body").hasClass("champions_background")){
-            front_array = [
+            front_cards = [
                 // "images/champions/1982cup.jpg",
                 // "images/champions/1982team.jpg",
                 "images/champions/1986cup.jpg",
@@ -136,34 +114,20 @@ $(document).ready(function(){
                 "images/champions/2014cup.jpg",
                 "images/champions/2014team.jpg"
             ];
+
+            back_card = "images/champions.jpg";
         }
 
-        for(i = 0; i <= front_array.length; i++){
-            // for(j = 0; j < matched_cards.length, j++){
-            //     $("[src=" + matched_cards[j] + "]").closest('.back').addClass('matched');
-            // }
+        for(i = 0; i <= front_cards.length; i++){
+            var index = Math.floor(Math.random()*front_cards.length);
+            $(".front img").eq(elem_index).attr("src", front_cards[index]);
 
-            var index = Math.floor(Math.random()*front_array.length);
-            // $(".front img").eq(elem_index).attr("src", front_array[index]);
-            // if($.inArray(front_array[index], matched_cards) > -1){
-            //     $('.no_back > img').removeClass('flip');
-            // };
-            // front_array.splice(index, 1);
-            console.log(matched_cards);
-
-            $(".front img").eq(elem_index).attr("src", front_array[index]);
-
-            if($.inArray(front_array[index], matched_cards) > -1){
-                $(".back img").eq(elem_index).attr("src", back_array[index]).addClass('flip');
+            if($.inArray(front_cards[index], matched_cards) > -1){
+                $(".back img").eq(elem_index).attr("src", back_card).addClass('flip');
             } else {
-                $(".back img").eq(elem_index).attr("src", back_array[index]).removeClass('flip');
+                $(".back img").eq(elem_index).attr("src", back_card).removeClass('flip');
             }
-
-            // $(".front img").eq(elem_index).attr("src", front_array[index]);
-            // $(".back img").eq(elem_index).attr("src", back_array[index]);
-            front_array.splice(index, 1);
-            back_array.splice(index, 1);
-
+            front_cards.splice(index, 1);
             elem_index += 1;
             i = 0;
         }
@@ -229,16 +193,16 @@ $(document).ready(function(){
             $(".row").addClass("mascot_row");
             $(".card").addClass("mascot_card");
             // $(".back img").attr("src", mascots_back);
-            $(".card").click(mascots_card_clicked);
+            $(".card").click(mascots_easy);
         } else if($("body").hasClass("superstars_background")){
             $(".row").addClass("superstar_row");
             $(".card").addClass("superstar_card");
-            $(".back img").attr("src", superstars_back);
+            // $(".back img").attr("src", superstars_back);
             $(".card").click(superstars_card_clicked);
         } else if($("body").hasClass("champions_background")){
             $(".row").addClass("champion_row");
             $(".card").addClass("champion_card");
-            $(".back img").attr("src", champions_back);
+            // $(".back img").attr("src", champions_back);
             $(".card").click(champions_card_clicked);
         }
         shuffle_cards();
@@ -249,15 +213,15 @@ $(document).ready(function(){
     $(".mascots").click(function(){
         create_rotate_screen();
         rotate_screen();
-        mascots_easy();
+        mascots();
         let how_to = $('<div>').addClass('how_to');
         let example = $('<div>').addClass('example').css("border", "10px solid red");
         let instructions = $('<h1>').text("Match the mascots to each other!").css("color", "red");
         let card_wrapper = $('<div>').addClass('card_wrapper');
         let checkmark = $('<i>').addClass('fas fa-check');
         let close = $('<i>').addClass('fas fa-times').css("color", "red");
-        let card1 = $('<img>').attr('src', 'images/mascots_back/1.jpg').addClass('vertical_example_cards card1');
-        let card2 = $('<img>').attr('src', 'images/mascots_back/1.jpg').addClass('vertical_example_cards card2');
+        let card1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         // var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
         // $('#game_area').append(home);
@@ -296,25 +260,53 @@ $(document).ready(function(){
 
     // MASCOTS
 
-    function mascots_easy(){
-
-        // rotate_screen();
+    function mascots(){
         $(".challenge").addClass("challenge_not_visible");
         $("body").addClass("mascots_background");
         $("#game_area").css({"height": "100vh", "width": "100vw"});
         create_rows();
         $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
-
         var home = $('<i>').addClass('fas fa-home').css('color', 'red').attr('id', 'home');
         $('#game_area').append(home);
-        // create_rows();
     }
 
-    function mascots_card_clicked(){
+    function mascots_easy(){
         total_matches = 9;
         if(can_click === true){
             $(event.target).addClass("flip");
-            console.log(event.target)
+            if(first_card === null){
+                first_card = $(this);
+            } else {
+                second_card = $(this);
+                can_click = false;
+                attempts += 1;
+                if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
+                    gol.play();
+                    match_counter += 1;
+                    var image = first_card.find(".front > img").attr("src");
+                    matched_cards.push(image);
+                    if(match_counter === total_matches){
+                        // ole.play();
+                        setTimeout(win_modal, 1500);
+                    } else {
+                        first_card = null;
+                        second_card = null;
+                        can_click = true;
+                    }
+                    return match_counter;
+                } else {
+                    whistle.play();
+                    setTimeout(flip_back, 2000); 
+                }
+
+            }
+        }
+    }
+
+    function mascots_medium(){
+        total_matches = 9;
+        if(can_click === true){
+            $(event.target).addClass("flip");
             if(first_card === null){
                 first_card = $(this);
             } else {
@@ -327,9 +319,6 @@ $(document).ready(function(){
                     misses = 0;
                     var image = first_card.find(".front > img").attr("src");
                     matched_cards.push(image);
-                    // $(first_card.find(".back")).addClass("no_back");
-                    // $(second_card.find(".back")).addClass("no_back");
-                    console.log(matched_cards);
                     if(match_counter === total_matches){
                         // ole.play();
                         setTimeout(win_modal, 1500);
@@ -343,7 +332,45 @@ $(document).ready(function(){
                     misses += 1;
                     whistle.play();
                     setTimeout(flip_back, 2000);
-                    if(misses === 5){
+                    if(misses === 3){
+                        console.log("you lose")
+                    }
+                }
+
+            }
+        }
+    }
+
+    function mascots_hard(){
+        total_matches = 9;
+        if(can_click === true){
+            $(event.target).addClass("flip");
+            if(first_card === null){
+                first_card = $(this);
+            } else {
+                second_card = $(this);
+                can_click = false;
+                attempts += 1;
+                if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
+                    gol.play();
+                    match_counter += 1;
+                    misses = 0;
+                    var image = first_card.find(".front > img").attr("src");
+                    matched_cards.push(image);
+                    if(match_counter === total_matches){
+                        // ole.play();
+                        setTimeout(win_modal, 1500);
+                    } else {
+                        first_card = null;
+                        second_card = null;
+                        can_click = true;
+                    }
+                    return match_counter;
+                } else {
+                    misses += 1;
+                    whistle.play();
+                    setTimeout(flip_back, 2000);
+                    if(misses === 3){
                        setTimeout(shuffle_cards, 2000); 
                        misses = 0;
                     } 
@@ -449,7 +476,7 @@ $(document).ready(function(){
                 if(first_player === second_player && first_player === third_player){
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         setTimeout(win_modal, 1500);
+                         setTimeout(play_again, 1500);
                     } else {
                         setTimeout(remove_card, 2000);
                     }
@@ -484,8 +511,8 @@ $(document).ready(function(){
         let card_wrapper = $('<div>').addClass('card_wrapper').css('width', '60vw');
         let checkmark = $('<i>').addClass('fas fa-check');
         let close = $('<i>').addClass('fas fa-times').css("color", "#00cc00");
-        let card1 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card1');
-        let card2 = $('<img>').attr('src', 'images/gol.jpg').addClass('horizontal_example_cards card2');
+        let card1 = $('<img>').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards card1');
+        let card2 = $('<img>').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards card2');
         let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand').css({"animation-name": "move_hand", "animation-duration": "3s"});
         let home = $('<i>').addClass('fas fa-home').css('color', '#00cc00');
         $('#game_area').append(home);
@@ -577,7 +604,7 @@ $(document).ready(function(){
                     }
                     match_counter += 1;
                     if(match_counter === total_matches){
-                         setTimeout(win_modal, 1500);
+                         setTimeout(play_again, 1500);
                     } else {
                         first_card = null;
                         second_card = null;
@@ -596,10 +623,9 @@ $(document).ready(function(){
         $(".result").css("visibility", "hidden");
     }
 
-
     // PLAY AGAIN
 
-    function win_modal(){
+    function play_again(){
         let play_again_div = $('<div>').addClass("play_again play_again_hidden");
         let play_again_options = $('<div>').addClass("play_again_options");
         $(play_again_div).append(play_again_options);
@@ -650,7 +676,7 @@ $(document).ready(function(){
 
             $(first_button).click(function(){
                 change_deck();
-                mascots_easy();
+                mascots();
             });
             $(second_button).click(function(){
                 change_deck();
