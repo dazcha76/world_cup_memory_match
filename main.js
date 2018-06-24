@@ -13,7 +13,7 @@ let total_matches = 0;
 let attempts = 0;
 let misses = 0;
 
-var width = 0;
+var width = $(window).width();
 
 let image = "";
 let matched_cards = [];
@@ -32,7 +32,7 @@ $(document).ready(function(){
         $(rotate_div).append(rotate_title).append(rotate_icon);
         $('#game_area').append(rotate_div);
 
-        width = $(window).width();
+        // width = $(window).width();
         if(width < 500){
             $(".portrait").css("visibility", "visible");
         }
@@ -50,15 +50,15 @@ $(document).ready(function(){
 
     function create_landing_page(){
         let option1 = $('<div>').addClass('option_buttons option1 mascots').text('Mascots');
-        let pic1 = $('<img>').attr('src', 'images/mascots.jpg');
+        let pic1 = $('<img>').attr('src', 'images/mascots.jpg').addClass('card_pic');
         $(option1).append(pic1);
 
         let option2 = $('<div>').addClass('option_buttons option2 superstars').text('Superstars');
-        let pic2 = $('<img>').attr('src', 'images/player.jpg');
+        let pic2 = $('<img>').attr('src', 'images/player.jpg').addClass('card_pic');
         $(option2).append(pic2);
 
         let option3 = $('<div>').addClass('option_buttons option3 champions').text('Champions');
-        let pic3 = $('<img>').attr('src', 'images/champions2.jpg');
+        let pic3 = $('<img>').attr('src', 'images/champions2.jpg').addClass('card_pic');
         $(option3).append(pic3);
 
         let options_wrapper = $('<div>').addClass('options_wrapper');
