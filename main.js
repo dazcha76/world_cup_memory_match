@@ -1,30 +1,39 @@
+let can_click = true;
+
+let first_card = null;
+let second_card = null;
+let third_card = null;
+
+let first_string = "";
+let second_string = "";
+let third_string = "";
+
+let match_counter = 0;
+let total_matches = 0;
+let attempts = 0;
+let misses = 0;
+
+var width = 0;
+
+let image = "";
+let matched_cards = [];
+
 $(document).ready(function(){
-
-    var can_click = true;
-
-    var first_card = null;
-    var second_card = null;
-    var third_card = null;
-
-    var mascots_back = "images/mascots.jpg";
-    var superstars_back = "images/player.jpg";
-    var champions_back = "images/gol.jpg";
-
-    var match_counter = 0;
-    var total_matches = 0;
-    var attempts = 0;
-
-    var width = 0;
-
-    var gol = document.getElementById("gol");
-    var whistle = document.getElementById("whistle");                   
-    var ole = document.getElementById("ole");
+    const gol = document.getElementById("gol");
+    const whistle = document.getElementById("whistle");                   
+    const ole = document.getElementById("ole");
 
     // PLAY LANDSCAPE ONLY
 
     function rotate_screen(){
+        let rotate_div = $('<div>').addClass('portrait');
+        let rotate_title = $('<h3>').text('Rotate To Play');
+        let rotate_icon = $('<i>').addClass('fas fa-mobile-alt');
+        $(rotate_div).append(rotate_title).append(rotate_icon);
+        $('#game_area').append(rotate_div);
+
         width = $(window).width();
-        if(width < 640){
+        if(width < 500){
             $(".portrait").css("visibility", "visible");
         }
 
@@ -37,96 +46,153 @@ $(document).ready(function(){
         });
     }
 
-    // SHUFFLE AND DEAL CARDS
+    // -------------------------------- CREATE LANDING PAGE -------------------------------- 
 
-    function shuffle_cards(pic_array){
-        var elem_index = 0;
-        if($("body").hasClass("mascots_background")){
-            pic_array = [
-                "images/mascots/1.jpg",
-                "images/mascots/2.jpg",
-                "images/mascots/3.jpg",
-                "images/mascots/4.jpg",
-                "images/mascots/5.jpg",
-                "images/mascots/6.jpg",
-                "images/mascots/7.jpg",
-                "images/mascots/8.jpg",
-                "images/mascots/9.jpg",
-                "images/mascots/1.jpg",
-                "images/mascots/2.jpg",
-                "images/mascots/3.jpg",
-                "images/mascots/4.jpg",
-                "images/mascots/5.jpg",
-                "images/mascots/6.jpg",
-                "images/mascots/7.jpg",
-                "images/mascots/8.jpg",
-                "images/mascots/9.jpg"
-            ];
-        } else if($("body").hasClass("superstars_background")){
-            pic_array = [
-                "images/superstars/buffon_player.jpg",
-                "images/superstars/buffon_club.png",
-                "images/superstars/buffon_country.png",
-                "images/superstars/griezmann_player.jpg",
-                "images/superstars/griezmann_club.png",
-                "images/superstars/griezmann_country.png",
-                "images/superstars/messi_player.jpg",
-                "images/superstars/messi_club.jpg",
-                "images/superstars/messi_country.jpg",
-                "images/superstars/neymar_player.jpg",
-                "images/superstars/neymar_club.png",
-                "images/superstars/neymar_country.png",
-                "images/superstars/ronaldo_player.png",
-                "images/superstars/ronaldo_club.jpg",
-                "images/superstars/ronaldo_country.png",
-                "images/superstars/salah_player.jpg",
-                "images/superstars/salah_club.png",
-                "images/superstars/salah_country.png",
-            ];
-        } else if($("body").hasClass("champions_background")){
-            pic_array = [
-                // "images/champions/1982cup.jpg",
-                // "images/champions/1982team.jpg",
-                "images/champions/1986cup.jpg",
-                "images/champions/1986team.jpg",
-                "images/champions/1990cup.jpg",
-                "images/champions/1990team.jpg",
-                "images/champions/1994cup.jpg",
-                "images/champions/1994team.jpg",
-                "images/champions/1998cup.jpg",
-                "images/champions/1998team.jpg",
-                "images/champions/2002cup.jpg",
-                "images/champions/2002team.jpg",
-                "images/champions/2006cup.jpg",
-                "images/champions/2006team.jpg",
-                "images/champions/2010cup.jpg",
-                "images/champions/2010team.jpg",
-                "images/champions/2014cup.jpg",
-                "images/champions/2014team.jpg"
-            ];
-        }
-        for(i = 0; i <= pic_array.length; i++){
-            var index = Math.floor(Math.random()*pic_array.length);
-            $(".front img").eq(elem_index).attr("src", pic_array[index]);
-            pic_array.splice(index, 1);
-            elem_index += 1;
-            i = 0;
-        }
+    function create_landing_page(){
+        let option1 = $('<div>').addClass('option_buttons option1 mascots').text('Mascots');
+        let pic1 = $('<img>').attr('src', 'images/mascots.jpg');
+        $(option1).append(pic1);
+
+        let option2 = $('<div>').addClass('option_buttons option2 superstars').text('Superstars');
+        let pic2 = $('<img>').attr('src', 'images/player.jpg');
+        $(option2).append(pic2);
+
+        let option3 = $('<div>').addClass('option_buttons option3 champions').text('Champions');
+        let pic3 = $('<img>').attr('src', 'images/champions2.jpg');
+        $(option3).append(pic3);
+
+        let options_wrapper = $('<div>').addClass('options_wrapper');
+        $(options_wrapper).append(option1).append(option2).append(option3);
+
+        let options_title = $('<h2>').text('Choose a Deck:');
+        let options = $('<div>').addClass('options');
+        $(options).append(options_title).append(options_wrapper);
+
+        let landing_page = $('<div>').addClass('landing_page');
+        let landing_page_title = $('<h1>').text('World Cup Memory Match');
+        $(landing_page).append(landing_page_title).append(options);
+
+        $('body').append(landing_page);
     }
 
-    // FLIP CARDS BACK
+    // create_landing_page();
 
-    function flip_back(){
-        first_card.find(".back > img").removeClass("flip");
-        second_card.find(".back > img").removeClass("flip");
-        first_card = null;
-        second_card = null;
-        if($("body").hasClass("superstars_background")){
-            third_card.find(".back > img").removeClass("flip");
-            third_card = null;
-        } 
-        can_click = true;  
-    };
+    function landing_page_mobile_portrait(){
+        let option1 = $('<div>').addClass('mobile_option_buttons option1 mascots').text('Mascots');
+        let option2 = $('<div>').addClass('mobile_option_buttons option2 superstars').text('Superstars');
+        let option3 = $('<div>').addClass('mobile_option_buttons option3 champions').text('Champions');
+        let options_title = $('<h2>').text('Choose a Deck:');
+        let options = $('<div>').addClass('mobile_options');
+        $(options).append(options_title).append(option1).append(option2).append(option3);
+        let welcome_page = $('<div>').addClass('mobile_challenge');
+        let welcome_title = $('<h1>').text('World Cup Memory Match');
+        $(welcome_page).append(welcome_title).append(options);
+        $('body').append(welcome_page);
+    }
+
+    if(width > 500){
+        create_landing_page();;
+    } else if(width < 500){
+        landing_page_mobile_portrait()
+    }
+
+    // -------------------------------- CHOOSE A GAME -------------------------------- 
+
+    $('.mascots').click(function(){
+        $('#game_area').addClass('mascots_game');
+        difficulty_level();
+    });
+
+    $('.superstars').click(function(){
+        $('#game_area').addClass('superstars_game');
+        difficulty_level();
+    });
+
+    $('.champions').click(function(){
+        $('#game_area').addClass('champions_game');
+        difficulty_level();
+    });
+
+    // -------------------------------- CREATE DIFFICULTY MODAL -------------------------------- 
+
+    function difficulty_level(){
+        $('.mascots, .superstars, .champions').off('click');
+        
+        let soccer_ball1 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+        let soccer_ball2 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+        let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
+
+        let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
+        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 5 pairs and you win!');
+        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! You have 3 chances to match them all!");
+        
+        $('.options h2').text('Choose Difficulty Level:');
+        $('.option1').text('Easy').detach('img').append(easy_instructions);
+        $('.option2').text('Medium').detach('img').append(medium_instructions);
+        $('.option3').text('Hard').detach('img').append(hard_instructions);
+
+        $('.option1').removeClass('mascots').addClass('easy');
+        $('.option2').removeClass('superstars').addClass('medium');
+        $('.option3').removeClass('champions').addClass('hard');
+
+
+        if(width > 500){
+            $('.option1').append(soccer_ball1);
+            $('.option2').append(soccer_ball2);
+            $('.option3').append(soccer_ball3);
+        }
+
+        $('.easy').click(function(){
+            $('#game_area').addClass('easy');
+            create_gameboard();
+        });
+
+        $('.medium').click(function(){
+            $('#game_area').addClass('medium');
+            create_gameboard();
+        });
+
+        $('.hard').click(function(){
+            $('#game_area').addClass('hard');
+            create_gameboard();
+        });
+    }
+
+    // -------------------------------- CREATE GAMEBOARD -------------------------------- 
+
+    function create_gameboard(){
+        rotate_screen();
+
+        $(".landing_page").addClass("landing_page_not_visible");
+
+        let set_header = $('<header>').addClass('title');
+        let set_title = $('<h1>');
+        $(set_header).append(set_title);
+        $('#game_area').append(set_header);
+
+        $("#game_area").css({"height": "100vh", "width": "100vw"});
+        let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
+        $('#game_area').append(home);
+
+        if($('#game_area').hasClass('mascots_game')){
+            $("body").addClass("mascots_background");
+            $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+            $('#home').css('color', 'red');
+        } else if($('#game_area').hasClass('superstars_game')){
+            $("body").addClass("superstars_background");
+            $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
+            $('#home').css('color', 'gold');
+        } else if($('#game_area').hasClass('champions_game')){
+            $("body").addClass("champions_background");
+            $(".title h1").text("World Cup Champions").css('color', 'black');
+            $('#home').css('color', 'black');
+            create_results_div();
+        }
+
+        create_rows();
+    }
+
+    // -------------------------------- CREATE ROWS -------------------------------- 
 
     function create_rows(){
         if($("body").hasClass("champions_background")){
@@ -166,118 +232,390 @@ $(document).ready(function(){
         if($("body").hasClass("mascots_background")){
             $(".row").addClass("mascot_row");
             $(".card").addClass("mascot_card");
-            $(".back img").attr("src", mascots_back);
-            $(".card").click(mascots_card_clicked);
         } else if($("body").hasClass("superstars_background")){
             $(".row").addClass("superstar_row");
             $(".card").addClass("superstar_card");
-            $(".back img").attr("src", superstars_back);
-            $(".card").click(superstars_card_clicked);
         } else if($("body").hasClass("champions_background")){
             $(".row").addClass("champion_row");
             $(".card").addClass("champion_card");
-            $(".back img").attr("src", champions_back);
-            $(".card").click(champions_card_clicked);
         }
+
         shuffle_cards();
+        how_to();
+        $(".card").click(flip_cards);
     }
 
-    // MASCOTS
+    // -------------------------------- SHUFFLE AND DEAL CARDS -------------------------------- 
 
-    $(".mascots").click(mascots_easy);
+    function shuffle_cards(front_cards, back_card){
+        var elem_index = 0;
+        if($("body").hasClass("mascots_background")){
+            front_cards = [
+                "images/mascots/ciao1.jpg",
+                "images/mascots/ciao2.jpg",
+                "images/mascots/footix1.jpg",
+                "images/mascots/footix2.jpg",
+                "images/mascots/fuleco1.jpg",
+                "images/mascots/fuleco2.jpg",
+                "images/mascots/goleo1.jpg",
+                "images/mascots/goleo2.jpg",
+                "images/mascots/naranjito1.jpg",
+                "images/mascots/naranjito2.jpg",
+                "images/mascots/pique1.jpg",
+                "images/mascots/pique2.jpg",
+                "images/mascots/spheriks1.jpg",
+                "images/mascots/spheriks2.jpg",
+                "images/mascots/striker1.jpg",
+                "images/mascots/striker2.jpg",
+                "images/mascots/zakumi1.jpg",
+                "images/mascots/zakumi2.jpg"
+            ];
+            back_card = "images/mascots.jpg";
+        } else if($("body").hasClass("superstars_background")){
+            front_cards = [
+                "images/superstars/kane_player.jpg",
+                "images/superstars/kane_club.png",
+                "images/superstars/kane_country.png",
+                "images/superstars/griezmann_player.jpg",
+                "images/superstars/griezmann_club.png",
+                "images/superstars/griezmann_country.png",
+                "images/superstars/messi_player.jpg",
+                "images/superstars/messi_club.jpg",
+                "images/superstars/messi_country.jpg",
+                "images/superstars/neymar_player.jpg",
+                "images/superstars/neymar_club.png",
+                "images/superstars/neymar_country.png",
+                "images/superstars/ronaldo_player.png",
+                "images/superstars/ronaldo_club.jpg",
+                "images/superstars/ronaldo_country.png",
+                "images/superstars/salah_player.jpg",
+                "images/superstars/salah_club.png",
+                "images/superstars/salah_country.png",
+            ];
+            back_card = "images/player.jpg";
+        } else if($("body").hasClass("champions_background")){
+            front_cards = [
+                "images/champions/1986cup.jpg",
+                "images/champions/1986team.jpg",
+                "images/champions/1990cup.jpg",
+                "images/champions/1990team.jpg",
+                "images/champions/1994cup.jpg",
+                "images/champions/1994team.jpg",
+                "images/champions/1998cup.jpg",
+                "images/champions/1998team.jpg",
+                "images/champions/2002cup.jpg",
+                "images/champions/2002team.jpg",
+                "images/champions/2006cup.jpg",
+                "images/champions/2006team.jpg",
+                "images/champions/2010cup.jpg",
+                "images/champions/2010team.jpg",
+                "images/champions/2014cup.jpg",
+                "images/champions/2014team.jpg"
+            ];
+            back_card = "images/champions.jpg";
+        }
 
-    function mascots_easy(){
-        rotate_screen();
-        $(".challenge").addClass("challenge_not_visible");
-        $("body").addClass("mascots_background");
-        $("#game_area").css({"height": "100vh", "width": "100vw"});
-        $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
-        create_rows();
-    }
+        for(i = 0; i <= front_cards.length; i++){
+            let index = Math.floor(Math.random()*front_cards.length);
+            $(".front img").eq(elem_index).attr("src", front_cards[index]);
 
-    function mascots_card_clicked(){
-        total_matches = 9;
-        if(can_click === true){
-            $(event.target).addClass("flip");
-            console.log(event.target)
-            if(first_card === null){
-                first_card = $(this);
+            if($.inArray(front_cards[index], matched_cards) > -1){
+                $(".back img").eq(elem_index).attr("src", back_card).addClass('flip');
             } else {
-                second_card = $(this);
-                can_click = false;
-                attempts += 1;
-                if(first_card.find(".front > img").attr("src") === second_card.find(".front > img").attr("src")){
-                    gol.play();
-                    match_counter += 1;
-                    if(match_counter === total_matches){
-                        // ole.play();
-                        setTimeout(win_modal, 1500);
-                    } else {
-                        first_card = null;
-                        second_card = null;
-                        can_click = true;
-                    }
-                    return match_counter;
-                } else {
-                    whistle.play();
-                    setTimeout(flip_back, 2000);
-                }
+                $(".back img").eq(elem_index).attr("src", back_card).removeClass('flip');
+            }
+            front_cards.splice(index, 1);
+            elem_index += 1;
+            i = 0;
+        }
 
+    }
+
+    // -------------------------------- CREATE HOW TO MODAL -------------------------------- 
+
+    function how_to(){
+        let how_to = $('<div>').addClass('how_to');
+        let example = $('<div>').addClass('example');
+        let instructions = $('<h1>');
+        let card_wrapper = $('<div>').addClass('card_wrapper');
+        let checkmark = $('<i>').addClass('fas fa-check');
+        let close = $('<i>').addClass('fas fa-times');
+        let card1 = $('<img>').addClass('card1');
+        let card2 = $('<img>').addClass('card2');
+        let card3 = $('<img>').addClass('card3');
+        let hand = $('<img>').attr('src', 'images/how_to/hand.png').addClass('hand');
+
+        let example1_timeout;
+        let example2_timeout;
+        let example3_timeout;
+        let how_to_timeout;
+        
+        example.append(instructions).append(card_wrapper).append(close);
+        how_to.append(example);
+        $('#game_area').append(how_to);
+
+        if($('#game_area').hasClass('mascots_game')){
+            card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
+            $('.example h1').text("Match the mascots to each other!").css("color", "red");
+            $('.example').css("border", "10px solid red");
+            $('.card_wrapper .fas').css("color", "red");
+            $('.card1, .card2').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards');
+            $('.hand').css({"animation-name": "move_hand_mascots", "animation-duration": "3s"});
+            example1_timeout = setTimeout(flip_mascot_example1, 2000);
+            example2_timeout = setTimeout(flip_mascot_example2, 3000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
+        } else if($('#game_area').hasClass('superstars_game')){
+            card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
+            $('.example h1').text("Match the superstar to his club and country teams!").css("color", "gold");
+            $('.example').css("border", "10px solid gold");
+            $('.card_wrapper').css('width', '60vw');
+            $('.fas.fa-times').css("color", "gold");
+            $('.card1, .card2, .card3').attr('src', 'images/player.jpg').addClass('vertical_example_cards');;
+            $('.hand').css({"animation-name": "move_hand_superstars", "animation-duration": "4s"});
+            example1_timeout = setTimeout(flip_superstar_example1, 2000);
+            example2_timeout = setTimeout(flip_superstar_example2, 3000);
+            example3_timeout = setTimeout(flip_superstar_example3, 4000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
+        } else if($('#game_area').hasClass('champions_game')){
+            card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
+            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "black")
+            $('.example').css("border", "10px solid black");
+            $('.card_wrapper').css('width', '60vw');
+            $('.fas.fa-times').css("color", "black");
+            $('.card1, .card2').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards');
+            $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
+            example1_timeout = setTimeout(flip_example1, 2000);
+            example2_timeout = setTimeout(flip_example2, 3000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
+        }
+
+        $(".fa-times").click(remove_how_to);
+
+        $("#home").click(function(){
+            $('body').removeClass();
+            $("#game_area").empty();
+            remove_how_to();
+            clearTimeout(example1_timeout);
+            clearTimeout(example2_timeout);
+            clearTimeout(how_to_timeout);
+            $('.landing_page').toggleClass("landing_page_not_visible");
+        });
+    }
+
+    function remove_how_to(){
+        $('.how_to').remove();
+    }
+
+    function flip_mascot_example1(){
+        $('.card1').attr('src', 'images/how_to/zabivaka.png');
+    }
+
+    function flip_mascot_example2(){
+        $('.card2').attr('src', 'images/how_to/zabivaka.png');
+    }
+
+    function flip_superstar_example1(){
+        $('.card1').attr('src', 'images/how_to/muller_player.jpg');
+    }
+
+    function flip_superstar_example2(){
+        $('.card2').attr('src', 'images/how_to/muller_club.png');
+    }
+
+    function flip_superstar_example3(){
+        $('.card3').attr('src', 'images/how_to/muller_country.png');
+    }
+
+    function flip_example1(){
+        $('.card1').attr('src', 'images/how_to/1982cup.jpg');
+    }
+
+    function flip_example2(){
+        $('.card2').attr('src', 'images/how_to/1982team.jpg');
+    }
+
+    // -------------------------------- FLIP CARDS --------------------------------
+
+    function flip_cards(){
+        if($('#game_area').hasClass('mascots_game')){
+            total_matches = 9;
+            if(can_click === true){
+                $(event.target).addClass("flip");
+                if(first_card === null){
+                    first_card = $(this);
+                } else {
+                    second_card = $(this);
+                    can_click = false;
+
+                    first_string = first_card.find(".front > img").attr("src");
+                    var first_mascot = first_string[15] + first_string[16];
+                   
+                    second_string = second_card.find(".front > img").attr("src");
+                    var second_mascot = second_string[15] + second_string[16];
+
+                    if(first_mascot === second_mascot){
+                        gol.play();
+                        match_counter += 1;
+                        image = first_string;
+                        matched_cards.push(image);
+                        image = second_string;
+                        matched_cards.push(image);
+                        if($('#game_area').hasClass('hard')){
+                            misses = 0;
+                        }
+                        if(match_counter === total_matches){
+                            setTimeout(play_again, 1500);
+                        } else {
+                            first_card = null;
+                            second_card = null;
+                            can_click = true;
+                        }
+                        return match_counter;
+                    } else {
+                        misses += 1;
+                        whistle.play();
+                        setTimeout(flip_back, 2000);
+                        if($('#game_area').hasClass('medium')){
+                            if(misses === 5){
+                                setTimeout(play_again, 1500);
+                            }
+                        } else if($('#game_area').hasClass('hard')){
+                            if(misses === 3){
+                                if(attempts === 3){
+                                    setTimeout(play_again, 1500);
+                                } else {
+                                    setTimeout(shuffle_cards, 2000); 
+                                    misses = 0;
+                                    attempts += 1;
+                                }
+                            }
+                        }
+                    }
+                    console.log("Misses: " + misses + "\n Attempts: " + attempts)
+                }
+            }
+        } else if($('#game_area').hasClass('superstars_game')){
+            total_matches = 6;
+            if(can_click === true){
+                $(event.target).addClass("flip");
+                if(first_card === null){
+                    first_card = $(this);
+                } else if (second_card === null){
+                    second_card = $(this);
+                } else {
+                    third_card = $(this);
+                    can_click = false;
+
+                    first_string = first_card.find(".front > img").attr("src");
+                    var first_player = first_string[18];
+                   
+                    second_string = second_card.find(".front > img").attr("src");
+                    var second_player = second_string[18];
+
+                    third_string = third_card.find(".front > img").attr("src");
+                    var third_player = third_string[18];
+
+                    if(first_player === second_player && first_player === third_player){
+                        match_counter += 1;
+                        image = first_string;
+                        matched_cards.push(image);
+                        image = second_string;
+                        matched_cards.push(image);
+                        image = third_string;
+                        matched_cards.push(image);
+                        if($('#game_area').hasClass('hard')){
+                            misses = 0;
+                        }
+                        if(match_counter === total_matches){
+                            setTimeout(play_again, 1500);
+                        } else {
+                            setTimeout(remove_card, 2000);
+                            can_click = true;
+                        }
+                        return match_counter;
+                    } else {
+                        misses += 1;
+                        setTimeout(flip_back, 2000);
+                        if($('#game_area').hasClass('medium')){
+                            if(misses === 5){
+                                setTimeout(play_again, 1500);
+                            }
+                        } else if($('#game_area').hasClass('hard')){
+                            if(misses === 3){
+                                if(attempts === 3){
+                                    setTimeout(play_again, 1500);
+                                } else {
+                                    setTimeout(shuffle_cards, 2000); 
+                                    misses = 0;
+                                    attempts += 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if($('#game_area').hasClass('champions_game')){
+            total_matches = 8;
+            if(can_click === true){
+                $(event.target).addClass("flip");
+                if(first_card === null){
+                    first_card = $(this);
+                } else {
+                    second_card = $(this);
+                    can_click = false;
+
+                    first_string = first_card.find(".front > img").attr("src");
+                    var first_year = first_string[17] + first_string[18] + first_string[19] + first_string[20];
+                   
+                    second_string = second_card.find(".front > img").attr("src");
+                    var second_year = second_string[17] + second_string[18] + second_string[19] + second_string[20];
+
+                    if(first_year === second_year){
+                        for(i = 0; i < results.length; i++){
+                            if(first_year === results[i][0]){
+                                $(".result").css("visibility", "visible").text(results[i][1]);
+                                setTimeout(remove_result, 3000);
+                            }
+                        }
+                        match_counter += 1;
+                        image = first_string;
+                        matched_cards.push(image);
+                        image = second_string;
+                        matched_cards.push(image);
+                        if($('#game_area').hasClass('hard')){
+                            misses = 0;
+                        }
+                        if(match_counter === total_matches){
+                            setTimeout(play_again, 1500);
+                        } else {
+                            first_card = null;
+                            second_card = null;
+                            can_click = true;
+                        }
+                        return match_counter;
+                    } else {
+                        misses += 1;
+                        setTimeout(flip_back, 2000);
+                        if($('#game_area').hasClass('medium')){
+                            if(misses === 5){
+                                setTimeout(play_again, 1500);
+                            }
+                        } else if($('#game_area').hasClass('hard')){
+                            if(misses === 3){
+                                if(attempts === 3){
+                                    setTimeout(play_again, 1500);
+                                } else {
+                                    setTimeout(shuffle_cards, 2000); 
+                                    misses = 0;
+                                    attempts += 1;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-    }
-
-    // SUPERSTARS
-
-    $(".superstars").click(superstars_easy);
-
-    function superstars_easy(){
-        rotate_screen();
-        $(".challenge").addClass("challenge_not_visible");
-        $("body").addClass("superstars_background");
-        $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
-        create_rows();
-    }
-
-    function superstars_card_clicked(){
-        total_matches = 6;
-        if(can_click === true){
-            $(event.target).addClass("flip");
-            if(first_card === null){
-                first_card = $(this);
-                
-            } else if (second_card === null){
-                second_card = $(this);
-                
-            } else {
-                third_card = $(this);
-                
-                var first_string = first_card.find(".front > img").attr("src");
-                var first_player = first_string[18];
-               
-                var second_string = second_card.find(".front > img").attr("src");
-                var second_player = second_string[18];
-
-                var third_string = third_card.find(".front > img").attr("src");
-                var third_player = third_string[18];
-
-                can_click = false;
-                attempts += 1;
-                if(first_player === second_player && first_player === third_player){
-                    match_counter += 1;
-                    if(match_counter === total_matches){
-                         setTimeout(win_modal, 1500);
-                    } else {
-                        setTimeout(remove_card, 2000);
-                    }
-                    return match_counter;
-                } else {
-                    setTimeout(flip_back, 2000);
-                }
-
-            }
-        }
-    }
+    };
 
     function remove_card(){
         first_card.addClass("remove");
@@ -289,10 +627,9 @@ $(document).ready(function(){
         can_click = true;
     }
 
-    // CHAMPIONS
+    // CHAMPIONS RESULRS
 
     var results = [
-        // ["1982", "Correct! Italy beat West Germany 3-1 in 1982."],
         ["1986", "Correct! Argentina beat West Germany 3-2 in 1986."],
         ["1990", "Correct! West Germany beat Argentina 1-0 in 1990."],
         ["1994", "Correct! Brazil beat Italy 3-2 in 1994."],
@@ -301,67 +638,39 @@ $(document).ready(function(){
         ["2006", "Correct! Italy beat France 5-3 in 2006."],
         ["2010", "Correct! Spain beat Netherlands 1-0 in 2010."],
         ["2014", "Correct! Germany beat Argentina 1-0 in 2014."]
-    ]
-    
-    $(".champions").click(champions_easy);
+    ];
 
-    function champions_easy(){
-        rotate_screen();
-
-        $(".challenge").addClass("challenge_not_visible");
-        $("body").addClass("champions_background");
-        $(".title h1").text("World Cup Champions");
-        create_rows();
-    }
-
-    function champions_card_clicked(){
-        total_matches = 8;
-        if(can_click === true){
-            $(event.target).addClass("flip");
-            if(first_card === null){
-                first_card = $(this);
-            } else {
-                second_card = $(this);
-                var first_string = first_card.find(".front > img").attr("src");
-                var first_year = first_string[17] + first_string[18] + first_string[19] + first_string[20];
-               
-                var second_string = second_card.find(".front > img").attr("src");
-                var second_year = second_string[17] + second_string[18] + second_string[19] + second_string[20];
-
-                can_click = false;
-                attempts += 1;
-                if(first_year === second_year){
-                    for(i = 0; i < results.length; i++){
-                        if(first_year === results[i][0]){
-                            $(".result").css("visibility", "visible").text(results[i][1]);
-                            setTimeout(remove_result, 3000);
-                        }
-                    }
-                    match_counter += 1;
-                    if(match_counter === total_matches){
-                         setTimeout(win_modal, 1500);
-                    } else {
-                        first_card = null;
-                        second_card = null;
-                        can_click = true;
-                    }
-                    return match_counter;
-                } else {
-                    setTimeout(flip_back, 2000);
-                }
-
-            }
-        }
+    function create_results_div(){
+        let results_div = $('<div>').addClass('result');
+        $('#game_area').append(results_div);
     }
 
     function remove_result(){
         $(".result").css("visibility", "hidden");
     }
 
+    // FLIP CARDS BACK
+
+    function flip_back(){
+        first_card.find(".back > img").removeClass("flip");
+        second_card.find(".back > img").removeClass("flip");
+        first_card = null;
+        second_card = null;
+        if($("body").hasClass("superstars_background")){
+            third_card.find(".back > img").removeClass("flip");
+            third_card = null;
+        } 
+        can_click = true;  
+    };
 
     // PLAY AGAIN
 
-    function win_modal(){
+    function play_again(){
+        let play_again_div = $('<div>').addClass("play_again play_again_hidden");
+        let play_again_options = $('<div>').addClass("play_again_options");
+        $(play_again_div).append(play_again_options);
+        $('#game_area').append(play_again_div);
+
         var win_title = $("<h2>").text("You Win!");
         win_title.appendTo(".play_again_options");
 
@@ -380,8 +689,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "green", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "green"});
+            $(".play_again_options").css({"background-color": "black", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "black"});
         }
 
         $(".first_button").click(function (){
@@ -407,7 +716,7 @@ $(document).ready(function(){
 
             $(first_button).click(function(){
                 change_deck();
-                mascots_easy();
+                mascots();
             });
             $(second_button).click(function(){
                 change_deck();
@@ -433,36 +742,4 @@ $(document).ready(function(){
 
         $(".play_again").toggleClass("play_again_hidden");
     }
-
-
-
-    // stats
-
-    // var accuracy = 0;
-    // var attempts = 0;
-        
-    // function display_stats(){
-    //     $(".games_played .value").text(games_played);
-    //     $(".attempts .value").text(attempts);
-    
-    //     accuracy = matches / attempts;
-    //     $(".accuracy .value").text(accuracy);
-    // }
-    
-    // function reset_stats(){
-    //     accuracy = 0;
-    //     matches = 0;
-    //     attempts = 0;
-    //     display_stats();
-    // }
-    
-    // $(".reset").click(function(){
-    //     games_played += 1;
-    //     display_stats();
-    //     reset_stats();
-    //     shuffle_cards(mascots_front);
-    //     console.log(games_played);
-    //     console.log("matches after click: " + matches);
-    //     console.log("attempts after click: " + attempts);
-    // });
 });

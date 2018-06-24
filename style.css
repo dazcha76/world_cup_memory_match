@@ -5,12 +5,21 @@
     border: 0;
     padding: 0;
     font-family: 'Prompt', sans-serif;
-    font-size: 16px;
 }
 
 body {
     overflow: hidden;
     height: 100vh;
+}
+
+.fas.fa-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 1.5%;
+    padding-left: 1.5%;
+    font-size: 300%;
+    cursor: pointer;
 }
 
 .mascots_background, .champions_background {
@@ -22,25 +31,169 @@ body {
     padding-left: 0.5%;  
 }
 
+.title .fas {
+    float: left;
+}
+
 .title h1 {
     text-align: center;
-    font-size: 400%;
+    font-size: 350%;
     margin: 1% 0;
 }
 
-/* -------------------- MODALS -------------------- */
+/* -------------------- LANDING PAGE MODAL -------------------- */
 
-.challenge, .play_again {
+.landing_page {
     height: 100vh;
     width: 100vw;
-}
-
-.challenge {
     background-image: url(images/backgrounds/trophy.jpg);
     background-size: cover;
 }
 
+.landing_page_not_visible {
+    display: none;
+}
+
+.landing_page h1 {
+    font-size: 4vw;
+    text-align: center;
+    padding-top: 1.5%;
+    color: #00cc00;
+}
+
+.options {
+    height: 0;
+    width: 0; 
+    border-radius: 15px;
+    padding: 1.5% 2% 2% 2%;
+    background-color: white;
+    color: white;
+    margin: 4% auto 0 auto;
+    opacity: 0;
+    animation-name: fade_in;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    border: 8px solid #00cc00;
+}
+
+@keyframes fade_in {
+    from {opacity: 0; height: 0; width: 0;}
+    to {opacity: 1; height: 60%; width: 72%;}
+}
+
+.options h2 {
+    text-align: center;
+    font-size: 200%;
+    color: #00cc00;
+    padding-bottom: 2%;
+}
+
+.options_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: 78%;
+}
+
+.option_buttons {
+    position: relative;
+    height: 96%;
+    width: 27%;
+    font-size: 180%;
+    text-align: center;
+    padding: 2% 1%;
+    margin: 0 auto;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: rgb(0,204,0);
+    color: white;
+}
+
+.option_buttons img {
+    display: block;
+    height: 80%;
+    width: 80%;
+    margin: 8% auto 0 auto;
+    border-radius: 15px;
+}
+
+/* -------------------- CHALLENGE MODAL MOBILE -------------------- */
+
+.mobile_challenge {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(images/backgrounds/trophy.jpg);
+    background-position: 520%;
+    background-size: cover;
+}
+
+.mobile_options {
+    height: 60vh;
+    width: 80vw; 
+    border-radius: 15px;
+    padding: 3%;
+    background-color: white;
+    color: white;
+    margin: 10% auto;
+    opacity: 0;
+    animation-name: fade_in;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    border: 8px solid #00cc00;
+}
+
+.mobile_challenge h1 {
+    font-size: 250%;
+    text-align: center;
+    padding: 1% 0;
+    color: #00cc00;
+}
+
+.mobile_options h2 {
+    text-align: center;
+    font-size: 200%;
+    color: #00cc00;
+    padding: 5% 0 2% 0;
+}
+
+.mobile_option_buttons.mascots, .mobile_option_buttons.easy {
+    margin-top: 8%;
+}
+
+.mobile_option_buttons {
+    height: 9%;
+    width: 80%;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5% 0;
+    margin: 15% auto;
+    border-radius: 15px;
+    background-color: #00cc00;
+}
+
+/* -------------------- DIFFICULTY -------------------- */
+
+.easy p, .medium p, .hard p {
+    padding: 7% 10% 0% 10%;
+    font-size: 1.5vw;
+    text-align: left;
+}
+
+#soccer {
+    height: 20%;
+    width: auto;
+    position: absolute;
+    bottom: 2%;
+    left: 35%;
+}
+
+/* -------------------- PLAY AGAIN MODAL -------------------- */
+
 .play_again {
+    height: 100vh;
+    width: 100vw;
     background-color: rgba(255, 255, 255, 0.7);
     position: absolute;
     top: 0;
@@ -48,49 +201,27 @@ body {
     z-index: 1;
 }
 
-.challenge_not_visible, .play_again_hidden {
+.play_again_hidden {
     display: none;
 }
 
-.challenge h1 {
-    font-size: 400%;
-    text-align: center;
-    padding-top: 1%;
-    color: #00cc00;
-}
-
-.options, .play_again_options {
+.play_again_options {
     height: 50%;
     width: 23%; 
     border-radius: 15px;
     padding: 3%;
     position: absolute;   
-}
-
-.options {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: white;
-    top: 25%;
-    left: 7%;
-}
-
-.play_again_options {
     top: 20%;
     left: 35%;
     padding-top: 2%;
 }
 
-.options:hover {
-    background-color: white;
-    color: #00cc00;
-}
-
-.options h2, .play_again_options h2 {
+.play_again_options h2 {
     text-align: center;
     font-size: 200%;
 }
 
-.option_buttons, .play_again_buttons {
+.play_again_buttons {
     height: 15%;
     width: 80%;
     font-size: 150%;
@@ -98,24 +229,127 @@ body {
     line-height: 250%;
     margin: 15% auto;
     border-radius: 15px;
-}
-
-.option_buttons {
-    background-color: rgba(0,204,0, 0.6);
-    color: white;
-}
-
-.play_again_buttons {
+    cursor: pointer;
     padding: 0%;
-}
-
-.option_buttons:hover {
-    background-color: rgb(0,204,0);
-    color: white;
 }
 
 .first_button {
     margin-top: 10%;
+}
+
+/* ---------------- HOW TO ---------------- */
+
+.how_to {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.how_to h1 {
+    font-size: 200%;
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+.example {
+    height: 55vh;
+    width: 60vw;
+    background-color: white;
+    border-radius: 25px;
+    position: relative;
+    top: 50%;
+    margin-top: -35vh;
+    left: 50%;
+    margin-left: -30vw;
+    padding: 2%;
+}
+
+.card_wrapper {
+    height: 37vh;
+    width: 40vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.vertical_example_cards {
+    height: 100%;
+    width: 15vw;
+}
+
+.horizontal_example_cards {
+    height: 15vw;
+    width: 25vw;
+}
+
+.hand {
+    position: absolute;
+    top: 55%;
+    left: 0%;
+    opacity: 0;
+    animation-delay: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes move_hand_mascots {
+    0% {left: 0%; opacity: 0;}
+    20% {left: 27%; opacity: 1;}
+    40% {left: 27%;}
+    60% {left: 57%;}
+    80% {left: 57%; opacity: 1;}
+    100% {left: 82%; opacity: 0;}
+}
+
+@keyframes move_hand_superstars {
+    0% {left: 0%; opacity: 0;}
+    14% {left: 12%; opacity: 1;}
+    28% {left: 12%;}
+    42% {left: 42%;}
+    57% {left: 42%;}
+    71% {left: 70%;}
+    85% {left: 70%; opacity: 1;}
+    100% {left: 82%; opacity: 0;}
+}
+
+@keyframes move_hand_champions {
+    0% {left: 0%; opacity: 0;}
+    20% {left: 18%; opacity: 1;}
+    40% {left: 18%;}
+    60% {left: 63%;}
+    80% {left: 63%; opacity: 1;}
+    100% {left: 82%; opacity: 0;}
+}
+
+.card_wrapper .fas.fa-check {
+    font-size: 200px;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    color: #00cc00;
+    animation-name: its_a_match;
+    animation-delay: 4s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes its_a_match {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+.example .fas.fa-times {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 /* ---------------- CARDS ---------------- */
@@ -124,6 +358,10 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+.back {
+    cursor: pointer;
 }
 
 .back .flip {
@@ -202,8 +440,9 @@ body {
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
-    background-image: url(images/backgrounds/pele.png);
-    background-size: 90vh;
+   /* background-image: url(images/backgrounds/white.png);
+    background-size: 90vh;*/
+    /*background-color: gold;*/
 }
 
 .champion_row {
@@ -242,31 +481,6 @@ body {
     text-align: center;
     padding: 2%;
 }
-
-/* ---------------- stats mascots ---------------- */
-
-/*.stats {
-    height: 85px;
-    width: 800px;
-    border: 5px solid red;
-    border-radius: 25px;
-    color: red;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    position: absolute;
-    left: 40%;
-    top: 86%;
-}
-
-button {
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 25px;
-}*/
 
 /* -------------------- PORTRAIT OPTIONS -------------------- */
 
@@ -350,12 +564,12 @@ h3 {
 }
 
 @media only screen and (max-width: 500px){
-    .challenge {
+    .landing_page {
         background-size: cover;
         background-position: center;
     }
 
-    .challenge h1 {
+    .landing_page h1 {
         font-size: 6vh;
     }
 
@@ -365,7 +579,7 @@ h3 {
         width: 80vw;
         margin: 8% auto 0 auto;
         padding-top: 10%;
-        background-color: rgba(255, 255, 255, 0.9)
+        background-color: rgba(255, 255, 255, 0.9);
     }
 
     .options h2 {
@@ -378,8 +592,14 @@ h3 {
     }
 }
 
-@media only screen and (max-height: 415px){
-    .challenge h1 {
+@media only screen and (max-width: 411px){
+    .mobile_challenge {
+        background-position: 500%;
+    }
+}
+
+/*@media only screen and (max-height: 415px){
+    .landing_page h1 {
         font-size: 200%;
     }
 
@@ -412,4 +632,4 @@ h3 {
     .play_again_buttons {
         height: 15%;
     }
-}
+}*/
