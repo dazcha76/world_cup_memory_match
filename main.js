@@ -18,6 +18,31 @@ var width = $(window).width();
 let image = "";
 let matched_cards = [];
 
+let mascots_how_to = 0;
+let superstars_how_to = 0;
+let champions_how_to = 0;
+
+let main_background_image = new Image();
+main_background_image.src = 'trophy.jpg';
+
+let mascots_background_image = new Image();
+mascots_background_image.src = 'zabivaka.jpg';
+
+let superstars_background_image = new Image();
+superstars_background_image.src = 'players.jpg';
+
+// let champions_background_image = new Image();
+// champions_background_image.src = 'someimage.jpg';
+
+let mascots_card_back = new Image();
+mascots_card_back.src = 'mascots.jpg';
+
+let superstars_card_back = new Image();
+superstars_card_back.src = 'player.jpg';
+
+let champions_card_back = new Image();
+champions_card_back.src = 'champions.jpg';
+
 $(document).ready(function(){
     const gol = document.getElementById("gol");
     const whistle = document.getElementById("whistle");                   
@@ -32,7 +57,6 @@ $(document).ready(function(){
         $(rotate_div).append(rotate_title).append(rotate_icon);
         $('#game_area').append(rotate_div);
 
-        // width = $(window).width();
         if(width < 500){
             $(".portrait").css("visibility", "visible");
         }
@@ -124,7 +148,7 @@ $(document).ready(function(){
 
         let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
         let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 5 pairs and you win!');
-        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! You have 3 chances to match them all!");
+        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
         
         $('.options h2').text('Choose Difficulty Level:');
         $('.option1').text('Easy').detach('img').append(easy_instructions);
@@ -241,7 +265,7 @@ $(document).ready(function(){
         }
 
         shuffle_cards();
-        how_to();
+        // how_to();
         $(".card").click(flip_cards);
     }
 
