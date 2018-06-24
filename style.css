@@ -565,13 +565,9 @@ h3 {
 .portrait i {
     color: white;
     font-size: 50vmin;
-    -webkit-animation-name: rotate; 
-    animation-name: rotate;
-    -webkit-animation-duration: 2s; 
+    /*animation-name: rotate;*/
     animation-duration: 2s;
-    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-   -webkit-animation-delay: 1s;
     animation-delay: 1s;
 }
 

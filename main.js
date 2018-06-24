@@ -22,6 +22,7 @@ let mascots_how_to = 0;
 let superstars_how_to = 0;
 let champions_how_to = 0;
 
+
 let main_background_image = new Image();
 main_background_image.src = 'trophy.jpg';
 
@@ -43,6 +44,7 @@ superstars_card_back.src = 'player.jpg';
 let champions_card_back = new Image();
 champions_card_back.src = 'champions.jpg';
 
+
 $(document).ready(function(){
     const gol = document.getElementById("gol");
     const whistle = document.getElementById("whistle");                   
@@ -59,13 +61,16 @@ $(document).ready(function(){
 
         if(width < 500){
             $(".portrait").css("visibility", "visible");
+            $('.portrait i').css('animation-name', 'rotate');
         }
 
         $( window ).on( "orientationchange", function( event ) {
             if(orientation === 0){
                 $( ".portrait" ).css("visibility", "visible");
+                $('.portrait i').css('animation-name', 'rotate');
             } else {
                 $( ".portrait" ).css("visibility", "hidden");
+                $('.portrait i').css('animation-name', '');
             }
         });
     }
