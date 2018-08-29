@@ -146,21 +146,6 @@ $(document).ready(function(){
         });
     };
 
-    // $('.mascots').click(function(){
-    //     $('#game_area').addClass('mascots_game');
-    //     difficulty_level();
-    // });
-
-    // $('.superstars').click(function(){
-    //     $('#game_area').addClass('superstars_game');
-    //     difficulty_level();
-    // });
-
-    // $('.champions').click(function(){
-    //     $('#game_area').addClass('champions_game');
-    //     difficulty_level();
-    // });
-
     // -------------------------------- CREATE DIFFICULTY MODAL -------------------------------- 
 
     function difficulty_level(){
@@ -191,17 +176,17 @@ $(document).ready(function(){
         }
 
         $('.easy').click(function(){
-            $('#game_area').addClass('easy');
+            $('#game_area').attr({'data-difficulty': 'easy'});
             create_gameboard();
         });
 
         $('.medium').click(function(){
-            $('#game_area').addClass('medium');
+            $('#game_area').attr({'data-difficulty': 'medium'});
             create_gameboard();
         });
 
         $('.hard').click(function(){
-            $('#game_area').addClass('hard');
+            $('#game_area').attr({'data-difficulty': 'hard'});
             create_gameboard();
         });
     }
@@ -334,7 +319,7 @@ $(document).ready(function(){
                 "images/superstars/neymar_club.png",
                 "images/superstars/neymar_country.png",
                 "images/superstars/ronaldo_player.png",
-                "images/superstars/ronaldo_club.jpg",
+                "images/superstars/ronaldo_club.png",
                 "images/superstars/ronaldo_country.png",
                 "images/superstars/salah_player.jpg",
                 "images/superstars/salah_club.png",
@@ -514,7 +499,7 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = second_string;
                         matched_cards.push(image);
-                        if($('#game_area').hasClass('hard')){
+                        if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
@@ -529,11 +514,11 @@ $(document).ready(function(){
                         misses += 1;
                         whistle.play();
                         setTimeout(flip_back, 2000);
-                        if($('#game_area').hasClass('medium')){
+                        if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
                                 setTimeout(play_again, 1500);
                             }
-                        } else if($('#game_area').hasClass('hard')){
+                        } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
                                 if(attempts === 3){
                                     setTimeout(play_again, 1500);
@@ -760,20 +745,31 @@ $(document).ready(function(){
         }
 
         $(".first_button").click(function (){
-            $(".play_again").addClass("play_again_hidden");
-            $(".play_again_options").empty();
-            $(".row").remove();
-            create_rows();
-            remove_how_to();
-            $(".back > img").removeClass("flip")
-            first_card = null;
-            second_card = null;
-            can_click = true;  
-            match_counter = 0
+            rebuild_board();
         });
 
         $(".second_button").click(function make_harder(){
             console.log("Make it harder!!");
+
+            $(".play_again h2").text("Choose Difficulty Level:");
+            $(first_button).text("Easy").off("click");
+            $(second_button).text("Medium").off("click");
+            $(third_button).text("Hard").off("click");
+
+            $(first_button).click(function(){
+                $('#game_area').attr({'data-difficulty': 'easy'});
+                rebuild_board();
+            });
+
+            $(second_button).click(function(){
+                $('#game_area').attr({'data-difficulty': 'medium'});
+                rebuild_board();
+            });
+
+            $(third_button).click(function(){
+                $('#game_area').attr({'data-difficulty': 'hard'});
+                rebuild_board();
+            });
         });
 
         $(".third_button").click(function(){
@@ -784,28 +780,49 @@ $(document).ready(function(){
 
             $(first_button).click(function(){
                 change_deck();
-                mascots();
+                $('#game_area').addClass('mascots_game');
             });
+
             $(second_button).click(function(){
                 change_deck();
-                superstars_easy();
+                $('#game_area').addClass('superstars_game');
             });
+
             $(third_button).click(function(){
                 change_deck();
-                champions_easy();
+                $('#game_area').addClass('champions_game');
             });
         });
 
-        function change_deck(){
-            $(".title h1").text("").removeAttr("style");
-            $(".row").remove();
-            $("body").removeAttr("class");
+        function rebuild_board(){
             $(".play_again").addClass("play_again_hidden");
             $(".play_again_options").empty();
+            $(".row").remove();
+            create_rows();
+            remove_how_to();
+            $(".back > img").removeClass("flip")
             first_card = null;
             second_card = null;
             can_click = true;  
             match_counter = 0
+        };
+
+        function change_deck(){
+            $("body").removeClass();
+            $("#game_area").removeClass();
+            $("#game_area").empty();
+
+
+            // $(".title h1").text("").removeAttr("style");
+            // $(".row").remove();
+
+
+            // $(".play_again").addClass("play_again_hidden");
+            // $(".play_again_options").empty();
+            // first_card = null;
+            // second_card = null;
+            // can_click = true;  
+            // match_counter = 0
         }
 
         $(".play_again").toggleClass("play_again_hidden");
