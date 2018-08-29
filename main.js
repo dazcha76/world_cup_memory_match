@@ -22,26 +22,28 @@ let mascots_how_to = 0;
 let superstars_how_to = 0;
 let champions_how_to = 0;
 
-let main_background_image = new Image();
-main_background_image.src = 'trophy.jpg';
 
-let mascots_background_image = new Image();
-mascots_background_image.src = 'zabivaka.jpg';
+// let main_background_image = new Image();
+// main_background_image.src = 'trophy.jpg';
 
-let superstars_background_image = new Image();
-superstars_background_image.src = 'players.jpg';
+// let mascots_background_image = new Image();
+// mascots_background_image.src = 'zabivaka.jpg';
+
+// let superstars_background_image = new Image();
+// superstars_background_image.src = 'players.jpg';
 
 // let champions_background_image = new Image();
 // champions_background_image.src = 'someimage.jpg';
 
-let mascots_card_back = new Image();
-mascots_card_back.src = 'mascots.jpg';
+// let mascots_card_back = new Image();
+// mascots_card_back.src = 'mascots.jpg';
 
-let superstars_card_back = new Image();
-superstars_card_back.src = 'player.jpg';
+// let superstars_card_back = new Image();
+// superstars_card_back.src = 'player.jpg';
 
-let champions_card_back = new Image();
-champions_card_back.src = 'champions.jpg';
+// let champions_card_back = new Image();
+// champions_card_back.src = 'champions.jpg';
+
 
 $(document).ready(function(){
     const gol = document.getElementById("gol");
@@ -59,13 +61,16 @@ $(document).ready(function(){
 
         if(width < 500){
             $(".portrait").css("visibility", "visible");
+            $('.portrait i').css('animation-name', 'rotate');
         }
 
         $( window ).on( "orientationchange", function( event ) {
             if(orientation === 0){
                 $( ".portrait" ).css("visibility", "visible");
+                $('.portrait i').css('animation-name', 'rotate');
             } else {
                 $( ".portrait" ).css("visibility", "hidden");
+                $('.portrait i').css('animation-name', '');
             }
         });
     }
@@ -265,7 +270,7 @@ $(document).ready(function(){
         }
 
         shuffle_cards();
-        // how_to();
+        how_to();
         $(".card").click(flip_cards);
     }
 
@@ -467,7 +472,7 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
-                } else {
+                } else if($(this).find(".front > img").attr("src") !== first_card.find(".front > img").attr("src")){
                     second_card = $(this);
                     can_click = false;
 
@@ -476,7 +481,7 @@ $(document).ready(function(){
                    
                     second_string = second_card.find(".front > img").attr("src");
                     var second_mascot = second_string[15] + second_string[16];
-
+                    
                     if(first_mascot === second_mascot){
                         gol.play();
                         match_counter += 1;
@@ -524,10 +529,13 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
+                    console.log( first_card + " " + second_card + " " + third_card)
                 } else if (second_card === null){
                     second_card = $(this);
+                    console.log( first_card + " " + second_card + " " + third_card)
                 } else {
                     third_card = $(this);
+                    console.log( first_card + " " + second_card + " " + third_card)
                     can_click = false;
 
                     first_string = first_card.find(".front > img").attr("src");
@@ -584,7 +592,7 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
-                } else {
+                } else if($(this).find(".front > img").attr("src") !== first_card.find(".front > img").attr("src")){
                     second_card = $(this);
                     can_click = false;
 
