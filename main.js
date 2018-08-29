@@ -120,27 +120,46 @@ $(document).ready(function(){
     }
 
     if(width > 500){
-        create_landing_page();;
+        create_landing_page();
+        choose_deck();
     } else if(width < 500){
-        landing_page_mobile_portrait()
+        landing_page_mobile_portrait();
+        choose_deck();
     }
 
     // -------------------------------- CHOOSE A GAME -------------------------------- 
 
-    $('.mascots').click(function(){
-        $('#game_area').addClass('mascots_game');
-        difficulty_level();
-    });
+    function choose_deck(){
+        $('.mascots').click(function(){
+            $('#game_area').addClass('mascots_game');
+            difficulty_level();
+        });
 
-    $('.superstars').click(function(){
-        $('#game_area').addClass('superstars_game');
-        difficulty_level();
-    });
+        $('.superstars').click(function(){
+            $('#game_area').addClass('superstars_game');
+            difficulty_level();
+        });
 
-    $('.champions').click(function(){
-        $('#game_area').addClass('champions_game');
-        difficulty_level();
-    });
+        $('.champions').click(function(){
+            $('#game_area').addClass('champions_game');
+            difficulty_level();
+        });
+    };
+
+    // $('.mascots').click(function(){
+    //     $('#game_area').addClass('mascots_game');
+    //     difficulty_level();
+    // });
+
+    // $('.superstars').click(function(){
+    //     $('#game_area').addClass('superstars_game');
+    //     difficulty_level();
+    // });
+
+    // $('.champions').click(function(){
+    //     $('#game_area').addClass('champions_game');
+    //     difficulty_level();
+    // });
 
     // -------------------------------- CREATE DIFFICULTY MODAL -------------------------------- 
 
@@ -422,13 +441,19 @@ $(document).ready(function(){
 
         $("#home").click(function(){
             $('body').removeClass();
-            $("#game_area").empty();
-            remove_how_to();
+            $('#game_area').css({'width' : '', 'height' : ''}).removeClass();
+            $('#game_area').empty();
+            $('.landing_page').remove();
             clearTimeout(example1_timeout);
             clearTimeout(example2_timeout);
             clearTimeout(how_to_timeout);
-            $('.landing_page').toggleClass("landing_page_not_visible");
+            create_landing_page();
+            choose_deck();
         });
+    }
+
+    function return_home(){
+
     }
 
     function remove_how_to(){
