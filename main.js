@@ -729,9 +729,8 @@ $(document).ready(function(){
             $(".play_again").addClass("play_again_hidden");
             $(".play_again_options").empty();
             $(".row").remove();
-            // $('img').removeClass('flip');
-
             create_rows();
+            remove_how_to();
             $(".back > img").removeClass("flip")
             first_card = null;
             second_card = null;
