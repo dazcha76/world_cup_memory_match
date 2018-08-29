@@ -406,7 +406,7 @@ $(document).ready(function(){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
             $('.example h1').text("Match the mascots to each other!").css("color", "red");
             $('.example').css("border", "10px solid red");
-            $('.card_wrapper .fas').css("color", "red");
+            $('.card_wrapper, .fas.fa-times').css("color", "red");
             $('.card1, .card2').attr('src', 'images/mascots.jpg').addClass('vertical_example_cards');
             $('.hand').css({"animation-name": "move_hand_mascots", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_mascot_example1, 2000);
@@ -723,14 +723,23 @@ $(document).ready(function(){
     // PLAY AGAIN
 
     function play_again(){
+        misses = 0;
+        attempts = 0;
+
         let play_again_div = $('<div>').addClass("play_again play_again_hidden");
         let play_again_options = $('<div>').addClass("play_again_options");
         $(play_again_div).append(play_again_options);
         $('#game_area').append(play_again_div);
 
         var win_title = $("<h2>").text("You Win!");
-        win_title.appendTo(".play_again_options");
+        var lose_title = $("<h2>").text("You Lose!");
 
+        if(match_counter === total_matches){
+            win_title.appendTo(".play_again_options");
+        } else {
+            lose_title.appendTo(".play_again_options");
+        }
+        
         var first_button = $('<div>').addClass("play_again_buttons first_button").text("Play Again");
         var second_button = $('<div>').addClass("play_again_buttons second_button").text("Change Difficulty");
         var third_button = $('<div>').addClass("play_again_buttons third_button").text("Change Deck");
