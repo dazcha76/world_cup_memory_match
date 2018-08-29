@@ -730,6 +730,8 @@ $(document).ready(function(){
             $(".play_again_options").empty();
             $(".row").remove();
             create_rows();
+            remove_how_to();
+            $(".back > img").removeClass("flip")
             first_card = null;
             second_card = null;
             can_click = true;  
