@@ -530,7 +530,6 @@ $(document).ready(function(){
                             }
                         }
                     }
-                    console.log("Misses: " + misses + "\n Attempts: " + attempts)
                 }
             }
         } else if($('#game_area').hasClass('superstars_game')){
@@ -539,13 +538,10 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
-                    console.log( first_card + " " + second_card + " " + third_card)
                 } else if (second_card === null){
                     second_card = $(this);
-                    console.log( first_card + " " + second_card + " " + third_card)
                 } else {
                     third_card = $(this);
-                    console.log( first_card + " " + second_card + " " + third_card)
                     can_click = false;
 
                     first_string = first_card.find(".front > img").attr("src");
@@ -565,7 +561,7 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = third_string;
                         matched_cards.push(image);
-                        if($('#game_area').hasClass('hard')){
+                        if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
@@ -578,11 +574,11 @@ $(document).ready(function(){
                     } else {
                         misses += 1;
                         setTimeout(flip_back, 2000);
-                        if($('#game_area').hasClass('medium')){
+                        if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
                                 setTimeout(play_again, 1500);
                             }
-                        } else if($('#game_area').hasClass('hard')){
+                        } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
                                 if(attempts === 3){
                                     setTimeout(play_again, 1500);
@@ -596,6 +592,7 @@ $(document).ready(function(){
                     }
                 }
             }
+
         } else if($('#game_area').hasClass('champions_game')){
             total_matches = 8;
             if(can_click === true){
@@ -624,7 +621,7 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = second_string;
                         matched_cards.push(image);
-                        if($('#game_area').hasClass('hard')){
+                        if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
@@ -638,11 +635,11 @@ $(document).ready(function(){
                     } else {
                         misses += 1;
                         setTimeout(flip_back, 2000);
-                        if($('#game_area').hasClass('medium')){
+                        if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
                                 setTimeout(play_again, 1500);
                             }
-                        } else if($('#game_area').hasClass('hard')){
+                        } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
                                 if(attempts === 3){
                                     setTimeout(play_again, 1500);
@@ -749,8 +746,6 @@ $(document).ready(function(){
         });
 
         $(".second_button").click(function make_harder(){
-            console.log("Make it harder!!");
-
             $(".play_again h2").text("Choose Difficulty Level:");
             $(first_button).text("Easy").off("click");
             $(second_button).text("Medium").off("click");
@@ -758,17 +753,14 @@ $(document).ready(function(){
 
             $(first_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'easy'});
-                rebuild_board();
             });
 
             $(second_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'medium'});
-                rebuild_board();
             });
 
             $(third_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'hard'});
-                rebuild_board();
             });
         });
 
@@ -779,18 +771,42 @@ $(document).ready(function(){
             $(third_button).text("Champions").off("click");
 
             $(first_button).click(function(){
-                change_deck();
+                $("body").removeClass();
+                $("section").removeClass().empty();
+                $('.landing_page').remove();
+                
+                $("body").addClass("mascots_background");
                 $('#game_area').addClass('mascots_game');
+
+                change_deck();
+
+                create_rows();
             });
 
             $(second_button).click(function(){
-                change_deck();
+                $("body").removeClass();
+                $("section").removeClass().empty();
+                $('.landing_page').remove();
+                
+                $("body").addClass("superstars_background");
                 $('#game_area').addClass('superstars_game');
+
+                change_deck();
+
+                create_rows();
             });
 
             $(third_button).click(function(){
-                change_deck();
+                $("body").removeClass();
+                $("section").removeClass().empty();
+                $('.landing_page').remove();
+                
+                $("body").addClass("champions_background");
                 $('#game_area').addClass('champions_game');
+
+                change_deck();
+
+                create_rows();  
             });
         });
 
@@ -808,21 +824,35 @@ $(document).ready(function(){
         };
 
         function change_deck(){
-            $("body").removeClass();
-            $("#game_area").removeClass();
-            $("#game_area").empty();
+            let set_header = $('<header>').addClass('title');
+            let set_title = $('<h1>');
+            $(set_header).append(set_title);
+            $('#game_area').append(set_header);
 
+            $("#game_area").css({"height": "100vh", "width": "100vw"});
+            let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
+            $('#game_area').append(home);
+
+            if($('#game_area').hasClass('mascots_game')){
+                $("body").addClass("mascots_background");
+                $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
+                $('#home').css('color', 'red');
+            } else if($('#game_area').hasClass('superstars_game')){
+                $("body").addClass("superstars_background");
+                $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
+                $('#home').css('color', 'gold');
+            } else if($('#game_area').hasClass('champions_game')){
+                $("body").addClass("champions_background");
+                $(".title h1").text("World Cup Champions").css('color', 'black');
+                $('#home').css('color', 'black');
+                create_results_div();
+            }
 
             // $(".title h1").text("").removeAttr("style");
             // $(".row").remove();
 
-
             // $(".play_again").addClass("play_again_hidden");
             // $(".play_again_options").empty();
-            // first_card = null;
-            // second_card = null;
-            // can_click = true;  
-            // match_counter = 0
         }
 
         $(".play_again").toggleClass("play_again_hidden");
