@@ -666,7 +666,7 @@ $(document).ready(function(){
         can_click = true;
     }
 
-    // CHAMPIONS RESULRS
+    // CHAMPIONS RESULTS
 
     var results = [
         ["1986", "Correct! Argentina beat West Germany 3-2 in 1986."],
@@ -753,14 +753,17 @@ $(document).ready(function(){
 
             $(first_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'easy'});
+                rebuild_board();
             });
 
             $(second_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'medium'});
+                rebuild_board();
             });
 
             $(third_button).click(function(){
                 $('#game_area').attr({'data-difficulty': 'hard'});
+                rebuild_board();
             });
         });
 
