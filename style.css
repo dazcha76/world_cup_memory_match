@@ -179,7 +179,9 @@ body {
     border-radius: 15px;
     padding: 3%;
     background-color: white;
-    color: white;
+
+    color: red;
+
     margin: 10% auto;
     opacity: 0;
     animation-name: mobile_fade_in;
