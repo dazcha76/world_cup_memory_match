@@ -180,7 +180,7 @@ body {
     padding: 3%;
     background-color: white;
 
-    color: red;
+    color: white;
 
     margin: 10% auto;
     opacity: 0;
@@ -227,7 +227,7 @@ body {
 }
 
 @keyframes mobile_buttons {
-    from {opacity: 0; height: 09; width: 0; font-size: 0;}
+    from {opacity: 0; height: 0; width: 0; font-size: 0;}
     to {opacity: 1; height: 9%; width: 80%; font-size: 1.5em;}
 }
 

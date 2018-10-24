@@ -22,29 +22,6 @@ let mascots_how_to = 0;
 let superstars_how_to = 0;
 let champions_how_to = 0;
 
-
-// let main_background_image = new Image();
-// main_background_image.src = 'trophy.jpg';
-
-// let mascots_background_image = new Image();
-// mascots_background_image.src = 'zabivaka.jpg';
-
-// let superstars_background_image = new Image();
-// superstars_background_image.src = 'players.jpg';
-
-// let champions_background_image = new Image();
-// champions_background_image.src = 'someimage.jpg';
-
-// let mascots_card_back = new Image();
-// mascots_card_back.src = 'mascots.jpg';
-
-// let superstars_card_back = new Image();
-// superstars_card_back.src = 'player.jpg';
-
-// let champions_card_back = new Image();
-// champions_card_back.src = 'champions.jpg';
-
-
 $(document).ready(function(){
     const gol = document.getElementById("gol");
     const whistle = document.getElementById("whistle");                   
@@ -107,9 +84,10 @@ $(document).ready(function(){
     // create_landing_page();
 
     function landing_page_mobile_portrait(){
-        let option1 = $('<div>').addClass('mobile_option_buttons option1 mascots').text('Mascots');
-        let option2 = $('<div>').addClass('mobile_option_buttons option2 superstars').text('Superstars');
-        let option3 = $('<div>').addClass('mobile_option_buttons option3 champions').text('Champions');
+        let option1 = $('<div>').addClass('option1 mascots').text('Mascots');
+        let option2 = $('<div>').addClass('option2 superstars').text('Superstars');
+        let option3 = $('<div>').addClass('option3 champions').text('Champions');
+
         let options_title = $('<h2>').text('Choose a Deck:');
         let options = $('<div>').addClass('mobile_options');
         $(options).append(options_title).append(option1).append(option2).append(option3);
@@ -117,6 +95,9 @@ $(document).ready(function(){
         let welcome_title = $('<h1>').text('World Cup Memory Match');
         $(welcome_page).append(welcome_title).append(options);
         $('body').append(welcome_page);
+
+        $('.option1, .option2, .option3').addClass('mobile_option_buttons')
+        
     }
 
     if(width > 500){
