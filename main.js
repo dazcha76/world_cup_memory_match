@@ -198,8 +198,8 @@ $(document).ready(function(){
             $('#home').css('color', 'gold');
         } else if($('#game_area').hasClass('champions_game')){
             $("body").addClass("champions_background");
-            $(".title h1").text("World Cup Champions").css('color', 'black');
-            $('#home').css('color', 'black');
+            $(".title h1").text("World Cup Champions").css('color', '#812dff');
+            $('#home').css('color', '#812dff');
             create_results_div();
         }
 
@@ -411,10 +411,10 @@ $(document).ready(function(){
             how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('champions_game')){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "black")
-            $('.example').css("border", "10px solid black");
+            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "#812dff")
+            $('.example').css("border", "10px solid #812dff");
             $('.card_wrapper').css('width', '60vw');
-            $('.fas.fa-times').css("color", "black");
+            $('.fas.fa-times').css("color", "#812dff");
             $('.card1, .card2').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards');
             $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_example1, 2000);
@@ -579,10 +579,6 @@ $(document).ready(function(){
                         return match_counter;
                     } else {
                         misses += 1;
-                        // $('.player').removeClass('matches').removeAttr('src');
-                        // $('.club').removeClass('matches').removeAttr('src');
-                        // $('.country').removeClass('matches').removeAttr('src');
-
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
@@ -750,8 +746,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "black", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "black"});
+            $(".play_again_options").css({"background-color": "#812dff", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "#812dff"});
         }
 
         $(".first_button").click(function (){

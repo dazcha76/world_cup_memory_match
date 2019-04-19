@@ -536,9 +536,8 @@ body {
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
- /* background-image: url(images/backgrounds/white.png);
-  background-size: 90vh;*/
-  /*background-color: gold;*/
+  background-image: url(images/backgrounds/stadium.jpg);
+  background-size: cover;
 }
 
 .champion_row {
@@ -563,19 +562,21 @@ body {
 }
 
 .result {
-  z-index: 1;
-  height: 25%;
-  width: 40%;
-  background: white;
+  height: 100px;
+  width: 500px;
+  color: #812dff;
+  background-color: white;
   position: absolute;
-  top: 40%;
-  left: 29.3%;
-  border: 5px solid green;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px solid #812dff;
   border-radius: 25px;
-  visibility: hidden;
+  visibility: hidden; 
   font-size: 30px;
   text-align: center;
   padding: 2%;
+  z-index: 1;
 }
 
 /* -------------------- PORTRAIT OPTIONS -------------------- */
