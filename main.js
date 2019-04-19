@@ -579,10 +579,6 @@ $(document).ready(function(){
                         return match_counter;
                     } else {
                         misses += 1;
-                        // $('.player').removeClass('matches').removeAttr('src');
-                        // $('.club').removeClass('matches').removeAttr('src');
-                        // $('.country').removeClass('matches').removeAttr('src');
-
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
@@ -750,8 +746,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "black", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "black"});
+            $(".play_again_options").css({"background-color": "#812dff", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "#812dff"});
         }
 
         $(".first_button").click(function (){
