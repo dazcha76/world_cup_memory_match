@@ -536,9 +536,8 @@ body {
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
- /* background-image: url(images/backgrounds/white.png);
-  background-size: 90vh;*/
-  /*background-color: gold;*/
+  background-image: url(images/backgrounds/stadium.jpg);
+  background-size: cover;
 }
 
 .champion_row {
