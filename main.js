@@ -209,6 +209,17 @@ $(document).ready(function(){
     // -------------------------------- CREATE ROWS -------------------------------- 
 
     function create_rows(){
+
+        let game_board = $('<div>').addClass('game_board');
+        let cards = $('<div>').addClass('cards');
+        let legend = $('<div>').addClass('legend');
+        let title = $('<h1>').text('Match the following cards:');
+        let card1 = $('<img>').addClass('player');
+        let card2 = $('<img>').addClass('club');
+        let card3 = $('<img>').addClass('country');
+
+        $(legend). append(title, card1, card2, card3)
+
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
                 var row_div = $('<div>').addClass("row");
@@ -239,7 +250,15 @@ $(document).ready(function(){
                     card_div.append(front_div).append(back_div);
                     card_div.appendTo(row_div);
                 }
-                row_div.appendTo("#game_area");
+                if($("body").hasClass("mascots_background")){
+                    row_div.appendTo("#game_area");
+                } else if($("body").hasClass("superstars_background")){
+                    row_div.appendTo(cards);
+                }  
+            }
+            if($("body").hasClass("superstars_background")){
+                $(game_board).append(cards, legend);
+                $('#game_area').append(game_board)
             }
         }
 
@@ -287,24 +306,24 @@ $(document).ready(function(){
             back_card = "images/mascots.jpg";
         } else if($("body").hasClass("superstars_background")){
             front_cards = [
-                "images/superstars/kane_player.jpg",
+                "images/superstars/kane_player.png",
                 "images/superstars/kane_club.png",
                 "images/superstars/kane_country.png",
-                "images/superstars/griezmann_player.jpg",
-                "images/superstars/griezmann_club.png",
-                "images/superstars/griezmann_country.png",
-                "images/superstars/messi_player.jpg",
-                "images/superstars/messi_club.jpg",
-                "images/superstars/messi_country.jpg",
-                "images/superstars/neymar_player.jpg",
-                "images/superstars/neymar_club.png",
-                "images/superstars/neymar_country.png",
-                "images/superstars/ronaldo_player.png",
-                "images/superstars/ronaldo_club.png",
-                "images/superstars/ronaldo_country.png",
-                "images/superstars/salah_player.jpg",
-                "images/superstars/salah_club.png",
-                "images/superstars/salah_country.png",
+                "images/superstars/grie_player.png",
+                "images/superstars/grie_club.png",
+                "images/superstars/grie_country.png",
+                "images/superstars/mess_player.png",
+                "images/superstars/mess_club.png",
+                "images/superstars/mess_country.png",
+                "images/superstars/neym_player.png",
+                "images/superstars/neym_club.png",
+                "images/superstars/neym_country.png",
+                "images/superstars/rona_player.png",
+                "images/superstars/rona_club.png",
+                "images/superstars/rona_country.png",
+                "images/superstars/sala_player.png",
+                "images/superstars/sala_club.png",
+                "images/superstars/sala_country.png",
             ];
             back_card = "images/player.jpg";
         } else if($("body").hasClass("champions_background")){
@@ -519,21 +538,27 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
+                    let player_name = (first_card.find(".front > img").attr("src")).substr(18, 4);
+                    $('.player').addClass('matches').attr('src', `images/superstars/${player_name}_player.png`)
+                    $('.club').addClass('matches').attr('src', `images/superstars/${player_name}_club.png`)
+                    $('.country').addClass('matches').attr('src', `images/superstars/${player_name}_country.png`)
                 } else if (second_card === null){
                     second_card = $(this);
+
                 } else {
                     third_card = $(this);
+
                     can_click = false;
 
                     first_string = first_card.find(".front > img").attr("src");
                     var first_player = first_string[18];
-                   
+                    
                     second_string = second_card.find(".front > img").attr("src");
                     var second_player = second_string[18];
-
+                    
                     third_string = third_card.find(".front > img").attr("src");
                     var third_player = third_string[18];
-
+                    
                     if(first_player === second_player && first_player === third_player){
                         match_counter += 1;
                         image = first_string;
@@ -554,6 +579,10 @@ $(document).ready(function(){
                         return match_counter;
                     } else {
                         misses += 1;
+                        // $('.player').removeClass('matches').removeAttr('src');
+                        // $('.club').removeClass('matches').removeAttr('src');
+                        // $('.country').removeClass('matches').removeAttr('src');
+
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 5){
@@ -677,6 +706,9 @@ $(document).ready(function(){
         first_card = null;
         second_card = null;
         if($("body").hasClass("superstars_background")){
+            $('.player').removeClass('matches').removeAttr('src');
+            $('.club').removeClass('matches').removeAttr('src');
+            $('.country').removeClass('matches').removeAttr('src');
             third_card.find(".back > img").removeClass("flip");
             third_card = null;
         } 
