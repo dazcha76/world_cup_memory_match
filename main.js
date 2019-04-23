@@ -567,6 +567,9 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = third_string;
                         matched_cards.push(image);
+                        $('.player').removeClass('matches').removeAttr('src');
+                        $('.club').removeClass('matches').removeAttr('src');
+                        $('.country').removeClass('matches').removeAttr('src');
                         if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }

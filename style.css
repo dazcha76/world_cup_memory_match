@@ -509,6 +509,7 @@ body {
 }
 
 .legend {
+/*  display: none;*/
   width: 15vw;
   height: 76.5vh;
   border: 3px solid gold;
