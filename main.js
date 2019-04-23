@@ -137,7 +137,7 @@ $(document).ready(function(){
         let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
 
         let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
-        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 5 pairs and you win!');
+        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 10 pairs and you win!');
         let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
         
         $('.options h2').text('Choose Difficulty Level:');
@@ -437,10 +437,6 @@ $(document).ready(function(){
         });
     }
 
-    function return_home(){
-
-    }
-
     function remove_how_to(){
         $('.how_to').remove();
     }
@@ -515,12 +511,12 @@ $(document).ready(function(){
                         whistle.play();
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
@@ -584,12 +580,12 @@ $(document).ready(function(){
                         misses += 1;
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
@@ -645,12 +641,12 @@ $(document).ready(function(){
                         misses += 1;
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
