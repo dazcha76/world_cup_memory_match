@@ -274,7 +274,7 @@ body {
 
 .card_wrapper {
   height: 37vh;
-  width: 40vw;
+  width: 60vw;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
