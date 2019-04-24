@@ -27,7 +27,7 @@ $(document).ready(function(){
     const whistle = document.getElementById("whistle");                   
     const ole = document.getElementById("ole");
 
-    // PLAY LANDSCAPE ONLY
+    // -------------------------------- PLAY LANDSCAPE ONLY --------------------------------
 
     function rotate_screen(){
         let rotate_div = $('<div>').addClass('portrait');
@@ -81,33 +81,9 @@ $(document).ready(function(){
         $('body').append(landing_page);
     }
 
-    // create_landing_page();
-
-    function landing_page_mobile_portrait(){
-        let option1 = $('<div>').addClass('option1 mascots').text('Mascots');
-        let option2 = $('<div>').addClass('option2 superstars').text('Superstars');
-        let option3 = $('<div>').addClass('option3 champions').text('Champions');
-
-        let options_title = $('<h2>').text('Choose a Deck:');
-        let options = $('<div>').addClass('mobile_options');
-        $(options).append(options_title).append(option1).append(option2).append(option3);
-        let welcome_page = $('<div>').addClass('mobile_challenge');
-        let welcome_title = $('<h1>').text('World Cup Memory Match');
-        $(welcome_page).append(welcome_title).append(options);
-        $('body').append(welcome_page);
-
-        $('.option1, .option2, .option3').addClass('mobile_option_buttons')
-        
-    }
-
-    if(width > 500){
-        create_landing_page();
-        choose_deck();
-    } else if(width < 500){
-        landing_page_mobile_portrait();
-        choose_deck();
-    }
-
+    create_landing_page();
+    choose_deck();
+  
     // -------------------------------- CHOOSE A GAME -------------------------------- 
 
     function choose_deck(){
@@ -185,8 +161,12 @@ $(document).ready(function(){
         $('#game_area').append(set_header);
 
         $("#game_area").css({"height": "100vh", "width": "100vw"});
+
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
+
+        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints', title: 'hints'});
+        let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
 
         if($('#game_area').hasClass('mascots_game')){
             $("body").addClass("mascots_background");
@@ -196,6 +176,9 @@ $(document).ready(function(){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
             $('#home').css('color', 'gold');
+            $('#game_area').append(hints).css('color', 'gold');
+            $(hints).append(tooltip);
+            $('#hints').click(showHints);
         } else if($('#game_area').hasClass('champions_game')){
             $("body").addClass("champions_background");
             $(".title h1").text("World Cup Champions").css('color', '#812dff');
@@ -206,19 +189,23 @@ $(document).ready(function(){
         create_rows();
     }
 
+    function showHints(){
+        $('.legend').toggleClass('hidden');
+    }
+
     // -------------------------------- CREATE ROWS -------------------------------- 
 
     function create_rows(){
 
         let game_board = $('<div>').addClass('game_board');
         let cards = $('<div>').addClass('cards');
-        let legend = $('<div>').addClass('legend');
+        let legend = $('<div>').addClass('legend hidden');
         let title = $('<h1>').text('Match the following cards:');
         let card1 = $('<img>').addClass('player');
         let card2 = $('<img>').addClass('club');
         let card3 = $('<img>').addClass('country');
 
-        $(legend). append(title, card1, card2, card3)
+        $(legend).append(title, card1, card2, card3)
 
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){

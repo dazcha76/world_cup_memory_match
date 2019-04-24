@@ -12,14 +12,27 @@ body {
   height: 100vh;
 }
 
-.fas.fa-home {
+.fas.fa-home,
+.fas.fa-question-circle {
   position: absolute;
   top: 0;
-  left: 0;
   padding-top: 1.5%;
-  padding-left: 1.5%;
   font-size: 300%;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.fas.fa-home {
+  left: 0;
+  padding-left: 1.5%;
+}
+
+.fas.fa-question-circle {
+  right: 0;
+  padding-right: 1.5%;
 }
 
 .mascots_background, .champions_background {
@@ -154,81 +167,6 @@ body {
 @keyframes fade_in_image {
   from {opacity: 0; height: 0; width: 0;}
   to {opacity: 1; height: 80%; width: 80%;}
-}
-
-/* -------------------- CHALLENGE MODAL MOBILE -------------------- */
-
-.mobile_challenge {
-  height: 100vh;
-  width: 100vw;
-  background-image: url(images/backgrounds/trophy.jpg);
-  background-position: 520%;
-  background-size: cover;
-}
-
-.mobile_challenge h1 {
-  font-size: 250%;
-  text-align: center;
-  padding: 1% 0;
-  color: #00cc00;
-}
-
-.mobile_options {
-  height: 0;
-  width: 0; 
-  border-radius: 15px;
-  padding: 3%;
-  background-color: white;
-
-  color: white;
-
-  margin: 10% auto;
-  opacity: 0;
-  animation-name: mobile_fade_in;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  border: 8px solid #00cc00;
-}
-
-@keyframes mobile_fade_in {
-  from {opacity: 0; height: 0; width: 0;}
-  to {opacity: 1; height: 60vh; width: 80vw;}
-}
-
-.mobile_options h2 {
-  text-align: center;
-  font-size: 0;
-  color: #00cc00;
-  padding: 5% 0 2% 0;
-  opacity: 0;
-  animation-name: fade_in_title;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-}
-
-.mobile_option_buttons.mascots, .mobile_option_buttons.easy {
-  margin-top: 8%;
-}
-
-.mobile_option_buttons {
-  height: 0;
-  width: 0;
-  font-size: 0;
-  text-align: center;
-  padding: 5% 0;
-  margin: 15% auto;
-  border-radius: 15px;
-  background-color: #00cc00;
-  opacity: 0;
-  animation-name: mobile_buttons;
-  animation-delay: 1s;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes mobile_buttons {
-  from {opacity: 0; height: 0; width: 0; font-size: 0;}
-  to {opacity: 1; height: 9%; width: 80%; font-size: 1.5em;}
 }
 
 /* -------------------- DIFFICULTY -------------------- */
@@ -580,6 +518,43 @@ body {
   z-index: 1;
 }
 
+/* -------------------- TOOLTIPS -------------------- */
+
+/* https://www.w3schools.com/howto/howto_css_tooltip.asp */
+
+/* Tooltip text */
+#hints .tooltiptext {
+  visibility: hidden;
+  background-color: #555;
+  color: gold;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  font-size: 20px;
+  position: absolute;
+  top: 43%;
+  left: -111%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+#hints .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 100%;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent #555;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+#hints:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* -------------------- PORTRAIT OPTIONS -------------------- */
 
 .portrait {
@@ -620,110 +595,46 @@ h3 {
 
 /* -------------------- MEDIA QUERIES -------------------- */
 
-@media only screen and (max-width: 825px){
-  .title h1 {
-    display: none;
-  }
-
-  .mascots_background {
-    background-image: none;
-    padding-left: 1%;
-  }
-
-  .mascot_row {
-    height: 31vh;
-    width: 100vw;
-  }
-
-  .superstars_background {
-    padding: 0;
-  }
-
-  .superstar_row {
-    width: 100vw;
-    height: 28.5vh;
-    margin-bottom: 2%;
-  }
-
-  .champions_background {
-    background-image: none;
-    padding-top: 0.8%;
-    padding-left: 0;
-  }
-
-  .champion_row {
-    width: 100vw;
-    height: 23vh;
-  }
-}
-
-@media only screen and (max-width: 500px){
-  .landing_page {
-    background-size: cover;
-    background-position: center;
-  }
-
+@media only screen and (max-width: 450px){
   .landing_page h1 {
-    font-size: 6vh;
+    font-size: 300%;
   }
 
-  .options {
-    position: static;
-    height: 55vh;
-    width: 80vw;
-    margin: 8% auto 0 auto;
-    padding-top: 10%;
-    background-color: rgba(255, 255, 255, 0.9);
+  .options_wrapper {
+    display: block;
   }
 
   .options h2 {
-    color: #00cc00;
+    margin-top: 8%;
+  }
+
+  .options {
+    height: auto;
+    margin-top: 10%;
   }
 
   .option_buttons {
-    width: 90%;
-    background-color: #00cc00;
+    padding: 4% 1%;
+    margin: 12% auto;
+  }
+
+  .option_buttons .card_pic  {
+    display: none;
+  }
+
+  @keyframes fade_in_buttons {
+    from {opacity: 0; height: 0; width: 0; font-size: 0;}
+    to {opacity: 1; height: 45px; width: 80%; font-size: 180%;}
   }
 }
 
-@media only screen and (max-width: 411px){
-  .mobile_challenge {
-    background-position: 500%;
+@media only screen and (max-width: 360px){
+  .landing_page h1 {
+    font-size: 250%;
+  }
+
+  @keyframes fade_in_title {
+    from {opacity: 0; font-size: 0;}
+    to {opacity: 1; font-size: 150%;}
   }
 }
-
-/*@media only screen and (max-height: 415px){
-    .landing_page h1 {
-        font-size: 200%;
-    }
-
-    .options, .play_again_options {
-        height: 66%; 
-        width: 60%; 
-        position: static;  
-    }
-
-    .options {
-        margin: 1% auto 0 auto; 
-        padding-top: 3%;
-    }
-
-    .play_again_options {
-        margin: 7% auto 0 auto; 
-    }
-
-    .option_buttons, .play_again_buttons {
-        width: 70%;
-        font-size: 150%;
-        line-height: 180%;
-        margin: 5% auto;
-    }
-
-    .option_buttons {
-        height: 18%;
-    }
-
-    .play_again_buttons {
-        height: 15%;
-    }
-}*/
