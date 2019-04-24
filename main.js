@@ -118,7 +118,7 @@ $(document).ready(function(){
 
         let easy_instructions = $('<p>').text('Match the images to each other and win!');
         let medium_instructions = $('<p>').text('Match all cards before mismatching 10 pairs and you win!');
-        let hard_instructions = $('<p>').text('Mismatch cards 3 times in a row and they will shuffle! You get 3 tries!');
+        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and they'll shuffle! You get 3 tries!");
 
         $('.option_buttons').addClass('difficulty_buttons')
         
@@ -171,13 +171,17 @@ $(document).ready(function(){
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
 
-        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints', title: 'hints'});
+        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints'});
         let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
+
+        // let volume = $('<i>').addClass('fas fa-volume-up').attr({id: 'volume'});
 
         if($('#game_area').hasClass('mascots_game')){
             $("body").addClass("mascots_background");
             $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
             $('#home').css('color', 'red');
+            // $('#game_area').append(volume);
+            // $('#volume').click(toggleSound);
         } else if($('#game_area').hasClass('superstars_game')){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
@@ -390,7 +394,7 @@ $(document).ready(function(){
             $('.hand').css({"animation-name": "move_hand_mascots", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_mascot_example1, 2000);
             example2_timeout = setTimeout(flip_mascot_example2, 3000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('superstars_game')){
             card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
             $('.example h1').text("Match the superstar to his club and country teams!").css("color", "gold");
@@ -402,7 +406,7 @@ $(document).ready(function(){
             example1_timeout = setTimeout(flip_superstar_example1, 2000);
             example2_timeout = setTimeout(flip_superstar_example2, 3000);
             example3_timeout = setTimeout(flip_superstar_example3, 4000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('champions_game')){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
             $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "#812dff")
@@ -413,7 +417,7 @@ $(document).ready(function(){
             $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_example1, 2000);
             example2_timeout = setTimeout(flip_example2, 3000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         }
 
         $(".fa-times").click(remove_how_to);
