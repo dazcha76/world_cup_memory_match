@@ -116,9 +116,9 @@ $(document).ready(function(){
         let soccer_ball2 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
         let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
 
-        let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
-        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 10 pairs and you win!');
-        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
+        let easy_instructions = $('<p>').text('Match the images to each other and win!');
+        let medium_instructions = $('<p>').text('Match all cards before mismatching 10 pairs and you win!');
+        let hard_instructions = $('<p>').text('Mismatch cards 3 times in a row and they will shuffle! You get 3 tries!');
 
         $('.option_buttons').addClass('difficulty_buttons')
         
