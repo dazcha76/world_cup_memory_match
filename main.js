@@ -87,6 +87,9 @@ $(document).ready(function(){
     // -------------------------------- CHOOSE A GAME -------------------------------- 
 
     function choose_deck(){
+
+        $('.option_buttons').addClass('deck_buttons')
+
         $('.mascots').click(function(){
             $('#game_area').addClass('mascots_game');
             difficulty_level();
@@ -115,6 +118,8 @@ $(document).ready(function(){
         let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
         let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 10 pairs and you win!');
         let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
+
+        $('.option_buttons').addClass('difficulty_buttons')
         
         $('.options h2').text('Choose Difficulty Level:');
         $('.option1').text('Easy').detach('img').append(easy_instructions);
