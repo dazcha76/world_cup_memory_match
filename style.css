@@ -566,26 +566,23 @@ body {
   background-color: green;
   visibility: hidden;
   z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  text-align: center;
+  padding-top: 35%
 }
 
 h3 {
   font-size: 300%;
   color: white;
-  margin-bottom: 15%;
-  text-align: center;
 }
 
 .portrait i {
   color: white;
   font-size: 50vmin;
-  /*animation-name: rotate;*/
+  animation-name: rotate;
   animation-duration: 2s;
   animation-fill-mode: forwards;
   animation-delay: 1s;
+  margin-top: 15%;
 }
 
 @keyframes rotate {
@@ -619,6 +616,10 @@ h3 {
   }
 
   .option_buttons .card_pic  {
+    display: none;
+  }
+
+  .how_to {
     display: none;
   }
 

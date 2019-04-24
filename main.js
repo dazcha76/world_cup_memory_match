@@ -31,9 +31,10 @@ $(document).ready(function(){
 
     function rotate_screen(){
         let rotate_div = $('<div>').addClass('portrait');
-        let rotate_title = $('<h3>').text('Rotate To Play');
+        let rotate_title1 = $('<h3>').text('Rotate');
+        let rotate_title2 = $('<h3>').text('To Play');
         let rotate_icon = $('<i>').addClass('fas fa-mobile-alt');
-        $(rotate_div).append(rotate_title).append(rotate_icon);
+        $(rotate_div).append(rotate_title1, rotate_title2, rotate_icon);
         $('#game_area').append(rotate_div);
 
         if(width < 500){
