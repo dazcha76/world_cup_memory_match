@@ -759,6 +759,11 @@ h3 {
     box-sizing: border-box;
   }
 
+  .example h1 {
+    padding: inherit;
+    margin-bottom: 3%;
+  }
+
   .card_wrapper {
     height: 50vh;
     width: 70vw;
@@ -773,6 +778,16 @@ h3 {
 
   .vertical_example_cards {
     width: 20vw;
+  }
+
+  .horizontal_example_cards {
+    height: 35vh;
+    width: 30vw;
+  }
+
+  .champions_background .card_wrapper {
+    width: 73vw;
+    justify-content: space-between;
   }
 }
 
