@@ -206,12 +206,13 @@ $(document).ready(function(){
         let game_board = $('<div>').addClass('game_board');
         let cards = $('<div>').addClass('cards');
         let legend = $('<div>').addClass('legend hidden');
-        let title = $('<h1>').text('Match the following cards:');
+        let title1 = $('<h1>').text('Match the following cards:').addClass('desktop-legend');
+        let title2 = $('<h1>').text('Match:').addClass('mobile-legend');
         let card1 = $('<img>').addClass('player');
         let card2 = $('<img>').addClass('club');
         let card3 = $('<img>').addClass('country');
 
-        $(legend).append(title, card1, card2, card3)
+        $(legend).append(title1, title2, card1, card2, card3)
 
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
