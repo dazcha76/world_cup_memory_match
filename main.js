@@ -27,13 +27,14 @@ $(document).ready(function(){
     const whistle = document.getElementById("whistle");                   
     const ole = document.getElementById("ole");
 
-    // PLAY LANDSCAPE ONLY
+    // -------------------------------- PLAY LANDSCAPE ONLY --------------------------------
 
     function rotate_screen(){
         let rotate_div = $('<div>').addClass('portrait');
-        let rotate_title = $('<h3>').text('Rotate To Play');
+        let rotate_title1 = $('<h3>').text('Rotate');
+        let rotate_title2 = $('<h3>').text('To Play');
         let rotate_icon = $('<i>').addClass('fas fa-mobile-alt');
-        $(rotate_div).append(rotate_title).append(rotate_icon);
+        $(rotate_div).append(rotate_title1, rotate_title2, rotate_icon);
         $('#game_area').append(rotate_div);
 
         if(width < 500){
@@ -81,36 +82,15 @@ $(document).ready(function(){
         $('body').append(landing_page);
     }
 
-    // create_landing_page();
-
-    function landing_page_mobile_portrait(){
-        let option1 = $('<div>').addClass('option1 mascots').text('Mascots');
-        let option2 = $('<div>').addClass('option2 superstars').text('Superstars');
-        let option3 = $('<div>').addClass('option3 champions').text('Champions');
-
-        let options_title = $('<h2>').text('Choose a Deck:');
-        let options = $('<div>').addClass('mobile_options');
-        $(options).append(options_title).append(option1).append(option2).append(option3);
-        let welcome_page = $('<div>').addClass('mobile_challenge');
-        let welcome_title = $('<h1>').text('World Cup Memory Match');
-        $(welcome_page).append(welcome_title).append(options);
-        $('body').append(welcome_page);
-
-        $('.option1, .option2, .option3').addClass('mobile_option_buttons')
-        
-    }
-
-    if(width > 500){
-        create_landing_page();
-        choose_deck();
-    } else if(width < 500){
-        landing_page_mobile_portrait();
-        choose_deck();
-    }
-
+    create_landing_page();
+    choose_deck();
+  
     // -------------------------------- CHOOSE A GAME -------------------------------- 
 
     function choose_deck(){
+
+        $('.option_buttons').addClass('deck_buttons')
+
         $('.mascots').click(function(){
             $('#game_area').addClass('mascots_game');
             difficulty_level();
@@ -137,8 +117,10 @@ $(document).ready(function(){
         let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
 
         let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
-        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 5 pairs and you win!');
+        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 10 pairs and you win!');
         let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
+
+        $('.option_buttons').addClass('difficulty_buttons')
         
         $('.options h2').text('Choose Difficulty Level:');
         $('.option1').text('Easy').detach('img').append(easy_instructions);
@@ -185,8 +167,12 @@ $(document).ready(function(){
         $('#game_area').append(set_header);
 
         $("#game_area").css({"height": "100vh", "width": "100vw"});
+
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
+
+        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints', title: 'hints'});
+        let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
 
         if($('#game_area').hasClass('mascots_game')){
             $("body").addClass("mascots_background");
@@ -196,19 +182,37 @@ $(document).ready(function(){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
             $('#home').css('color', 'gold');
+            $('#game_area').append(hints).css('color', 'gold');
+            $(hints).append(tooltip);
+            $('#hints').click(showHints);
         } else if($('#game_area').hasClass('champions_game')){
             $("body").addClass("champions_background");
-            $(".title h1").text("World Cup Champions").css('color', 'black');
-            $('#home').css('color', 'black');
+            $(".title h1").text("World Cup Champions").css('color', '#812dff');
+            $('#home').css('color', '#812dff');
             create_results_div();
         }
 
         create_rows();
     }
 
+    function showHints(){
+        $('.legend').toggleClass('hidden');
+    }
+
     // -------------------------------- CREATE ROWS -------------------------------- 
 
     function create_rows(){
+
+        let game_board = $('<div>').addClass('game_board');
+        let cards = $('<div>').addClass('cards');
+        let legend = $('<div>').addClass('legend hidden');
+        let title = $('<h1>').text('Match the following cards:');
+        let card1 = $('<img>').addClass('player');
+        let card2 = $('<img>').addClass('club');
+        let card3 = $('<img>').addClass('country');
+
+        $(legend).append(title, card1, card2, card3)
+
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
                 var row_div = $('<div>').addClass("row");
@@ -239,7 +243,15 @@ $(document).ready(function(){
                     card_div.append(front_div).append(back_div);
                     card_div.appendTo(row_div);
                 }
-                row_div.appendTo("#game_area");
+                if($("body").hasClass("mascots_background")){
+                    row_div.appendTo("#game_area");
+                } else if($("body").hasClass("superstars_background")){
+                    row_div.appendTo(cards);
+                }  
+            }
+            if($("body").hasClass("superstars_background")){
+                $(game_board).append(cards, legend);
+                $('#game_area').append(game_board)
             }
         }
 
@@ -287,24 +299,24 @@ $(document).ready(function(){
             back_card = "images/mascots.jpg";
         } else if($("body").hasClass("superstars_background")){
             front_cards = [
-                "images/superstars/kane_player.jpg",
+                "images/superstars/kane_player.png",
                 "images/superstars/kane_club.png",
                 "images/superstars/kane_country.png",
-                "images/superstars/griezmann_player.jpg",
-                "images/superstars/griezmann_club.png",
-                "images/superstars/griezmann_country.png",
-                "images/superstars/messi_player.jpg",
-                "images/superstars/messi_club.jpg",
-                "images/superstars/messi_country.jpg",
-                "images/superstars/neymar_player.jpg",
-                "images/superstars/neymar_club.png",
-                "images/superstars/neymar_country.png",
-                "images/superstars/ronaldo_player.png",
-                "images/superstars/ronaldo_club.png",
-                "images/superstars/ronaldo_country.png",
-                "images/superstars/salah_player.jpg",
-                "images/superstars/salah_club.png",
-                "images/superstars/salah_country.png",
+                "images/superstars/grie_player.png",
+                "images/superstars/grie_club.png",
+                "images/superstars/grie_country.png",
+                "images/superstars/mess_player.png",
+                "images/superstars/mess_club.png",
+                "images/superstars/mess_country.png",
+                "images/superstars/neym_player.png",
+                "images/superstars/neym_club.png",
+                "images/superstars/neym_country.png",
+                "images/superstars/rona_player.png",
+                "images/superstars/rona_club.png",
+                "images/superstars/rona_country.png",
+                "images/superstars/sala_player.png",
+                "images/superstars/sala_club.png",
+                "images/superstars/sala_country.png",
             ];
             back_card = "images/player.jpg";
         } else if($("body").hasClass("champions_background")){
@@ -392,10 +404,10 @@ $(document).ready(function(){
             how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('champions_game')){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "black")
-            $('.example').css("border", "10px solid black");
+            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "#812dff")
+            $('.example').css("border", "10px solid #812dff");
             $('.card_wrapper').css('width', '60vw');
-            $('.fas.fa-times').css("color", "black");
+            $('.fas.fa-times').css("color", "#812dff");
             $('.card1, .card2').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards');
             $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_example1, 2000);
@@ -416,10 +428,6 @@ $(document).ready(function(){
             create_landing_page();
             choose_deck();
         });
-    }
-
-    function return_home(){
-
     }
 
     function remove_how_to(){
@@ -496,12 +504,12 @@ $(document).ready(function(){
                         whistle.play();
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
@@ -519,21 +527,27 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
+                    let player_name = (first_card.find(".front > img").attr("src")).substr(18, 4);
+                    $('.player').addClass('matches').attr('src', `images/superstars/${player_name}_player.png`)
+                    $('.club').addClass('matches').attr('src', `images/superstars/${player_name}_club.png`)
+                    $('.country').addClass('matches').attr('src', `images/superstars/${player_name}_country.png`)
                 } else if (second_card === null){
                     second_card = $(this);
+
                 } else {
                     third_card = $(this);
+
                     can_click = false;
 
                     first_string = first_card.find(".front > img").attr("src");
                     var first_player = first_string[18];
-                   
+                    
                     second_string = second_card.find(".front > img").attr("src");
                     var second_player = second_string[18];
-
+                    
                     third_string = third_card.find(".front > img").attr("src");
                     var third_player = third_string[18];
-
+                    
                     if(first_player === second_player && first_player === third_player){
                         match_counter += 1;
                         image = first_string;
@@ -542,6 +556,9 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = third_string;
                         matched_cards.push(image);
+                        $('.player').removeClass('matches').removeAttr('src');
+                        $('.club').removeClass('matches').removeAttr('src');
+                        $('.country').removeClass('matches').removeAttr('src');
                         if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }
@@ -556,12 +573,12 @@ $(document).ready(function(){
                         misses += 1;
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
@@ -617,12 +634,12 @@ $(document).ready(function(){
                         misses += 1;
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
-                            if(misses === 5){
+                            if(misses === 10){
                                 setTimeout(play_again, 1500);
                             }
                         } else if($('#game_area').attr('data-difficulty') === 'hard'){
                             if(misses === 3){
-                                if(attempts === 3){
+                                if(attempts === 2){
                                     setTimeout(play_again, 1500);
                                 } else {
                                     setTimeout(shuffle_cards, 2000); 
@@ -677,6 +694,9 @@ $(document).ready(function(){
         first_card = null;
         second_card = null;
         if($("body").hasClass("superstars_background")){
+            $('.player').removeClass('matches').removeAttr('src');
+            $('.club').removeClass('matches').removeAttr('src');
+            $('.country').removeClass('matches').removeAttr('src');
             third_card.find(".back > img").removeClass("flip");
             third_card = null;
         } 
@@ -718,8 +738,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "black", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "black"});
+            $(".play_again_options").css({"background-color": "#812dff", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "#812dff"});
         }
 
         $(".first_button").click(function (){
