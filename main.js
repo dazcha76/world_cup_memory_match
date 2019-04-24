@@ -116,9 +116,9 @@ $(document).ready(function(){
         let soccer_ball2 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
         let soccer_ball3 = $('<img>').attr({'src': 'images/soccer_ball.png', 'id': 'soccer'});
 
-        let easy_instructions = $('<p>').text('This is your basic memory match game. Just match the images to each other and win!');
-        let medium_instructions = $('<p>').text('This game has a limit to the amount of mismatched cards you can get. Guess before mismatching 10 pairs and you win!');
-        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and the cards will be shuffled! Try to match them all before the 3rd shuffle to win!");
+        let easy_instructions = $('<p>').text('Match the images to each other and win!');
+        let medium_instructions = $('<p>').text('Match all cards before mismatching 10 pairs and you win!');
+        let hard_instructions = $('<p>').text("Mismatch cards 3 times in a row and they'll shuffle! You get 3 tries!");
 
         $('.option_buttons').addClass('difficulty_buttons')
         
@@ -171,13 +171,17 @@ $(document).ready(function(){
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
 
-        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints', title: 'hints'});
+        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints'});
         let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
+
+        // let volume = $('<i>').addClass('fas fa-volume-up').attr({id: 'volume'});
 
         if($('#game_area').hasClass('mascots_game')){
             $("body").addClass("mascots_background");
             $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
             $('#home').css('color', 'red');
+            // $('#game_area').append(volume);
+            // $('#volume').click(toggleSound);
         } else if($('#game_area').hasClass('superstars_game')){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
@@ -206,12 +210,13 @@ $(document).ready(function(){
         let game_board = $('<div>').addClass('game_board');
         let cards = $('<div>').addClass('cards');
         let legend = $('<div>').addClass('legend hidden');
-        let title = $('<h1>').text('Match the following cards:');
+        let title1 = $('<h1>').text('Match the following cards:').addClass('desktop-legend');
+        let title2 = $('<h1>').text('Match:').addClass('mobile-legend');
         let card1 = $('<img>').addClass('player');
         let card2 = $('<img>').addClass('club');
         let card3 = $('<img>').addClass('country');
 
-        $(legend).append(title, card1, card2, card3)
+        $(legend).append(title1, title2, card1, card2, card3)
 
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
@@ -389,30 +394,28 @@ $(document).ready(function(){
             $('.hand').css({"animation-name": "move_hand_mascots", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_mascot_example1, 2000);
             example2_timeout = setTimeout(flip_mascot_example2, 3000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('superstars_game')){
             card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
             $('.example h1').text("Match the superstar to his club and country teams!").css("color", "gold");
             $('.example').css("border", "10px solid gold");
-            $('.card_wrapper').css('width', '60vw');
             $('.fas.fa-times').css("color", "gold");
             $('.card1, .card2, .card3').attr('src', 'images/player.jpg').addClass('vertical_example_cards');;
             $('.hand').css({"animation-name": "move_hand_superstars", "animation-duration": "4s"});
             example1_timeout = setTimeout(flip_superstar_example1, 2000);
             example2_timeout = setTimeout(flip_superstar_example2, 3000);
             example3_timeout = setTimeout(flip_superstar_example3, 4000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('champions_game')){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
             $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "#812dff")
             $('.example').css("border", "10px solid #812dff");
-            $('.card_wrapper').css('width', '60vw');
             $('.fas.fa-times').css("color", "#812dff");
             $('.card1, .card2').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards');
             $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_example1, 2000);
             example2_timeout = setTimeout(flip_example2, 3000);
-            how_to_timeout = setTimeout(remove_how_to, 6000);
+            // how_to_timeout = setTimeout(remove_how_to, 6000);
         }
 
         $(".fa-times").click(remove_how_to);
