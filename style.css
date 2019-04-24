@@ -789,6 +789,19 @@ h3 {
     width: 73vw;
     justify-content: space-between;
   }
+
+  .hand {
+    width: 21%;
+    height: auto;
+  }
+
+  .superstars_background .card_wrapper {
+    width: 80vw;
+  }
+
+  .superstars_background .example h1 {
+    line-height: 120%;
+  }
 }
 
 @media only screen and (max-height: 360px){
