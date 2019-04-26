@@ -14,6 +14,8 @@ body {
 
 .fas.fa-home,
 .fas.fa-question-circle,
+.fas.fa-toggle-on,
+.fas.fa-toggle-off,
 .fas.fa-volume-up,
 .fas.fa-volume-mute {
   position: absolute;
@@ -33,6 +35,8 @@ body {
 }
 
 .fas.fa-question-circle,
+.fas.fa-toggle-on,
+.fas.fa-toggle-off,
 .fas.fa-volume-up,
 .fas.fa-volume-mute {
   right: 0;
@@ -213,11 +217,11 @@ body {
   height: 50%;
   width: 23%; 
   border-radius: 15px;
-  padding: 3%;
   position: absolute;   
-  top: 20%;
-  left: 35%;
-  padding-top: 2%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 4%;
 }
 
 .play_again_options h2 {
@@ -490,7 +494,7 @@ body {
 /* -------------------- CHAMPIONS -------------------- */
 
 .champions_background {
-  background-image: url(images/backgrounds/stadium.jpg);
+  background-image: url(images/backgrounds/champions3.jpg);
   background-size: cover;
 }
 
@@ -499,15 +503,17 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-evenly;
-  margin: 1vh auto;
-  width: 84vw;
-  height: 20vh;
+  margin: 2vh auto;
+  width: 83vw;
+  height: 19vh;
 }
 
 .champion_card {
   width: 24%;
   height: 100%;
   position: relative;
+  border: 5px solid blue;
+  margin: 0 0.5vw;
 }
 
 .champion_card img {
@@ -518,13 +524,13 @@ body {
 .result {
   height: 100px;
   width: 500px;
-  color: #812dff;
+  color: blue;
   background-color: white;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 5px solid #812dff;
+  border: 5px solid blue;
   border-radius: 25px;
   visibility: hidden; 
   font-size: 30px;
@@ -533,14 +539,42 @@ body {
   z-index: 1;
 }
 
+.red {
+  border: 5px solid red;
+}
+
+.orange {
+  border: 5px solid orange;
+}
+
+.yellow {
+  border: 5px solid yellow;
+}
+
+.green {
+  border: 5px solid green;
+}
+
+.purple {
+  border: 5px solid purple;
+}
+
+.black {
+  border: 5px solid black;
+}
+
+.white {
+  border: 5px solid white;
+}
+
 /* -------------------- TOOLTIPS -------------------- */
 
 /* https://www.w3schools.com/howto/howto_css_tooltip.asp */
 
-#hints .tooltiptext {
+#superstar_hints .tooltiptext,
+#champion_hints .tooltiptext {
   visibility: hidden;
   background-color: #555;
-  color: gold;
   text-align: center;
   padding: 5px;
   border-radius: 6px;
@@ -552,7 +586,8 @@ body {
   transition: opacity 0.3s;
 }
 
-#hints .tooltiptext::after {
+#superstar_hints .tooltiptext::after,
+#champion_hints .tooltiptext::after {
   content: "";
   position: absolute;
   top: 25%;
@@ -562,7 +597,8 @@ body {
   border-color: transparent transparent transparent #555;
 }
 
-#hints:hover .tooltiptext {
+#superstar_hints:hover .tooltiptext,
+#champion_hints:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -681,7 +717,9 @@ h3 {
   }
 
   .fas.fa-home,
-  .fas.fa-question-circle {
+  .fas.fa-question-circle,
+  .fas.fa-toggle-off,
+  .fas.fa-toggle-on {
     font-size: 200%
   }
 
@@ -700,7 +738,8 @@ h3 {
     width: 9vw;
   }
 
-  #hints:hover .tooltiptext {
+  #superstar_hints:hover .tooltiptext,
+  #champion_hints:hover .tooltiptext {
     display: none;
   }
 
@@ -728,21 +767,6 @@ h3 {
 
   #soccer {
     display: none;
-  }
-
-  @keyframes fade_in {
-    from {opacity: 0; height: 0; width: 0;}
-    to {opacity: 1; height: 65vh; width: 72%;}
-  }
-
-  @keyframes fade_in_title {
-    from {opacity: 0; font-size: 0;}
-    to {opacity: 1; font-size: 150%;}
-  }
-
-  @keyframes fade_in_buttons {
-    from {opacity: 0; height: 0; width: 0; font-size: 0;}
-    to {opacity: 1; height: 96%; width: 27%; font-size: 130%;}
   }
 
   .how_to h1 {
@@ -801,6 +825,41 @@ h3 {
 
   .superstars_background .example h1 {
     line-height: 120%;
+  }
+
+  .champion_card {
+    height: 92%;
+    width: 23%;
+  }
+
+  .play_again_options {
+    height: 90%;
+    width: 50%;
+  }
+
+  .play_again_buttons {
+    height: 50px;
+    line-height: 50px;
+    margin: 8% auto;
+  }
+
+  .first_button {
+    margin-top: 0;
+  }
+
+  @keyframes fade_in {
+    from {opacity: 0; height: 0; width: 0;}
+    to {opacity: 1; height: 65vh; width: 72%;}
+  }
+
+  @keyframes fade_in_title {
+    from {opacity: 0; font-size: 0;}
+    to {opacity: 1; font-size: 150%;}
+  }
+
+  @keyframes fade_in_buttons {
+    from {opacity: 0; height: 0; width: 0; font-size: 0;}
+    to {opacity: 1; height: 96%; width: 27%; font-size: 130%;}
   }
 }
 
