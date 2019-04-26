@@ -22,6 +22,11 @@ let mascots_how_to = 0;
 let superstars_how_to = 0;
 let champions_how_to = 0;
 
+let first_year;
+let second_year;
+
+let champions_hints = false;
+
 $(document).ready(function(){
     const gol = document.getElementById("gol");
     const whistle = document.getElementById("whistle");                   
@@ -171,7 +176,7 @@ $(document).ready(function(){
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
 
-        let hints = $('<i>').addClass('fas fa-question-circle tooltip').attr({id: 'hints'});
+        let hints = $('<i>');
         let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
 
         // let volume = $('<i>').addClass('fas fa-volume-up').attr({id: 'volume'});
@@ -186,21 +191,39 @@ $(document).ready(function(){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
             $('#home').css('color', 'gold');
-            $('#game_area').append(hints).css('color', 'gold');
             $(hints).append(tooltip);
-            $('#hints').click(showHints);
+            $(hints).addClass('fas fa-question-circle tooltip').css('color', 'gold').attr({id: 'superstar_hints'});;
+            $('#game_area').append(hints)
+            $('#superstar_hints').click(showSuperstarHints);
         } else if($('#game_area').hasClass('champions_game')){
             $("body").addClass("champions_background");
-            $(".title h1").text("World Cup Champions").css('color', '#812dff');
-            $('#home').css('color', '#812dff');
+            $(".title h1").text("World Cup Champions").css('color', 'blue');
+            $('#home').css('color', 'blue');
+            $(hints).append(tooltip);
+            $(hints).addClass('fas fa-toggle-off').css('color', 'blue').attr({id: 'champion_hints'});;
+            $('#game_area').append(hints)
+            $('#champion_hints').click(showChampionHints);
             create_results_div();
         }
 
         create_rows();
     }
 
-    function showHints(){
+    function showSuperstarHints(){
         $('.legend').toggleClass('hidden');
+    }
+
+    function showChampionHints(){
+        if(champions_hints){
+            champions_hints = false;
+            $('#champion_hints').removeClass();
+            $('#champion_hints').addClass('fas fa-toggle-off');
+
+        } else {
+            champions_hints = true;
+            $('#champion_hints').removeClass();
+            $('#champion_hints').addClass('fas fa-toggle-on');
+        }  
     }
 
     // -------------------------------- CREATE ROWS -------------------------------- 
@@ -394,7 +417,7 @@ $(document).ready(function(){
             $('.hand').css({"animation-name": "move_hand_mascots", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_mascot_example1, 2000);
             example2_timeout = setTimeout(flip_mascot_example2, 3000);
-            // how_to_timeout = setTimeout(remove_how_to, 6000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('superstars_game')){
             card_wrapper.append(card1).append(card2).append(card3).append(hand).append(checkmark);
             $('.example h1').text("Match the superstar to his club and country teams!").css("color", "gold");
@@ -405,17 +428,17 @@ $(document).ready(function(){
             example1_timeout = setTimeout(flip_superstar_example1, 2000);
             example2_timeout = setTimeout(flip_superstar_example2, 3000);
             example3_timeout = setTimeout(flip_superstar_example3, 4000);
-            // how_to_timeout = setTimeout(remove_how_to, 6000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
         } else if($('#game_area').hasClass('champions_game')){
             card_wrapper.append(card1).append(card2).append(hand).append(checkmark);
-            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "#812dff")
-            $('.example').css("border", "10px solid #812dff");
-            $('.fas.fa-times').css("color", "#812dff");
+            $('.example h1').text("Match the World Cup to the team that won it that year!").css("color", "blue")
+            $('.example').css("border", "10px solid blue");
+            $('.fas.fa-times').css("color", "blue");
             $('.card1, .card2').attr('src', 'images/champions.jpg').addClass('horizontal_example_cards');
             $('.hand').css({"animation-name": "move_hand_champions", "animation-duration": "3s"});
             example1_timeout = setTimeout(flip_example1, 2000);
             example2_timeout = setTimeout(flip_example2, 3000);
-            // how_to_timeout = setTimeout(remove_how_to, 6000);
+            how_to_timeout = setTimeout(remove_how_to, 6000);
         }
 
         $(".fa-times").click(remove_how_to);
@@ -468,6 +491,7 @@ $(document).ready(function(){
     // -------------------------------- FLIP CARDS --------------------------------
 
     function flip_cards(){
+
         if($('#game_area').hasClass('mascots_game')){
             total_matches = 9;
             if(can_click === true){
@@ -596,19 +620,25 @@ $(document).ready(function(){
 
         } else if($('#game_area').hasClass('champions_game')){
             total_matches = 8;
+
             if(can_click === true){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
+                    first_string = first_card.find(".front > img").attr("src");
+                    first_year = first_string[17] + first_string[18] + first_string[19] + first_string[20];
+                    if(champions_hints){
+                        $(first_card).addClass(colors(first_year)); 
+                    }  
                 } else if($(this).find(".front > img").attr("src") !== first_card.find(".front > img").attr("src")){
                     second_card = $(this);
                     can_click = false;
-
-                    first_string = first_card.find(".front > img").attr("src");
-                    var first_year = first_string[17] + first_string[18] + first_string[19] + first_string[20];
                    
                     second_string = second_card.find(".front > img").attr("src");
-                    var second_year = second_string[17] + second_string[18] + second_string[19] + second_string[20];
+                    second_year = second_string[17] + second_string[18] + second_string[19] + second_string[20];
+                    if(champions_hints){
+                        $(second_card).addClass(colors(second_year));
+                    }
 
                     if(first_year === second_year){
                         for(i = 0; i < results.length; i++){
@@ -636,6 +666,10 @@ $(document).ready(function(){
                     } else {
                         misses += 1;
                         setTimeout(flip_back, 2000);
+
+                        // $(first_card).removeClass(colors(first_year))
+                        // $(second_card).removeClass(colors(second_year))
+
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 10){
                                 setTimeout(play_again, 1500);
@@ -656,6 +690,27 @@ $(document).ready(function(){
             }
         }
     };
+
+    function colors(year){
+        switch(year){
+            case '1986':
+                return 'red';
+            case '1990':
+                return 'orange';
+            case '1994':
+                return 'yellow';
+            case '1998':
+                return 'green';
+            case '2002':
+                return 'blue';
+            case '2006':
+                return 'purple';
+            case '2010':
+                return 'black';
+            case '2014':
+                return 'white';
+        }
+    }
 
     function remove_card(){
         first_card.addClass("remove");
@@ -694,6 +749,8 @@ $(document).ready(function(){
     function flip_back(){
         first_card.find(".back > img").removeClass("flip");
         second_card.find(".back > img").removeClass("flip");
+        $(first_card).removeClass(colors(first_year))
+        $(second_card).removeClass(colors(second_year))
         first_card = null;
         second_card = null;
         if($("body").hasClass("superstars_background")){
@@ -741,8 +798,8 @@ $(document).ready(function(){
             $(".play_again_options").css({"background-color": "gold", "color": "white"});
             $(".play_again_buttons").css({"background-color": "white", "color": "gold"});
         } else if($("body").hasClass("champions_background")){
-            $(".play_again_options").css({"background-color": "#812dff", "color": "white"});
-            $(".play_again_buttons").css({"background-color": "white", "color": "#812dff"});
+            $(".play_again_options").css({"background-color": "blue", "color": "white"});
+            $(".play_again_buttons").css({"background-color": "white", "color": "blue"});
         }
 
         $(".first_button").click(function (){
