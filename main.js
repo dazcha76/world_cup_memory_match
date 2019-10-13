@@ -235,11 +235,12 @@ $(document).ready(function(){
         let legend = $('<div>').addClass('legend hidden');
         let title1 = $('<h1>').text('Match the following cards:').addClass('desktop-legend');
         let title2 = $('<h1>').text('Match:').addClass('mobile-legend');
-        let card1 = $('<img>').addClass('player');
-        let card2 = $('<img>').addClass('club');
-        let card3 = $('<img>').addClass('country');
+        // let card1 = $('<img>').addClass('player');
+        // let card2 = $('<img>').addClass('club');
+        // let card3 = $('<img>').addClass('country');
 
-        $(legend).append(title1, title2, card1, card2, card3)
+        $(legend).append(title1, title2)
+        // $(legend).append(title1, title2, card1, card2, card3)
 
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
@@ -549,15 +550,26 @@ $(document).ready(function(){
                 }
             }
         } else if($('#game_area').hasClass('superstars_game')){
+            let card1 = $('<img>').addClass('player');
+            let card2 = $('<img>').addClass('club');
+            let card3 = $('<img>').addClass('country');
+
             total_matches = 6;
             if(can_click === true){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
                     let player_name = (first_card.find(".front > img").attr("src")).substr(18, 4);
+
+
+
+                    $('.legend').append(card1, card2, card3);
                     $('.player').addClass('matches').attr('src', `images/superstars/${player_name}_player.png`)
                     $('.club').addClass('matches').attr('src', `images/superstars/${player_name}_club.png`)
                     $('.country').addClass('matches').attr('src', `images/superstars/${player_name}_country.png`)
+
+
+
                 } else if (second_card === null){
                     second_card = $(this);
 
@@ -597,8 +609,10 @@ $(document).ready(function(){
                         }
                         return match_counter;
                     } else {
+
                         misses += 1;
                         setTimeout(flip_back, 2000);
+                        setTimeout(removeHints, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 10){
                                 setTimeout(play_again, 1500);
@@ -690,6 +704,12 @@ $(document).ready(function(){
             }
         }
     };
+
+    function removeHints(){
+        $('.player').remove();
+        $('.club').remove();
+        $('.country').remove();
+    }
 
     function colors(year){
         switch(year){
