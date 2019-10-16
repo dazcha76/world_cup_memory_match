@@ -4,6 +4,10 @@ Created a World Cup themed memory match game with three different card decks. As
 
 ## Decks
 
+| Mascots  | Superstars | Champions |
+| ------------- | ------------- | ------------- |
+| Match the World Cup mascots to each other.  | Match the superstar to his club team and international team.  | Match the World Cup to the team that won.|
+
 ### Mascots
 
 Match the World Cup mascots to each other.
