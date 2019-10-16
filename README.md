@@ -8,31 +8,12 @@ Created a World Cup themed memory match game with three different card decks. As
 | ------------- | ------------- | ------------- |
 | Match the World Cup mascots to each other.  | Match the superstar to his club team and international team.  | Match the World Cup to the team that won.|
 
-### Mascots
-
-Match the World Cup mascots to each other.
-
-### Superstars
-
-Match the superstar to his club team and international team.
-
-### Champions
-
-Match the winning soccer team to the World Cup they won.
-
 ## Difficulty Levels
 
-### Easy
-
-You are allowed unlimited mis-matches. The game does not end until you win.
-
-### Medium
-
-There is a limit of 10 mis-matches, at which point the game will end.
-
-### Hard
-
-Mis-match 3 times in a row and the cards will shuffle. Shuffle 3 times and the game will end!
+| Easy | Medium | Hard |
+| ------------- | ------------- | ------------- |
+| You are allowed unlimited mis-matches. The game does not end until you win. | 
+There is a limit of 10 mis-matches, at which point the game will end.| Mis-match 3 times in a row and the cards will shuffle. Shuffle 3 times and the game will end! |
 
 ### Technologies
 
