@@ -12,8 +12,7 @@ Created a World Cup themed memory match game with three different card decks. As
 
 | Easy | Medium | Hard |
 | ------------- | ------------- | ------------- |
-| You are allowed unlimited mis-matches. The game does not end until you win. | 
-There is a limit of 10 mis-matches, at which point the game will end.| Mis-match 3 times in a row and the cards will shuffle. Shuffle 3 times and the game will end! |
+| You are allowed unlimited mis-matches. The game does not end until you win. | There is a limit of 10 mis-matches, at which point the game will end.| Mis-match 3 times in a row and the cards will shuffle. Shuffle 3 times and the game will end! |
 
 ### Technologies
 
