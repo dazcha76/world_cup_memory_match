@@ -487,8 +487,11 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
+                    console.log("FIRST CARD", first_card);
+                    $(first_card).off('click', flip_cards);
                 } else if($(this).find(".front > img").attr("src") !== first_card.find(".front > img").attr("src")){
                     second_card = $(this);
+                    $(second_card).off('click', flip_cards);
                     can_click = false;
 
                     first_string = first_card.find(".front > img").attr("src");
@@ -518,6 +521,8 @@ $(document).ready(function(){
                     } else {
                         misses += 1;
                         whistle.play();
+                        $(first_card).on('click', flip_cards);
+                        $(second_card).on('click', flip_cards);
                         setTimeout(flip_back, 2000);
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 10){
@@ -746,6 +751,7 @@ $(document).ready(function(){
     function flip_back(){
         first_card.find(".back > img").removeClass("flip");
         second_card.find(".back > img").removeClass("flip");
+        
         $(first_card).removeClass(colors(first_year))
         $(second_card).removeClass(colors(second_year))
         first_card = null;
