@@ -214,14 +214,14 @@ body {
 }
 
 .play_again_options {
-  height: 50%;
-  width: 23%; 
+  height: 450px;
+  width: 350px; 
   border-radius: 15px;
   position: absolute;   
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding-top: 4%;
+  padding-top: 3%;
 }
 
 .play_again_options h2 {
@@ -230,7 +230,7 @@ body {
 }
 
 .play_again_buttons {
-  height: 15%;
+  height: 65px;
   width: 80%;
   font-size: 150%;
   text-align: center;
@@ -833,18 +833,14 @@ h3 {
   }
 
   .play_again_options {
-    height: 90%;
-    width: 50%;
+    height: 335px;
+    width: 300px;
   }
 
   .play_again_buttons {
     height: 50px;
     line-height: 50px;
     margin: 8% auto;
-  }
-
-  .first_button {
-    margin-top: 0;
   }
 
   @keyframes fade_in {
