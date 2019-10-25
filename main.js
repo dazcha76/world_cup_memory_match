@@ -93,7 +93,6 @@ $(document).ready(function(){
     // -------------------------------- CHOOSE A GAME -------------------------------- 
 
     function choose_deck(){
-
         $('.option_buttons').addClass('deck_buttons')
 
         $('.mascots').click(function(){
@@ -135,7 +134,6 @@ $(document).ready(function(){
         $('.option1').removeClass('mascots').addClass('easy');
         $('.option2').removeClass('superstars').addClass('medium');
         $('.option3').removeClass('champions').addClass('hard');
-
 
         if(width > 500){
             $('.option1').append(soccer_ball1);
@@ -179,14 +177,10 @@ $(document).ready(function(){
         let hints = $('<i>');
         let tooltip = $('<span>').text('Hints').addClass('tooltiptext');
 
-        // let volume = $('<i>').addClass('fas fa-volume-up').attr({id: 'volume'});
-
         if($('#game_area').hasClass('mascots_game')){
             $("body").addClass("mascots_background");
             $(".title h1").css({"padding-left": "36%", "color": "red"}).text("World Cup Mascots");
             $('#home').css('color', 'red');
-            // $('#game_area').append(volume);
-            // $('#volume').click(toggleSound);
         } else if($('#game_area').hasClass('superstars_game')){
             $("body").addClass("superstars_background");
             $(".title h1").css({"color": "gold"}).text("World Cup Superstars");
@@ -235,12 +229,8 @@ $(document).ready(function(){
         let legend = $('<div>').addClass('legend hidden');
         let title1 = $('<h1>').text('Match the following cards:').addClass('desktop-legend');
         let title2 = $('<h1>').text('Match:').addClass('mobile-legend');
-        // let card1 = $('<img>').addClass('player');
-        // let card2 = $('<img>').addClass('club');
-        // let card3 = $('<img>').addClass('country');
 
         $(legend).append(title1, title2)
-        // $(legend).append(title1, title2, card1, card2, card3)
 
         if($("body").hasClass("champions_background")){
             for(i = 0; i < 4; i++){
@@ -384,6 +374,8 @@ $(document).ready(function(){
             i = 0;
         }
 
+        
+
     }
 
     // -------------------------------- CREATE HOW TO MODAL -------------------------------- 
@@ -492,7 +484,6 @@ $(document).ready(function(){
     // -------------------------------- FLIP CARDS --------------------------------
 
     function flip_cards(){
-
         if($('#game_area').hasClass('mascots_game')){
             total_matches = 9;
             if(can_click === true){
@@ -520,6 +511,9 @@ $(document).ready(function(){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
+                            
+
+
                             setTimeout(play_again, 1500);
                         } else {
                             first_card = null;
@@ -560,16 +554,10 @@ $(document).ready(function(){
                 if(first_card === null){
                     first_card = $(this);
                     let player_name = (first_card.find(".front > img").attr("src")).substr(18, 4);
-
-
-
                     $('.legend').append(card1, card2, card3);
                     $('.player').addClass('matches').attr('src', `images/superstars/${player_name}_player.png`)
                     $('.club').addClass('matches').attr('src', `images/superstars/${player_name}_club.png`)
                     $('.country').addClass('matches').attr('src', `images/superstars/${player_name}_country.png`)
-
-
-
                 } else if (second_card === null){
                     second_card = $(this);
 
@@ -595,13 +583,14 @@ $(document).ready(function(){
                         matched_cards.push(image);
                         image = third_string;
                         matched_cards.push(image);
-                        // $('.player').removeClass('matches').removeAttr('src');
-                        // $('.club').removeClass('matches').removeAttr('src');
-                        // $('.country').removeClass('matches').removeAttr('src');
                         if($('#game_area').attr('data-difficulty') === 'hard'){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
+                            
+
+
+
                             setTimeout(play_again, 1500);
                         } else {
                             setTimeout(remove_card, 2000);
@@ -671,6 +660,10 @@ $(document).ready(function(){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
+                            
+
+
+
                             setTimeout(play_again, 1500);
                         } else {
                             first_card = null;
@@ -681,9 +674,6 @@ $(document).ready(function(){
                     } else {
                         misses += 1;
                         setTimeout(flip_back, 2000);
-
-                        // $(first_card).removeClass(colors(first_year))
-                        // $(second_card).removeClass(colors(second_year))
 
                         if($('#game_area').attr('data-difficulty') === 'medium'){
                             if(misses === 10){
@@ -787,10 +777,20 @@ $(document).ready(function(){
     // PLAY AGAIN
 
     function play_again(){
-        misses = 0;
+        can_click = true;
+        first_card = null;
+        second_card = null;
+        third_card = null;
+        first_string = "";
+        second_string = "";
+        third_string = "";
+        match_counter = 0;
+        total_matches = 0;
         attempts = 0;
+        misses = 0;
 
-        let play_again_div = $('<div>').addClass("play_again play_again_hidden");
+        // let play_again_div = $('<div>').addClass("play_again play_again_hidden");
+        let play_again_div = $('<div>').addClass("play_again");
         let play_again_options = $('<div>').addClass("play_again_options");
         $(play_again_div).append(play_again_options);
         $('#game_area').append(play_again_div);
@@ -896,16 +896,12 @@ $(document).ready(function(){
         });
 
         function rebuild_board(){
-            $(".play_again").addClass("play_again_hidden");
-            $(".play_again_options").empty();
+            $('.play_again').remove();
+            $('.game_board').remove();
             $(".row").remove();
             create_rows();
             remove_how_to();
-            $(".back > img").removeClass("flip")
-            first_card = null;
-            second_card = null;
-            can_click = true;  
-            match_counter = 0
+            $(".back > img").removeClass("flip");
         };
 
         function change_deck(){
@@ -940,6 +936,9 @@ $(document).ready(function(){
             // $(".play_again_options").empty();
         }
 
-        $(".play_again").toggleClass("play_again_hidden");
+        // $(".play_again").toggleClass("play_again_hidden");
+
+        
     }
 });
+
