@@ -487,7 +487,6 @@ $(document).ready(function(){
                 $(event.target).addClass("flip");
                 if(first_card === null){
                     first_card = $(this);
-                    console.log("FIRST CARD", first_card);
                     $(first_card).off('click', flip_cards);
                 } else if($(this).find(".front > img").attr("src") !== first_card.find(".front > img").attr("src")){
                     second_card = $(this);
@@ -685,6 +684,10 @@ $(document).ready(function(){
                 }
             }
         }
+
+        console.log("match_counter", match_counter)
+        console.log("total_matches", total_matches)
+        console.log("misses", misses)
     };
 
     function removeHints(){
@@ -770,19 +773,6 @@ $(document).ready(function(){
     // PLAY AGAIN
 
     function play_again(){
-        can_click = true;
-        first_card = null;
-        second_card = null;
-        third_card = null;
-        first_string = "";
-        second_string = "";
-        third_string = "";
-        match_counter = 0;
-        total_matches = 0;
-        attempts = 0;
-        misses = 0;
-
-        // let play_again_div = $('<div>').addClass("play_again play_again_hidden");
         let play_again_div = $('<div>').addClass("play_again");
         let play_again_options = $('<div>').addClass("play_again_options");
         $(play_again_div).append(play_again_options);
@@ -796,6 +786,18 @@ $(document).ready(function(){
         } else {
             lose_title.appendTo(".play_again_options");
         }
+
+        can_click = true;
+        first_card = null;
+        second_card = null;
+        third_card = null;
+        first_string = "";
+        second_string = "";
+        third_string = "";
+        match_counter = 0;
+        total_matches = 0;
+        attempts = 0;
+        misses = 0;
         
         var first_button = $('<div>').addClass("play_again_buttons first_button").text("Play Again");
         var second_button = $('<div>').addClass("play_again_buttons second_button").text("Change Difficulty");
