@@ -287,7 +287,7 @@ $(document).ready(function(){
 
         shuffle_cards();
         how_to();
-        $(".card").click(flip_cards);
+        $(".card").on('click', flip_cards);
     }
 
     // -------------------------------- SHUFFLE AND DEAL CARDS -------------------------------- 
@@ -373,9 +373,6 @@ $(document).ready(function(){
             elem_index += 1;
             i = 0;
         }
-
-        
-
     }
 
     // -------------------------------- CREATE HOW TO MODAL -------------------------------- 
@@ -511,9 +508,6 @@ $(document).ready(function(){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
-                            
-
-
                             setTimeout(play_again, 1500);
                         } else {
                             first_card = null;
@@ -587,10 +581,6 @@ $(document).ready(function(){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
-                            
-
-
-
                             setTimeout(play_again, 1500);
                         } else {
                             setTimeout(remove_card, 2000);
@@ -660,10 +650,6 @@ $(document).ready(function(){
                             misses = 0;
                         }
                         if(match_counter === total_matches){
-                            
-
-
-
                             setTimeout(play_again, 1500);
                         } else {
                             first_card = null;
@@ -771,6 +757,7 @@ $(document).ready(function(){
             third_card.find(".back > img").removeClass("flip");
             third_card = null;
         } 
+        $(".flip").parentsUntil('.row').off('click', flip_cards);
         can_click = true;  
     };
 
