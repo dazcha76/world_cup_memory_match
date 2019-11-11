@@ -169,7 +169,7 @@ $(document).ready(function(){
         $(set_header).append(set_title);
         $('#game_area').append(set_header);
 
-        $("#game_area").css({"height": "100vh", "width": "100vw"});
+        $("#game_area").css({"width": "100vw"});
 
         let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
         $('#game_area').append(home);
@@ -901,7 +901,7 @@ $(document).ready(function(){
             $(set_header).append(set_title);
             $('#game_area').append(set_header);
 
-            $("#game_area").css({"height": "100vh", "width": "100vw"});
+            $("#game_area").css({"width": "100vw"});
             let home = $('<i>').addClass('fas fa-home').attr('id', 'home');
             $('#game_area').append(home);
 
