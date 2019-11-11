@@ -684,10 +684,6 @@ $(document).ready(function(){
                 }
             }
         }
-
-        console.log("match_counter", match_counter)
-        console.log("total_matches", total_matches)
-        console.log("misses", misses)
     };
 
     function removeHints(){
