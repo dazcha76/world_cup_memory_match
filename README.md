@@ -28,4 +28,4 @@ Created a World Cup themed memory match game with three different card decks. As
 
 ## Live Site
 
-Play the game [here](https://world-cup-memory-match.netlify.app/))!
+Play the game [here](https://world-cup-memory-match.netlify.app/)!
